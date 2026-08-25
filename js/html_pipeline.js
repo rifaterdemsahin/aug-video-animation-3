@@ -2,25 +2,15 @@
 
 (function() {
   const STORAGE_KEY = 'aug_video_html_pipeline_feedback_v3';
+  const DURATIONS_KEY = 'aug_video_pipeline_durations_v1';
+  const DESCRIPTIONS_KEY = 'aug_video_pipeline_descriptions_v1';
 
   // Default stage templates matching the production report
   const DEFAULT_FEEDBACK = {
-    stage_1: {
-      left: '',
-      right: ''
-    },
-    stage_2: {
-      left: '',
-      right: ''
-    },
-    stage_2_5: {
-      left: '',
-      right: ''
-    },
-    stage_3: {
-      left: '',
-      right: ''
-    },
+    stage_1: { left: '', right: '' },
+    stage_2: { left: '', right: '' },
+    stage_2_5: { left: '', right: '' },
+    stage_3: { left: '', right: '' },
     stage_qc: {
       left: 'Shotlist in hand: Sort clips 1-by-1 to used asset. Verify 0 blank frames.',
       right: 'Quality Gate PASS. Zero text hallucination in video model.'
@@ -39,12 +29,42 @@
     }
   };
 
+  const DEFAULT_DURATIONS = {
+    stage_1: 20,
+    stage_2: 15,
+    stage_2_5: 5,
+    stage_3: 30,
+    stage_qc: 15,
+    stage_4: 35,
+    stage_4_5: 20,
+    stage_5: 20
+  };
+
+  const DEFAULT_DESCRIPTIONS = {
+    stage_1: 'Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.',
+    stage_2: 'Generate 22 scenes × 8s pacing (176s) with strict 18-22 word voice-over lines.',
+    stage_2_5: 'Split-view staging: Gemini prompt director paired with Google Flow generation queue.',
+    stage_3: 'Batch render 22 8s clips in Google Flow (15 credits/ea = 330 base credits).',
+    stage_qc: 'CRITICAL GATE: Sort footages to used asset & verify zero timeline gaps with shotlist in hand.',
+    stage_4: 'Pre-prod Post-its ➔ Bulk paste 22 8s placeholders ➔ Set Video as Background.',
+    stage_4_5: 'Rehearse with 8s countdown loop & metronome, record authentic VO & apply Roger stamp.',
+    stage_5: 'Export 1080p 60fps MP4, generate 22-chapter YouTube description, LinkedIn & Skool flywheel.'
+  };
+
   let feedbackData = {};
+  let durationsData = {};
+  let descriptionsData = {};
 
   window.initHtmlPipeline = function() {
     loadFeedbackData();
+    loadDurationsData();
+    loadDescriptionsData();
     populateTextareas();
+    populateDurations();
+    initEditableDescriptions();
     attachEventListeners();
+    setupDragAndDrop();
+    restoreRowOrder();
   };
 
   function loadFeedbackData() {
@@ -64,6 +84,94 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackData));
     } catch (e) {}
+  }
+
+  function loadDurationsData() {
+    try {
+      const saved = localStorage.getItem(DURATIONS_KEY);
+      durationsData = saved ? JSON.parse(saved) : { ...DEFAULT_DURATIONS };
+    } catch (e) {
+      durationsData = { ...DEFAULT_DURATIONS };
+    }
+  }
+
+  function saveDurationsData() {
+    try {
+      localStorage.setItem(DURATIONS_KEY, JSON.stringify(durationsData));
+    } catch (e) {}
+  }
+
+  function loadDescriptionsData() {
+    try {
+      const saved = localStorage.getItem(DESCRIPTIONS_KEY);
+      descriptionsData = saved ? JSON.parse(saved) : { ...DEFAULT_DESCRIPTIONS };
+    } catch (e) {
+      descriptionsData = { ...DEFAULT_DESCRIPTIONS };
+    }
+  }
+
+  function saveDescriptionsData() {
+    try {
+      localStorage.setItem(DESCRIPTIONS_KEY, JSON.stringify(descriptionsData));
+    } catch (e) {}
+  }
+
+  function populateDurations() {
+    Object.keys(DEFAULT_DURATIONS).forEach(stageKey => {
+      const val = durationsData[stageKey] !== undefined ? durationsData[stageKey] : DEFAULT_DURATIONS[stageKey];
+      const el = document.getElementById(`dur-val-${stageKey}`);
+      if (el) el.textContent = `${val} min`;
+    });
+  }
+
+  // ⏱️ Step duration in 5-minute intervals
+  window.adjustStageDuration = function(stageKey, deltaMinutes) {
+    const current = durationsData[stageKey] !== undefined ? durationsData[stageKey] : (DEFAULT_DURATIONS[stageKey] || 15);
+    const updated = Math.max(5, current + deltaMinutes);
+    durationsData[stageKey] = updated;
+    saveDurationsData();
+
+    const el = document.getElementById(`dur-val-${stageKey}`);
+    if (el) el.textContent = `${updated} min`;
+
+    calculateTotalPipelineTime();
+  };
+
+  function calculateTotalPipelineTime() {
+    let totalMin = 0;
+    Object.keys(DEFAULT_DURATIONS).forEach(k => {
+      totalMin += (durationsData[k] !== undefined ? durationsData[k] : DEFAULT_DURATIONS[k]);
+    });
+    const hours = Math.floor(totalMin / 60);
+    const mins = totalMin % 60;
+    const timeStr = hours > 0 ? `~${hours}h ${mins > 0 ? mins + 'm' : ''} (${totalMin} min)` : `${totalMin} min`;
+    console.log('⚡ Total Pipeline Duration:', timeStr);
+    return timeStr;
+  }
+
+  function initEditableDescriptions() {
+    document.querySelectorAll('.editable-description').forEach(el => {
+      const stage = el.getAttribute('data-stage');
+      if (stage && descriptionsData[stage]) {
+        el.textContent = descriptionsData[stage];
+      }
+
+      el.addEventListener('input', (e) => {
+        const stageKey = e.target.getAttribute('data-stage');
+        if (stageKey) {
+          descriptionsData[stageKey] = e.target.innerText.trim();
+          saveDescriptionsData();
+        }
+      });
+
+      el.addEventListener('blur', (e) => {
+        const stageKey = e.target.getAttribute('data-stage');
+        if (stageKey) {
+          descriptionsData[stageKey] = e.target.innerText.trim();
+          saveDescriptionsData();
+        }
+      });
+    });
   }
 
   function populateTextareas() {
@@ -106,25 +214,30 @@
   // 📋 Main Feature: Copy All Pipeline Feedback
   window.copyAllPipelineFeedback = function() {
     const stagesMeta = [
-      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup', time: '15-20 min' },
-      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts', time: '10-15 min' },
-      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup', time: '5 min' },
-      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation', time: '25-35 min' },
-      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit', time: '10-15 min' },
-      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline', time: '30-45 min' },
-      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal', time: '15-20 min' },
-      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel', time: '15-20 min' }
+      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup' },
+      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts' },
+      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup' },
+      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation' },
+      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit' },
+      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline' },
+      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal' },
+      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel' }
     ];
 
+    const totalTime = calculateTotalPipelineTime();
     let report = `# 🎬 3-Minute Video Pipeline Feedback & Review Report\n`;
     report += `**Project**: Claude Developer Certification: Token Optimization & Custom IDEs\n`;
-    report += `**Turnaround Target**: ~2h 15m (135 min) • 176s Master Video (22 Scenes) • 330 Credits\n`;
+    report += `**Turnaround Target**: ${totalTime} • 176s Master Video (22 Scenes) • 330 Credits\n`;
     report += `**Generated**: ${new Date().toLocaleString()}\n\n`;
     report += `---\n\n`;
 
     stagesMeta.forEach(s => {
       const data = feedbackData[s.key] || { left: '', right: '' };
-      report += `### ${s.title} (⏱️ ${s.time})\n`;
+      const dur = (durationsData[s.key] !== undefined ? durationsData[s.key] : DEFAULT_DURATIONS[s.key]) + ' min';
+      const desc = descriptionsData[s.key] || DEFAULT_DESCRIPTIONS[s.key];
+
+      report += `### ${s.title} (⏱️ ${dur})\n`;
+      if (desc) report += `*Scope: ${desc}*\n`;
       report += `* **📝 Updates**:\n`;
       report += data.left.trim() ? `${data.left.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No updates added)*\n`;
       report += `* **⚠️ Issues**:\n`;
@@ -142,7 +255,6 @@
       }
     }).catch(err => {
       console.error('Failed to copy: ', err);
-      // Fallback prompt
       prompt('Copy your pipeline feedback below:', report);
     });
   };
@@ -150,20 +262,24 @@
   // Export Feedback as Markdown File
   window.exportFeedbackMarkdown = function() {
     const stagesMeta = [
-      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup', time: '15-20 min' },
-      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts', time: '10-15 min' },
-      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup', time: '5 min' },
-      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation', time: '25-35 min' },
-      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit', time: '10-15 min' },
-      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline', time: '30-45 min' },
-      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal', time: '15-20 min' },
-      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel', time: '15-20 min' }
+      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup' },
+      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts' },
+      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup' },
+      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation' },
+      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit' },
+      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline' },
+      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal' },
+      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel' }
     ];
 
     let report = `# 🎬 3-Minute Video Pipeline Feedback & Review Report\n\n`;
     stagesMeta.forEach(s => {
       const data = feedbackData[s.key] || { left: '', right: '' };
-      report += `## ${s.title}\n`;
+      const dur = (durationsData[s.key] !== undefined ? durationsData[s.key] : DEFAULT_DURATIONS[s.key]) + ' min';
+      const desc = descriptionsData[s.key] || DEFAULT_DESCRIPTIONS[s.key];
+
+      report += `## ${s.title} (⏱️ ${dur})\n`;
+      if (desc) report += `> **Scope**: ${desc}\n\n`;
       report += `### 📝 Updates\n${data.left || '(None)'}\n\n`;
       report += `### ⚠️ Issues\n${data.right || '(None)'}\n\n`;
     });

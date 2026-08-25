@@ -101,8 +101,13 @@
                       <a href="pipeline.html#stage-1" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_1', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_1">20 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_1', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_1" title="Click to edit stage description">
                     Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.
                   </div>
                 </div>
@@ -149,8 +154,13 @@
                       <a href="pipeline.html#stage-2" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_2', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_2">15 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_2', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_2" title="Click to edit stage description">
                     Generate 22 scenes × 8s pacing (176s) with strict 18-22 word voice-over lines.
                   </div>
                 </div>
@@ -197,8 +207,13 @@
                       <a href="pipeline.html#simulation-stage" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 5 min (4%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_2_5', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_2_5">5 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_2_5', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_2_5" title="Click to edit stage description">
                     Split-view staging: Gemini prompt director paired with Google Flow generation queue.
                   </div>
                 </div>
@@ -245,8 +260,13 @@
                       <a href="pipeline.html#stage-3" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 25-35 min (22%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_3', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_3">30 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_3', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_3" title="Click to edit stage description">
                     Batch render 22 8s clips in Google Flow (15 credits/ea = 330 base credits).
                   </div>
                 </div>
@@ -293,9 +313,14 @@
                       <a href="qc-budget.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🧪 Open Gate ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
-                  <div class="stage-description">
-                    <strong>CRITICAL GATE:</strong> Sort footages to used asset & verify zero timeline gaps with shotlist in hand.
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_qc', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_qc">15 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_qc', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_qc" title="Click to edit stage description">
+                    CRITICAL GATE: Sort footages to used asset & verify zero timeline gaps with shotlist in hand.
                   </div>
                 </div>
               </td>
@@ -341,8 +366,13 @@
                       <a href="pipeline.html#stage-4" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 30-45 min (26%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_4', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_4">35 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_4', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_4" title="Click to edit stage description">
                     Pre-prod Post-its ➔ Bulk paste 22 8s placeholders ➔ Set Video as Background.
                   </div>
                 </div>
@@ -389,8 +419,13 @@
                       <a href="studio.html" class="btn btn-primary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🎙️ Launch Studio ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_4_5', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_4_5">20 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_4_5', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_4_5" title="Click to edit stage description">
                     Rehearse with 8s countdown loop & metronome, record authentic VO & apply Roger stamp.
                   </div>
                 </div>
@@ -437,8 +472,13 @@
                       <a href="distribution.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🚀 Open Funnel ↗</a>
                     </div>
                   </div>
-                  <div class="duration-badge">⏱️ Duration: 15-20 min (11%)</div>
-                  <div class="stage-description">
+                  <div class="duration-badge-controller">
+                    <span>⏱️ Duration:</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_5', -5)" title="Decrease by 5 min">−</button>
+                    <span class="duration-display" id="dur-val-stage_5">20 min</span>
+                    <button class="duration-step-btn" onclick="adjustStageDuration('stage_5', 5)" title="Increase by 5 min">+</button>
+                  </div>
+                  <div class="stage-description editable-description" contenteditable="true" data-stage="stage_5" title="Click to edit stage description">
                     Export 1080p 60fps MP4, generate 22-chapter YouTube description, LinkedIn & Skool flywheel.
                   </div>
                 </div>
