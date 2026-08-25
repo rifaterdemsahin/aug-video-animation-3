@@ -354,6 +354,13 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('🔄 Footage placement reset to initial state');
   };
 
+  // Launch Dual Workspace (Google Flow + Canva) simultaneously
+  window.launchDualProductionWorkspace = function() {
+    window.open('https://labs.google/flow', '_blank');
+    window.open('https://www.canva.com', '_blank');
+    showToast('🪟 Opened Google Flow & Canva Prod side-by-side!', 'cloud');
+  };
+
   // Render Canva 3-Section Suite
   function renderCanvaSuite() {
     const preprodContainer = document.getElementById('canva-preprod-postits');

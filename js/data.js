@@ -84,6 +84,7 @@ window.VIDEO_DATA = {
         { id: "s4-create-aug3-folder", label: "Create 'aug 3' ('aug video 3') project folder in Canva & local workspace." },
         { id: "s4-upload-flow-assets", label: "Upload all 22 Google Flow generated 8s MP4 video footages into 'aug video 3'." },
         { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to archive placed clips." },
+        { id: "s4-open-flow-canva-simultaneous", label: "Prod: Open Google Flow (labs.google/flow) and Canva Prod Section at the same time in split-view to place footage before importing to Post-Prod." },
         { id: "s4-add-postits-to-canva", label: "Pre-Prod: Add 22 color-coded Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync." },
         { id: "s4-storyboard-upload-prod", label: "Prod: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene." },
         { id: "s4-move-footages-one-by-one", label: "Prod: Move footages one by one from 'aug video 3' to 'used asset' as each clip is placed on the Canva track." },
