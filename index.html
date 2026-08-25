@@ -356,9 +356,9 @@ Take my topic/input and generate a high-tempo 3-minute video production script:
           </div>
 
           <div class="callout-box">
-            <h4><span>🔍</span> Timeline Scrubbing & Gap Detection</h4>
+            <h4><span>🔍</span> Main Issue: Sorting Footages & Gap Detection (Shotlist in Hand)</h4>
             <p>
-              By scrubbing across the <strong>0:00 to 2:43 timeline</strong>, the creator visually checks for missing footage slices, awkward track jumps, or empty gaps between consecutive 8-second clips.
+              The primary bottleneck in production is sorting footages and catching gaps before post-production starts. By scrubbing across the <strong>0:00 to 2:43 timeline with the 22-scene shotlist in hand</strong>, the creator catches missing clips, track misalignments, or black gaps between 8s scenes before VO recording.
             </p>
           </div>
 
@@ -372,7 +372,7 @@ Take my topic/input and generate a high-tempo 3-minute video production script:
           <div class="callout-box">
             <h4><span>🗃️</span> Move to 'used asset' Confirmation</h4>
             <p>
-              Once a footage clip is visually confirmed on the track with no gaps, it is moved from <code>aug video 3</code> into the <code>used asset</code> subfolder.
+              Once a footage clip is visually confirmed against the shotlist on the track with zero gaps, it is moved from <code>aug video 3</code> into the <code>used asset</code> subfolder.
             </p>
           </div>
         </div>
@@ -509,6 +509,12 @@ Take my topic/input and generate a high-tempo 3-minute video production script:
             </tr>
           </thead>
           <tbody>
+            <tr>
+              <td><strong>🗂️ Sorting Footages & Timeline Gaps (Main Production Issue)</strong></td>
+              <td>Unsorted footages, missing scene slices, or blank timeline gaps between 8s clips going undetected into voice recording.</td>
+              <td><span class="risk-badge risk-high">High Risk (Critical Gate)</span></td>
+              <td><strong>Shotlist-in-Hand Verification:</strong> Sort and move footages one-by-one from <code>aug video 3</code> to <code>used asset</code>, hold the 22-scene shotlist in hand, and scrub the Canva timeline with the sliding Post-it overlay to detect and resolve any gaps before Post-Production starts.</td>
+            </tr>
             <tr>
               <td><strong>🔤 Text Hallucination</strong></td>
               <td>AI video models distort numbers like <code>127.0.0.1:3847</code> or exact code keywords.</td>
@@ -670,6 +676,10 @@ Take my topic/input and generate a high-tempo 3-minute video production script:
           <div class="info-card" style="background: rgba(0,0,0,0.3);">
             <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.5rem;">🎙️ Voice-Over & Post-Prod Sync Checklist</div>
             <ul class="checklist">
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-0" checked>
+                <label for="vo-check-0"><strong>Main Production Gate:</strong> Sort all footages & verify zero gaps with shotlist in hand before starting VO.</label>
+              </li>
               <li class="checklist-item">
                 <input type="checkbox" id="vo-check-1">
                 <label for="vo-check-1">Record master VO audio track (176s).</label>

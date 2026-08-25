@@ -13,3 +13,4 @@ aug_video_3/
 1. **Create Project Folder**: `aug 3` (`aug video 3`) in Canva and local drive.
 2. **Google Flow Uploads**: Upload all 22 generated 8-second MP4 clips.
 3. **Move to `used asset`**: As each clip is placed into the Canva timeline tracks, move/tag it into `used asset` to prevent duplicate usage or missing scenes.
+4. **⚠️ Main Production Gate (Sort Footages & Gap Check with Shotlist in Hand)**: Cross-reference every placed clip against the master 22-scene shotlist, scrubbing the Canva timeline with the sliding Post-it overlay to guarantee zero footage gaps before Post-Production voice-over recording.

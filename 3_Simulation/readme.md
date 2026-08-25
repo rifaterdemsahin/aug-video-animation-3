@@ -27,17 +27,21 @@ This stage represents the **Live Generation Bridge** between **Stage 2 (Gemini S
 
 ---
 
-## 2. 📝 Canva Prod Stage: Read & Check for Footage Gaps with Sliding Post-it
+## 2. 📝 Canva Prod Stage: Sorting Footages & Finding Gaps (Shotlist in Hand)
 
 ![Canva Prod Stage: Read & Check Footage Gaps](prod_stage_read_and_check_for_footage_gaps.jpeg)
 
-### 📌 The "Sliding Post-it" Verification Technique
+### 📌 The Main Issue in Production & "Sliding Post-it" Verification Technique
+In video production, the **single biggest failure point** is moving into Post-Production (voice-over recording and master rendering) without properly sorting all footage clips and catching hidden gaps between scenes. 
+
 In the Canva video project `aug 3 video`:
 
-1. **Sliding Script Overlay**: The full 22-scene script is placed inside a floating/movable text box (Sliding Post-it note) right on top of the main video canvas.
-2. **Timeline Scrubbing & Gap Detection**: The creator scrubs along the bottom timeline track (0:00 to 2:43 / 2:56), sliding the Post-it across the canvas to verify each scene's footage alignment.
-3. **Footage Gap Identification**: Easily identify empty spaces, misalignment between 8s clips, or missing transitions before starting Post-Prod voice-over and mastering.
-4. **Zero-Window-Switch Efficiency**: Reading the script directly over the live footage prevents context switching between external documents and Canva.
+1. **Shotlist in Hand**: Holding the master 22-scene shotlist, the creator cross-references each 8-second slice against the planned visual direction.
+2. **One-by-One Sorting**: As each Google Flow clip is placed on the Canva track, it is moved from `aug video 3` into the `used asset` archive.
+3. **Sliding Script Overlay**: The full 22-scene script is placed inside a floating/movable text box (Sliding Post-it note) right on top of the main video canvas.
+4. **Timeline Scrubbing & Gap Detection**: The creator scrubs along the bottom timeline track (0:00 to 2:43 / 2:56), sliding the Post-it across the canvas to verify each scene's footage alignment.
+5. **Footage Gap Identification**: Easily catch empty spaces, black frames, clip misalignments, or missing transitions before starting Post-Prod voice-over and mastering.
+6. **Zero-Window-Switch Efficiency**: Reading the script directly over the live footage prevents context switching between external documents and Canva.
 
 ---
 
@@ -45,9 +49,9 @@ In the Canva video project `aug 3 video`:
 
 | Aspect | Analysis & Opportunity | Risk / Failure Mode | Recommended Mitigation |
 | :--- | :--- | :--- | :--- |
+| ⚠️ **Footage Sorting & Timeline Gaps (Main Issue)** | Systematic placement of 22 sequential 8s clips. | Unsorted clips or undetected blank gaps between scenes ruining VO sync. | **Shotlist in Hand + Sliding Post-it**: Move placed clips to `used asset` and scrub the full timeline against the shotlist before starting Post-Prod. |
 | 🪙 **Credit Consumption** | 22 scenes × 15 credits = **330 credits base**. | Regens due to visual artifacts push cost to 450+ credits. | Use locked style seeds & test single representative prompt first. |
 | 🎨 **Visual Continuity** | Fast rendering of cinematic 3D motion graphics. | Inconsistent art styles across different scenes (e.g. 2D flat vs 3D CGI). | Prefix every Flow prompt with a standard **Style Anchor** string. |
 | 🔤 **Text & Code Accuracy** | AI video models excel at abstract motion & lighting. | Generative video hallucinations on fine text (`127.0.0.1:3847`, CLI syntax). | **Golden Rule**: Use real screen captures for code/UI; use Flow for motion & metaphors. |
 | ⏱️ **Audio-Video Drift** | 8.0s clip lengths match 8.0s VO narration chunks. | Voice narration running >8.5s or <6.5s causes timeline desync in Canva. | Rehearse with the **8s Teleprompter Studio** before locking video cuts. |
-| 🗂️ **Timeline Gaps** | Multi-clip assembly on Canva tracks. | Footages misaligned with blank gaps between 8s scenes. | **Sliding Post-it Technique**: Scrub timeline with on-canvas script overlay to verify transitions. |
 | 🎭 **Roger Rabbit Identity** | Human authentic voice + real UI + cartoon overlays. | Pure AI video looks generic and impersonal. | Composite real terminal footage with animated badges in Canva Post-Prod. |
