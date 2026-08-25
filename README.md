@@ -1,6 +1,8 @@
 # 🌐 Live Helper Web App: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+# 🛠️ Tools & Tabs Ecosystem: [https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html](https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html)
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Application-22c55e?style=for-the-badge&logo=github)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+[![Tools Hub](https://img.shields.io/badge/Tools%20Hub-14%20Tabs%20Cockpit-8b5cf6?style=for-the-badge&logo=googlechrome)](https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html)
 [![Azure Files](https://img.shields.io/badge/Azure%20Files-Cloud%20State%20Sync-0284c7?style=for-the-badge&logo=microsoftazure)](https://portal.azure.com)
 [![Status](https://img.shields.io/badge/Status-Active%20Production-blue?style=for-the-badge)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
 
@@ -10,7 +12,8 @@
 
 > **Project Title**: *Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs*  
 > **Production Format**: 22 Scenes × 8 Seconds = 176 Seconds (~2.93 Minutes)  
-> **Direct Live Link**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/) 👈
+> **Direct Live Link**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/) 👈  
+> **Tools & Tabs Hub**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html](https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html) 👈
 
 ---
 
@@ -27,21 +30,21 @@ flowchart LR
 ```
 
 ### 🏫 Stage 1: Skool Ideation & Research (Pre-Prod Setup)
-- **🌐 Chrome Tabs Production Cockpit**: 14 orchestrated tabs managing the entire workflow:
-  1. `aug 3 video - Video` (Canva primary timeline & sliding Post-it note)
-  2. `~/projects/aug-video-animation-3 · chromeTerminal` (Antigravity CLI workspace)
-  3. `Google Flow - 25 Aug, 1` (AI 8s video rendering engine)
-  4. `Building a Token-Managing IDE - Google Gemini` (22-scene pacing & script director)
-  5. `Building a Token-Managing IDE - Google Gemini (Active)` (Live prompt tuning)
-  6. `aug 3 video - Video (Tab 2)` (Canva asset staging)
-  7. `Google Flow - 25 Aug, 1 (Batch)` (Continuous render queue)
-  8. `Community - YouTube Studio` (Distribution & chapter timestamps)
-  9. `3_Simulation/prod_stage_read_...` (Footage gap review with sliding Post-it)
-  10. `rifaterdemsahin/roger-rabbit` (Toon-meets-reality format repo)
-  11. `🌱 Become the person who does what they say they will` (Skool accountability thread)
-  12. `3-Minute AI Animation Video Production Suite (Live)` (GitHub Pages cockpit)
-  13. `agy · chromeTerminal` (AGY custom terminal)
-  14. `3-Minute AI Animation Video Production Suite (Local)` (Local dev test suite)
+- **🌐 Chrome Tabs Production Cockpit**: 14 orchestrated tabs managing the entire workflow (see [`tools.html`](https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html)):
+  1. 📹 `aug 3 video - Video` — *Canva / Video Editor (Primary Timeline & Sliding Post-it)*
+  2. 🌐 `~/projects/aug-video-animation-3 · chromeTerminal` — *Chrome Terminal / Local Dev / Web App*
+  3. 🎥 `Google Flow - 25 Aug, 1` — *Google Flow (Google Workspace / Cloud Service)*
+  4. ✦ `Building a Token-Managing IDE - Google Gemini` — *Google Gemini Director*
+  5. ✦ `Building a Token-Managing IDE - Google Gemini` — *Google Gemini Iteration*
+  6. 📹 `aug 3 video - Video` — *Canva / Asset Staging & Layer Management*
+  7. 🎥 `Google Flow - 25 Aug, 1` — *Google Flow Batch Render Queue*
+  8. ▶️ `Community - YouTube Studio` — *YouTube Studio Distribution*
+  9. 🐙 `aug-video-animation-3/3_Simulation/prod_stage_read_a` — *GitHub Simulation Capture*
+  10. 🐙 `rifaterdemsahin/roger-rabbit: Animation in real world` — *GitHub Roger Rabbit Spec*
+  11. 🎴 `🌱 Become the person who does what they say they will` — *Skool Community Hub*
+  12. 🌐 `3-Minute AI Animation Video Production Suite 🎬 | Helpe` — *Live Web App (GitHub Pages)*
+  13. 🌐 `agy · chromeTerminal` — *Antigravity CLI IDE / Agent Terminal*
+  14. 🌐 `3-Minute AI Animation Video Production Suite 🎬 | Helpe` — *Local Dev Test Suite*
 - **Source Classroom Video**: [Delivery Pilot Skool Classroom](https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df)
 - **Signature Style**: Roger Rabbit style (cartoon overlay + real code/terminal UI at `127.0.0.1:3847`)
 - **Voice Identity**: Authentic voice recording with precise 8-second pacing.

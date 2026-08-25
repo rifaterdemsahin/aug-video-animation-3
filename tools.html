@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🛠️ Production Tools & Chrome Tabs Cockpit Ecosystem | 3-Min Animation Suite</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .tools-hero {
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(30, 41, 59, 0.85));
+      border: 1px solid var(--border-glow);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 2rem;
+      position: relative;
+      box-shadow: var(--shadow-glow);
+    }
+    .platform-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+      transition: all 0.25s ease;
+    }
+    .platform-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(6, 182, 212, 0.15);
+    }
+    .platform-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 0.75rem;
+    }
+    .tab-item-card {
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+    .tab-item-card:hover {
+      border-color: var(--border-glow);
+      background: rgba(30, 41, 59, 0.6);
+      transform: translateY(-2px);
+    }
+    .tab-num-pill {
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--accent-cyan);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sticky Top Header -->
+  <header class="sticky-header">
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <h1>3-Min Animation Video Engine</h1>
+          <p>🛠️ Production Tools & Chrome Tabs Ecosystem</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="index.html" class="btn btn-secondary btn-sm">
+          🎯 Main Production Suite
+        </a>
+        <a href="tools.html" class="btn btn-primary btn-sm">
+          🛠️ Tools Hub
+        </a>
+        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🐙 GitHub Repo
+        </a>
+      </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="stage-nav-container">
+      <nav class="stage-nav">
+        <a href="index.html" class="stage-nav-btn">
+          <span>🎬</span> Master Suite
+        </a>
+        <a href="#cockpit-section" class="stage-nav-btn active">
+          <span>🌐</span> 14-Tab Chrome Cockpit
+        </a>
+        <a href="#core-tools-section" class="stage-nav-btn">
+          <span>🛠️</span> 8 Core Platforms
+        </a>
+        <a href="#pipeline-integration" class="stage-nav-btn">
+          <span>🔄</span> Pipeline Integration
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Banner -->
+    <section class="tools-hero">
+      <div class="hero-tag">🛠️ Production Ecosystem Architecture</div>
+      <h2 class="hero-title">14-Tab Chrome Cockpit & Production Tool Suite</h2>
+      <p class="hero-desc">
+        Creating high-impact 3-minute technical animations requires tight orchestration across specialized tools. Below is the full breakdown of every open Chrome tab, the 8 core software platforms, and how they seamlessly synchronize through the 5-stage video pipeline.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-cyan);">🌐</div>
+          <div class="stat-info">
+            <div class="stat-num">14 Tabs</div>
+            <div class="stat-label">Active Chrome Cockpit</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-purple);">🛠️</div>
+          <div class="stat-info">
+            <div class="stat-num">8 Tools</div>
+            <div class="stat-label">Production Platforms</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-amber);">🎞️</div>
+          <div class="stat-info">
+            <div class="stat-num">22 Scenes</div>
+            <div class="stat-label">8s Motion Slices</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-emerald);">☁️</div>
+          <div class="stat-info">
+            <div class="stat-num">Azure Files</div>
+            <div class="stat-label">Cloud State Synced</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: The 14-Tab Chrome Production Cockpit -->
+    <section id="cockpit-section" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan);">🌐</div>
+          <div>
+            <h3 class="section-title">The 14-Tab Chrome Production Cockpit</h3>
+            <p class="section-subtitle">Extracted live from the active production session with matched emojis, source platforms, and operational roles.</p>
+          </div>
+        </div>
+        <span class="badge-pill">Live Workspace Map</span>
+      </div>
+
+      <!-- Controls & Platform Filter -->
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem; margin-bottom:1.25rem;">
+        <input type="text" id="tab-search" class="search-input" placeholder="🔍 Search tabs by name, role, platform..." oninput="filterTabs(this.value)">
+        <div class="filter-pills" id="tab-filter-pills">
+          <button class="filter-btn active" onclick="filterTabCategory('all', this)">All (14)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Canva', this)">Canva (2)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Google Flow', this)">Google Flow (2)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Google Gemini', this)">Gemini (2)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Terminal', this)">Terminal (2)</button>
+          <button class="filter-btn" onclick="filterTabCategory('GitHub', this)">GitHub (2)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Skool', this)">Skool (1)</button>
+          <button class="filter-btn" onclick="filterTabCategory('YouTube', this)">YouTube (1)</button>
+          <button class="filter-btn" onclick="filterTabCategory('Helper', this)">Helper App (2)</button>
+        </div>
+      </div>
+
+      <!-- Tab Grid -->
+      <div id="full-tabs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem;">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Section 2: Deep-Dive into the 8 Core Production Platforms -->
+    <section id="core-tools-section" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-purple);">🛠️</div>
+          <div>
+            <h3 class="section-title">Deep-Dive: The 8 Core Production Platforms</h3>
+            <p class="section-subtitle">How each software tool powers a specific phase of the 3-minute video animation flywheel.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.25rem;">
+        
+        <!-- Tool 1: Canva -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">📹</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Canva Video Editor</h4>
+                <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono);">aug 3 video</span>
+              </div>
+            </div>
+            <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Launch ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            The multi-track timeline workspace organized into 3 sections: <strong>Pre-Prod</strong> (22 script Post-it notes), <strong>Prod</strong> (8s Google Flow video clips on tracks), and <strong>Post-Prod</strong> (VO audio mastering, Roger Rabbit cartoon stamp, 1080p60 export).
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Signature Technique:</strong> Floating "Sliding Post-it" script text box on canvas to scrub timeline and detect footage gaps without window switching.
+          </div>
+        </div>
+
+        <!-- Tool 2: Google Flow -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">🎥</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Google Flow (Labs)</h4>
+                <span style="font-size:0.72rem; color:var(--accent-purple); font-family:var(--font-mono);">FlyWheelMVP</span>
+              </div>
+            </div>
+            <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Launch ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Google's AI filmmaking tool rendering high-resolution, cinematic 8-second motion graphic video slices at <strong>15 credits per clip</strong>.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Optimization:</strong> Enable <em>"Approve, do not ask again"</em> for continuous batch streaming, and prepend every prompt with a unified Style Anchor.
+          </div>
+        </div>
+
+        <!-- Tool 3: Google Gemini -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">✦</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Google Gemini</h4>
+                <span style="font-size:0.72rem; color:var(--accent-amber); font-family:var(--font-mono);">AI Director & Script Engine</span>
+              </div>
+            </div>
+            <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Launch ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Acts as the <em>Video Director</em>, turning raw classroom topic notes into the rigorous <strong>22 scenes × 8s pacing framework</strong> with synchronized visual concepts and strict 18–22 word VO lines.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Pacing Rule:</strong> Exactly 18–22 words per 8s window ensures crisp, authoritative narration with natural breathing room.
+          </div>
+        </div>
+
+        <!-- Tool 4: Antigravity CLI & chromeTerminal -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">🌐</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Antigravity CLI (AGY)</h4>
+                <span style="font-size:0.72rem; color:var(--accent-emerald); font-family:var(--font-mono);">127.0.0.1:3847</span>
+              </div>
+            </div>
+            <span class="badge-pill">Local IDE Hub</span>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Browser-based terminal and agentic IDE workspace executing git commands, managing asset directories, and driving two-way state sync via Azure CLI.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Dual Terminals:</strong> Tab 02 (Project repo workspace) and Tab 13 (AGY agentic terminal).
+          </div>
+        </div>
+
+        <!-- Tool 5: GitHub & GitHub Pages -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">🐙</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">GitHub & GitHub Pages</h4>
+                <span style="font-size:0.72rem; color:var(--text-dim); font-family:var(--font-mono);">CI/CD & Documentation</span>
+              </div>
+            </div>
+            <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Repo ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Hosts repository assets, simulation screenshots (`3_Simulation/`), GitHub Actions automated Pages build workflows, and open-source specifications.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Signature Repo:</strong> <a href="https://github.com/rifaterdemsahin/roger-rabbit/tree/main" target="_blank" rel="noopener noreferrer" style="color:var(--accent-cyan);">rifaterdemsahin/roger-rabbit</a> (Animation in the real world).
+          </div>
+        </div>
+
+        <!-- Tool 6: Microsoft Azure Files & Key Vault -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">☁️</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Azure Files & Key Vault</h4>
+                <span style="font-size:0.72rem; color:var(--accent-cyan); font-family:var(--font-mono);">animationasistant</span>
+              </div>
+            </div>
+            <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Azure Portal ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Enterprise cloud backend storing live video production state (`aug_video_animation_state.json`) with secure multi-year SAS tokens held in Key Vault `dp-kv-deliverypilot`.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Two-Way Sync:</strong> Browser REST API write ranges + CLI script `./scripts/azure_sync.sh {push|pull}`.
+          </div>
+        </div>
+
+        <!-- Tool 7: Skool Classroom & Community -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">🎴</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">Skool Community & Classroom</h4>
+                <span style="font-size:0.72rem; color:var(--accent-rose); font-family:var(--font-mono);">Delivery Pilot</span>
+              </div>
+            </div>
+            <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">Skool ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            The origin and destination of the video flywheel. Provides raw research topics, packaging templates, community commitment threads, and 1-on-1 architecture audits.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ Value Flywheel:</strong> Free 3-min video ➔ Packaging ➔ Community ➔ Daily Commitment ➔ 1-on-1 Sessions.
+          </div>
+        </div>
+
+        <!-- Tool 8: YouTube Studio -->
+        <div class="platform-card">
+          <div class="platform-card-header">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">▶️</span>
+              <div>
+                <h4 style="font-size:1rem; font-weight:700; color:#ffffff;">YouTube Studio & Socials</h4>
+                <span style="font-size:0.72rem; color:var(--accent-rose); font-family:var(--font-mono);">Distribution Engine</span>
+              </div>
+            </div>
+            <a href="https://studio.youtube.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">YouTube Studio ↗</a>
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted);">
+            Publishes the final 1080p60 master video with synchronized 22-chapter timestamps (`0:00` to `2:48`), feeding LinkedIn technical posts and X thread summaries.
+          </p>
+          <div style="background:rgba(0,0,0,0.3); padding:0.6rem 0.75rem; border-radius:var(--radius-sm); font-size:0.75rem; color:#d1d5db;">
+            <strong>✨ One-Click Exporters:</strong> Built-in generators for .SRT subtitles, YouTube descriptions, and LinkedIn posts.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 3: Pipeline Integration & Stage Mapping -->
+    <section id="pipeline-integration" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-emerald);">🔄</div>
+          <div>
+            <h3 class="section-title">How the Tools Map to Production Stages</h3>
+            <p class="section-subtitle">Chronological progression of tabs and platforms across the 5 production phases.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="sanity-matrix-table">
+          <thead>
+            <tr>
+              <th>Production Phase</th>
+              <th>Primary Chrome Tabs</th>
+              <th>Core Tools Used</th>
+              <th>Key Deliverable</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Stage 1: Skool Ideation</strong></td>
+              <td>🎴 Tab 11 (Skool Community), 🐙 Tab 10 (Roger Rabbit Repo)</td>
+              <td>Skool, GitHub, Antigravity</td>
+              <td>Topic research screenshots & Roger Rabbit style rules</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 2: Gemini Scripting</strong></td>
+              <td>✦ Tab 04 & 05 (Gemini Sessions)</td>
+              <td>Google Gemini 3.7 Flash</td>
+              <td>22 scenes × 8s script & visual generation prompts</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 2.5: Simulation Bridge</strong></td>
+              <td>🎥 Tab 03 (Flow) & ✦ Tab 04 (Gemini Split)</td>
+              <td>Google Flow, Gemini</td>
+              <td>15-credit approval & dual-pane layout setup</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 3: Flow Video Gen</strong></td>
+              <td>🎥 Tab 03 & 07 (Flow Render Queue)</td>
+              <td>Google Flow (Veo)</td>
+              <td>22 raw 8-second MP4 video slices</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 4: Canva Suite & Assets</strong></td>
+              <td>📹 Tab 01 & 06 (Canva), 🐙 Tab 09 (Gap Check)</td>
+              <td>Canva Video, Azure Files, Terminal</td>
+              <td>Sliding Post-it check, asset archiving to <code>used asset</code></td>
+            </tr>
+            <tr>
+              <td><strong>Stage 4.5: 8s VO Studio</strong></td>
+              <td>🌐 Tab 12 & 14 (Helper Suite VO Studio)</td>
+              <td>Web Speech TTS, Prompter Timer</td>
+              <td>Master authentic voice recording track</td>
+            </tr>
+            <tr>
+              <td><strong>Stage 5: Distribution</strong></td>
+              <td>▶️ Tab 08 (YouTube Studio), 🎴 Tab 11 (Skool)</td>
+              <td>YouTube, LinkedIn, X, Skool</td>
+              <td>Live 3-min video + packaging + community flywheel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top: 1.5rem; text-align: center;">
+        <a href="index.html" class="btn btn-primary" style="font-size: 0.95rem; padding: 0.75rem 1.5rem;">
+          🎬 Return to Master Production Suite
+        </a>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+    <div class="footer-links">
+      <a href="index.html">🎯 Master Suite</a>
+      <a href="tools.html">🛠️ Tools Hub</a>
+      <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer">🏫 Skool Classroom</a>
+      <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer">🤖 Gemini App</a>
+      <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer">🎬 Google Flow</a>
+      <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🎨 Canva</a>
+      <a href="https://github.com/rifaterdemsahin/roger-rabbit/tree/main" target="_blank" rel="noopener noreferrer">🐰 Roger Rabbit Format</a>
+      <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer">☁️ Azure Portal</a>
+      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repository</a>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script>
+    const tabsData = window.VIDEO_DATA.chromeTabs || [];
+
+    function renderTabsList(tabsToRender) {
+      const container = document.getElementById('full-tabs-grid');
+      if (!container) return;
+
+      container.innerHTML = tabsToRender.map((tab, idx) => `
+        <div class="tab-item-card">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span class="tab-num-pill">Tab ${String(idx + 1).padStart(2, '0')}</span>
+            <span style="font-size:1.3rem;">${tab.icon}</span>
+          </div>
+          <div>
+            <div style="font-size:0.7rem; font-weight:700; text-transform:uppercase; color:var(--accent-cyan); margin-bottom:2px;">
+              ${tab.platform || tab.category}
+            </div>
+            <h4 style="font-size:0.88rem; font-weight:700; color:#ffffff; font-family:var(--font-mono); word-break:break-word;">
+              ${tab.title}
+            </h4>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted); line-height:1.4; margin-top:auto;">
+            ${tab.role}
+          </p>
+        </div>
+      `).join('');
+    }
+
+    function filterTabs(query) {
+      const q = query.toLowerCase().trim();
+      if (!q) {
+        renderTabsList(tabsData);
+        return;
+      }
+      const filtered = tabsData.filter(t => 
+        t.title.toLowerCase().includes(q) ||
+        t.role.toLowerCase().includes(q) ||
+        (t.platform && t.platform.toLowerCase().includes(q)) ||
+        t.category.toLowerCase().includes(q)
+      );
+      renderTabsList(filtered);
+    }
+
+    function filterTabCategory(category, btn) {
+      document.querySelectorAll('#tab-filter-pills .filter-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      if (category === 'all') {
+        renderTabsList(tabsData);
+        return;
+      }
+      const filtered = tabsData.filter(t => 
+        t.category.toLowerCase().includes(category.toLowerCase()) || 
+        (t.platform && t.platform.toLowerCase().includes(category.toLowerCase())) ||
+        t.title.toLowerCase().includes(category.toLowerCase())
+      );
+      renderTabsList(filtered);
+    }
+
+    // Initial render
+    document.addEventListener('DOMContentLoaded', () => {
+      renderTabsList(tabsData);
+    });
+  </script>
+</body>
+</html>
