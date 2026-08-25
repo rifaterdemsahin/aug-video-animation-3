@@ -18,19 +18,23 @@
         <div class="brand-icon">✨</div>
         <div class="brand-text">
           <h1>3-Min Animation Video Engine</h1>
-          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Multi-Platform Funnel</p>
+          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
         </div>
       </a>
       <div class="header-actions">
+        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
+          <span class="badge-pulse"></span>
+          <span>Azure Files Connected</span>
+        </div>
         <div class="badge-pill">
           <span class="badge-pulse"></span>
           <span id="stat-progress-percent">0%</span> Complete
         </div>
-        <a href="#sanity-check-section" class="btn btn-secondary btn-sm">
-          🧪 Sanity Check
-        </a>
+        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+          ☁️ Sync Azure
+        </button>
         <a href="#teleprompter-section" class="btn btn-primary btn-sm">
-          🎙️ Teleprompter Studio
+          🎙️ VO Studio
         </a>
       </div>
     </div>
@@ -57,7 +61,7 @@
           <span class="stage-step">QC</span> 🧪 Sanity Check & Analysis
         </a>
         <a href="#stage-4" class="stage-nav-btn">
-          <span class="stage-step">Stage 4</span> 🎨 Canva 3-Section Suite
+          <span class="stage-step">Stage 4</span> 🎨 Canva 3-Section & Azure Sync
         </a>
         <a href="#teleprompter-section" class="stage-nav-btn">
           <span class="stage-step">Stage 4.5</span> 🎙️ 8s VO Studio
@@ -83,7 +87,7 @@
         <div class="hero-tag">⚡ Production Pipeline Helper</div>
         <h2 class="hero-title">Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs</h2>
         <p class="hero-desc">
-          End-to-end production operating system for creating high-impact <strong>3-minute animated educational videos</strong> (22 scenes × 8 seconds = 176s). From Skool research and Gemini 8s prompt engineering to Google Flow generation, Canva 3-section timeline assembly, and multi-channel audience funneling.
+          End-to-end production operating system for creating high-impact <strong>3-minute animated educational videos</strong> (22 scenes × 8 seconds = 176s). From Skool research and Gemini 8s prompt engineering to Google Flow generation, Canva 3-section timeline assembly, Azure Files cloud state persistence, and multi-channel audience funneling.
         </p>
 
         <!-- Global Progress Bar -->
@@ -121,10 +125,10 @@
             </div>
           </div>
           <div class="stat-card">
-            <div class="stat-icon" style="color:var(--accent-emerald); background:rgba(16,185,129,0.1);">🌐</div>
+            <div class="stat-icon" style="color:var(--accent-emerald); background:rgba(16,185,129,0.1);">☁️</div>
             <div class="stat-info">
-              <div class="stat-num">4 Channels</div>
-              <div class="stat-label">Skool / YT / LI / X</div>
+              <div class="stat-num">Azure Files</div>
+              <div class="stat-label">Cloud State Synced</div>
             </div>
           </div>
         </div>
@@ -467,48 +471,70 @@ Take my topic/input and generate a high-tempo 3-minute video production script:
           </tbody>
         </table>
       </div>
-
-      <!-- Pre-Flight Checklist -->
-      <div class="info-card" style="margin-top: 1rem;">
-        <div class="info-card-header">
-          <span>📋</span> Pre-Flight Sanity Checklist Before Generating in Google Flow
-        </div>
-        <ul class="checklist">
-          <li class="checklist-item">
-            <input type="checkbox" id="qc-check-1" checked>
-            <label for="qc-check-1"><strong>Script Locked:</strong> All 22 scenes have VO word count between 16 and 24 words.</label>
-          </li>
-          <li class="checklist-item">
-            <input type="checkbox" id="qc-check-2" checked>
-            <label for="qc-check-2"><strong>Credit Check:</strong> Workspace has at least 350+ Google Flow credits available.</label>
-          </li>
-          <li class="checklist-item">
-            <input type="checkbox" id="qc-check-3">
-            <label for="qc-check-3"><strong>Real UI Captures Prepared:</strong> Recorded actual Antigravity IDE (127.0.0.1:3847) screen captures for scenes 2, 5, 8, 17, and 21.</label>
-          </li>
-          <li class="checklist-item">
-            <input type="checkbox" id="qc-check-4">
-            <label for="qc-check-4"><strong>Style Anchor Consistent:</strong> Isometric dark-mode cyber palette is appended to all prompt strings.</label>
-          </li>
-        </ul>
-      </div>
     </section>
 
-    <!-- Stage 4: Canva 3-Section Production Suite -->
+    <!-- Stage 4: Canva 3-Section Production Suite & Azure Cloud Sync -->
     <section id="stage-4" class="workflow-section">
       <div class="section-header">
         <div class="section-title-wrap">
           <div class="section-badge" style="color: var(--accent-rose);">🎨</div>
           <div>
-            <h3 class="section-title">Stage 4: Canva 3-Section Production Workspace</h3>
-            <p class="section-subtitle">Organize your Canva project timeline into Pre-Prod (Post-its), Prod (Footage clips), and Post-Prod (VO & Master Export).</p>
+            <h3 class="section-title">Stage 4: Canva 3-Section Production Suite & Azure Files Sync</h3>
+            <p class="section-subtitle">Organize project timeline into Pre-Prod, Prod, and Post-Prod with real-time state synchronization to Azure Files.</p>
           </div>
         </div>
-        <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-          🎨 Open Canva ↗
-        </a>
+        <div style="display:flex; gap:0.5rem;">
+          <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+            ☁️ Push State to Azure Files
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="pullStateFromAzure()">
+            🔄 Pull from Azure
+          </button>
+          <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+            🎨 Open Canva ↗
+          </a>
+        </div>
       </div>
 
+      <!-- Azure Files Cloud Sync Control Bar -->
+      <div class="azure-sync-panel">
+        <div class="azure-sync-info">
+          <div style="font-size:1.4rem;">☁️</div>
+          <div>
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff;">
+              Azure Files Share State: <code>animationasistant/aug-video-state/aug_video_animation_state.json</code>
+            </div>
+            <div style="font-size:0.75rem; color:var(--text-muted);">
+              Key Vault: <code>dp-kv-deliverypilot</code> (Secret: <code>aug-video-animation-sas</code>) • <span id="azure-last-sync-time">Auto-sync active</span>
+            </div>
+          </div>
+        </div>
+        <div class="azure-sync-actions">
+          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('./scripts/azure_sync.sh status && ./scripts/azure_sync.sh push', 'CLI command copied!')">
+            💻 Copy CLI Sync Command
+          </button>
+          <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+            📤 Push to Azure Files
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="pullStateFromAzure()">
+            📥 Pull from Azure Files
+          </button>
+        </div>
+      </div>
+
+      <!-- Multi-Stage Full Pipeline Checklist synced to Azure -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.9rem; display: flex; justify-content: space-between; align-items: center;">
+        <span>📋 Master Multi-Stage Production Checklist (Synced to Azure Files)</span>
+        <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600;">☁️ Auto-syncs on toggle</span>
+      </h4>
+      <div id="canva-multi-stage-checklist" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Canva 3-Section Visual Layout -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.9rem;">
+        🎨 Canva 3-Section Workspace View
+      </h4>
       <div class="canva-suite-grid">
         <!-- Section 1: Pre-Prod -->
         <div class="canva-column canva-col-preprod">
@@ -803,6 +829,7 @@ Welcome! In this guide, we explore...</div>
       <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer">🤖 Gemini App</a>
       <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer">🎬 Google Flow</a>
       <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🎨 Canva</a>
+      <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer">☁️ Azure Portal</a>
       <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repository</a>
     </div>
   </footer>

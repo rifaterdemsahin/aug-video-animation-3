@@ -6,9 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  // State Management with LocalStorage
+  // State Management with LocalStorage & Azure Files Cloud Sync
   const STORAGE_KEY = 'aug_video_animation_progress_v1';
+  const AZURE_CONFIG_KEY = 'aug_video_azure_config_v1';
+
   let appState = loadState();
+  let azureConfig = loadAzureConfig();
+  let isAutoSyncEnabled = true;
 
   function loadState() {
     try {
@@ -17,20 +21,40 @@ document.addEventListener('DOMContentLoaded', () => {
         completedScenes: {},
         stageChecklist: {},
         sanityChecklist: {},
-        currentPrompterIndex: 0
+        currentPrompterIndex: 0,
+        lastSynced: null
       };
     } catch (e) {
-      return { completedScenes: {}, stageChecklist: {}, sanityChecklist: {}, currentPrompterIndex: 0 };
+      return { completedScenes: {}, stageChecklist: {}, sanityChecklist: {}, currentPrompterIndex: 0, lastSynced: null };
     }
   }
 
-  function saveState() {
+  function saveState(triggerCloudSync = true) {
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
       updateProgressStats();
+      updateChecklistUI();
+      if (triggerCloudSync && isAutoSyncEnabled) {
+        debouncedCloudSync();
+      }
     } catch (e) {
       console.warn('Could not save state to localStorage', e);
     }
+  }
+
+  function loadAzureConfig() {
+    try {
+      const saved = localStorage.getItem(AZURE_CONFIG_KEY);
+      return saved ? JSON.parse(saved) : (data.azureConfig || {});
+    } catch (e) {
+      return data.azureConfig || {};
+    }
+  }
+
+  function saveAzureConfig(newCfg) {
+    azureConfig = { ...azureConfig, ...newCfg };
+    localStorage.setItem(AZURE_CONFIG_KEY, JSON.stringify(azureConfig));
+    showToast('Azure cloud settings updated!', 'success');
   }
 
   // Toast Notification System
@@ -40,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    toast.innerHTML = `<span>${type === 'success' ? '✅' : '📋'}</span> <span>${message}</span>`;
+    toast.innerHTML = `<span>${type === 'success' ? '✅' : (type === 'cloud' ? '☁️' : '📋')}</span> <span>${message}</span>`;
     container.appendChild(toast);
 
     setTimeout(() => {
@@ -60,7 +84,200 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  // Credit Budget Estimator Logic
+  // Azure Files REST API Cloud Sync Implementation
+  let syncTimeout = null;
+  function debouncedCloudSync() {
+    clearTimeout(syncTimeout);
+    syncTimeout = setTimeout(() => {
+      window.pushStateToAzure(false);
+    }, 1500);
+  }
+
+  function setSyncStatus(status, text) {
+    const statusPill = document.getElementById('azure-sync-status-pill');
+    const lastSyncEl = document.getElementById('azure-last-sync-time');
+    if (statusPill) {
+      statusPill.className = `badge-pill badge-sync-${status}`;
+      statusPill.innerHTML = `<span class="badge-pulse"></span> ${text}`;
+    }
+    if (lastSyncEl && appState.lastSynced) {
+      const d = new Date(appState.lastSynced);
+      lastSyncEl.innerText = `Synced: ${d.toLocaleTimeString()}`;
+    }
+  }
+
+  // Push State to Azure Files
+  window.pushStateToAzure = async function(isManual = true) {
+    if (!azureConfig.storageAccount || !azureConfig.fileShare || !azureConfig.defaultSasToken) {
+      if (isManual) showToast('Missing Azure configuration credentials.', 'error');
+      return;
+    }
+
+    setSyncStatus('syncing', 'Syncing to Azure...');
+
+    const payload = JSON.stringify({
+      updatedAt: new Date().toISOString(),
+      project: "aug-video-animation-3",
+      completedScenes: appState.completedScenes,
+      stageChecklist: appState.stageChecklist,
+      currentPrompterIndex: currentPrompterIndex,
+      syncedVia: "Web App Azure Files REST API"
+    }, null, 2);
+
+    const account = azureConfig.storageAccount;
+    const share = azureConfig.fileShare;
+    const fileName = azureConfig.fileName || "aug_video_animation_state.json";
+    const sas = azureConfig.defaultSasToken.startsWith('?') ? azureConfig.defaultSasToken.substring(1) : azureConfig.defaultSasToken;
+
+    const fileUrl = `https://${account}.file.core.windows.net/${share}/${fileName}?${sas}`;
+
+    try {
+      const contentLength = new Blob([payload]).size;
+
+      // 1. Create/Allocate the file in Azure Files
+      const createRes = await fetch(fileUrl, {
+        method: 'PUT',
+        headers: {
+          'x-ms-type': 'file',
+          'x-ms-content-length': contentLength.toString(),
+          'x-ms-version': '2026-04-06'
+        }
+      });
+
+      if (!createRes.ok && createRes.status !== 201 && createRes.status !== 200) {
+        throw new Error(`File create returned HTTP ${createRes.status}`);
+      }
+
+      // 2. Put the Range (Upload the content)
+      const rangeUrl = `https://${account}.file.core.windows.net/${share}/${fileName}?comp=range&${sas}`;
+      const uploadRes = await fetch(rangeUrl, {
+        method: 'PUT',
+        headers: {
+          'x-ms-write': 'update',
+          'x-ms-range': `bytes=0-${contentLength - 1}`,
+          'x-ms-version': '2026-04-06'
+        },
+        body: payload
+      });
+
+      if (!uploadRes.ok && uploadRes.status !== 201 && uploadRes.status !== 200) {
+        throw new Error(`Range write returned HTTP ${uploadRes.status}`);
+      }
+
+      appState.lastSynced = new Date().toISOString();
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appState));
+      setSyncStatus('online', 'Azure Files Synced');
+      if (isManual) showToast('☁️ State pushed to Azure Files!', 'cloud');
+
+    } catch (err) {
+      console.warn('Azure Files REST push error (CORS or network):', err);
+      setSyncStatus('local', 'Local Active (CLI Sync Ready)');
+      if (isManual) {
+        showToast('Local state saved. Run ./scripts/azure_sync.sh push for CLI sync', 'info');
+      }
+    }
+  };
+
+  // Pull State from Azure Files
+  window.pullStateFromAzure = async function() {
+    if (!azureConfig.storageAccount || !azureConfig.fileShare || !azureConfig.defaultSasToken) {
+      showToast('Missing Azure credentials', 'error');
+      return;
+    }
+
+    setSyncStatus('syncing', 'Fetching from Azure...');
+
+    const account = azureConfig.storageAccount;
+    const share = azureConfig.fileShare;
+    const fileName = azureConfig.fileName || "aug_video_animation_state.json";
+    const sas = azureConfig.defaultSasToken.startsWith('?') ? azureConfig.defaultSasToken.substring(1) : azureConfig.defaultSasToken;
+
+    const fileUrl = `https://${account}.file.core.windows.net/${share}/${fileName}?${sas}`;
+
+    try {
+      const res = await fetch(fileUrl, {
+        method: 'GET',
+        headers: {
+          'x-ms-version': '2026-04-06'
+        }
+      });
+
+      if (!res.ok) {
+        throw new Error(`Fetch failed with status ${res.status}`);
+      }
+
+      const remoteData = await res.json();
+      if (remoteData) {
+        appState.completedScenes = remoteData.completedScenes || {};
+        appState.stageChecklist = remoteData.stageChecklist || {};
+        appState.lastSynced = remoteData.updatedAt || new Date().toISOString();
+        saveState(false);
+        renderStoryboard(currentFilter, currentSearch);
+        renderCanvaSuite();
+        renderAllStageChecklists();
+        setSyncStatus('online', 'Azure Files Synced');
+        showToast('🔄 Pulled latest state from Azure Files!', 'success');
+      }
+    } catch (err) {
+      console.warn('Azure pull failed:', err);
+      setSyncStatus('local', 'Local Active');
+      showToast('Remote state empty or CORS blocked. Use ./scripts/azure_sync.sh pull', 'info');
+    }
+  };
+
+  // Render Master Multi-Stage Production Checklist
+  function renderAllStageChecklists() {
+    const container = document.getElementById('canva-multi-stage-checklist');
+    if (!container || !data.productionChecklistStages) return;
+
+    container.innerHTML = data.productionChecklistStages.map(stage => {
+      const total = stage.items.length;
+      const done = stage.items.filter(it => !!appState.stageChecklist[it.id]).length;
+      const isStageComplete = done === total;
+
+      return `
+        <div class="stage-check-card ${isStageComplete ? 'stage-card-complete' : ''}" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.4rem;">
+            <div style="font-weight:700; font-size:0.88rem; color:#ffffff; display:flex; align-items:center; gap:0.5rem;">
+              <span>${stage.icon}</span> ${stage.title}
+            </div>
+            <span style="font-size:0.72rem; font-family:var(--font-mono); color:${isStageComplete ? 'var(--accent-emerald)' : 'var(--text-muted)'}; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:10px;">
+              ${done}/${total} Done
+            </span>
+          </div>
+          <ul class="checklist" style="gap: 0.5rem;">
+            ${stage.items.map(it => {
+              const isChecked = !!appState.stageChecklist[it.id];
+              return `
+                <li class="checklist-item">
+                  <input type="checkbox" id="check-${it.id}" ${isChecked ? 'checked' : ''} onchange="toggleStageItem('${it.id}', this.checked)">
+                  <label for="check-${it.id}" style="font-size:0.8rem; color:${isChecked ? 'var(--accent-emerald)' : '#d1d5db'}; text-decoration:${isChecked ? 'line-through' : 'none'};">
+                    ${it.label}
+                  </label>
+                </li>
+              `;
+            }).join('')}
+          </ul>
+        </div>
+      `;
+    }).join('');
+  }
+
+  window.toggleStageItem = function(itemId, isChecked) {
+    if (isChecked) {
+      appState.stageChecklist[itemId] = true;
+    } else {
+      delete appState.stageChecklist[itemId];
+    }
+    saveState(true);
+    renderAllStageChecklists();
+  };
+
+  function updateChecklistUI() {
+    renderAllStageChecklists();
+  }
+
+  // Budget Estimator Calculation
   window.updateBudgetEstimate = function() {
     const sceneCountInput = document.getElementById('calc-scenes');
     const creditPerClipInput = document.getElementById('calc-credits-per-clip');
@@ -249,7 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       delete appState.completedScenes[sceneId];
     }
-    saveState();
+    saveState(true);
     renderStoryboard(currentFilter, currentSearch);
     renderCanvaSuite();
   };
@@ -331,14 +548,11 @@ document.addEventListener('DOMContentLoaded', () => {
     prompterTimer = setInterval(() => {
       secondsRemaining--;
       if (secondsRemaining <= 0) {
-        // Play soft audio cue
         playAudioCue();
-
         if (currentPrompterIndex < data.scenes.length - 1) {
           currentPrompterIndex++;
           secondsRemaining = 8;
         } else {
-          // Reached the end
           secondsRemaining = 8;
           pausePrompter();
           showToast('🎉 Rehearsal Complete! All 22 scenes reviewed.', 'success');
@@ -393,14 +607,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const gain = ctx.createGain();
       osc.connect(gain);
       gain.connect(ctx.destination);
-      osc.frequency.value = 880; // A5 tone
+      osc.frequency.value = 880;
       gain.gain.setValueAtTime(0.15, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15);
       osc.start();
       osc.stop(ctx.currentTime + 0.15);
-    } catch (e) {
-      // Audio context might be restricted before user gesture
-    }
+    } catch (e) {}
   }
 
   // Text-To-Speech function
@@ -411,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.speechSynthesis.cancel();
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1.05; // natural upbeat delivery
+    utterance.rate = 1.05;
     utterance.pitch = 1.0;
     window.speechSynthesis.speak(utterance);
   };
@@ -564,7 +776,9 @@ RT and like if you found this valuable! 🚀`;
   renderFlywheel();
   renderCanvaSuite();
   renderStoryboard();
+  renderAllStageChecklists();
   updateProgressStats();
   updatePrompterUI();
   updateBudgetEstimate();
+  setSyncStatus('online', 'Azure Files Connected');
 });

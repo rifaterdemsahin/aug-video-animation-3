@@ -1,6 +1,7 @@
 # 🌐 Live Helper Web App: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
 
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Application-22c55e?style=for-the-badge&logo=github)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+[![Azure Files](https://img.shields.io/badge/Azure%20Files-Cloud%20State%20Sync-0284c7?style=for-the-badge&logo=microsoftazure)](https://portal.azure.com)
 [![Status](https://img.shields.io/badge/Status-Active%20Production-blue?style=for-the-badge)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
 
 ---
@@ -21,7 +22,7 @@ flowchart LR
     B --> S[🪟 Stage 2.5: Split-View Bridge]
     S --> C[🎬 Stage 3: Google Flow Visuals]
     C --> QC[🧪 Quality Gate & Sanity Check]
-    QC --> D[🎨 Stage 4: Canva 3-Section Suite]
+    QC --> D[🎨 Stage 4: Canva Suite & Azure Sync]
     D --> E[🚀 Stage 5: Multi-Platform Distribution & Skool Flywheel]
 ```
 
@@ -48,14 +49,26 @@ flowchart LR
 - 🎨 **Style Continuity**: Use consistent style anchor keywords (*isometric 3D, cyber-blue/emerald palette, 60fps*).
 - ⏱️ **Audio Drift Protection**: Strict 18–22 word limit per 8-second scene.
 
-### 🎬 Stage 3: Google Flow Visual Generation
-- **Tool**: [Google Flow](https://labs.google/flow)
-- **Specs**: 16:9 Landscape / 9:16 Vertical, 60fps cinematic 3D isometric & holographic UI prompts.
+### 🎨 Stage 4: Canva 3-Section Suite & Azure Files Sync
+- **Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
+- **Prod**: Uploading and aligning Google Flow generated 8s video footages.
+- **Post-prod**: VO recording in own voice, Roger Rabbit animated signature stamp, audio leveling, and master export.
+- ☁️ **Azure Files Cloud State Synchronization**:
+  - **Storage Account**: `animationasistant`
+  - **Azure File Share**: `aug-video-state`
+  - **State Payload**: `aug_video_animation_state.json`
+  - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
+  - **CLI Sync Commands**:
+    ```bash
+    # Check status
+    ./scripts/azure_sync.sh status
 
-### 🎨 Stage 4: Canva 3-Section Production
-1. 📝 **Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
-2. 🎥 **Prod**: Uploading and aligning Google Flow generated 8s video footages.
-3. 🎙️ **Post-prod**: VO recording in own voice, Roger Rabbit animated signature stamp, audio leveling, and master export.
+    # Push state to Azure Files
+    ./scripts/azure_sync.sh push
+
+    # Pull state from Azure Files
+    ./scripts/azure_sync.sh pull
+    ```
 
 ### 🚀 Stage 5: Multi-Platform Distribution & The Skool Flywheel
 - **Free Social Distribution**:
@@ -74,6 +87,7 @@ flowchart LR
 ## 🛠️ Helper Web App Features
 
 - 🎯 **Stage-by-Stage Navigation**: Sticky top header for fast switching across all stages.
+- ☁️ **Azure Files Live Sync**: Two-way synchronization of scene completion and multi-stage checklist state via REST API and CLI.
 - 🪟 **Split-View Simulation Inspector**: Visual breakdown of Gemini + Flow side-by-side workflow.
 - 🧪 **Interactive Sanity Check & Credit Calculator**: Dynamic budget estimations and pre-flight validation.
 - 🎙️ **8-Second VO Teleprompter Studio**: Interactive rehearsal loop with 8-second countdown timer, metronome audio cues, and Web Speech TTS voice preview.
@@ -86,3 +100,4 @@ flowchart LR
 
 - 🌐 **Live Web Application (GitHub Pages)**: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
 - 🐙 **GitHub Repository**: [https://github.com/rifaterdemsahin/aug-video-animation-3](https://github.com/rifaterdemsahin/aug-video-animation-3)
+- ☁️ **Azure Portal**: [https://portal.azure.com](https://portal.azure.com)

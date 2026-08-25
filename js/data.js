@@ -16,6 +16,97 @@ window.VIDEO_DATA = {
     linkedinPost: "https://www.linkedin.com/feed/",
     xPost: "https://x.com/compose/post"
   },
+  azureConfig: {
+    storageAccount: "animationasistant",
+    fileShare: "aug-video-state",
+    fileName: "aug_video_animation_state.json",
+    keyVaultName: "dp-kv-deliverypilot",
+    secretName: "aug-video-animation-sas",
+    defaultSasToken: "se=2028-12-31T23%3A59%3A59Z&sp=rcwdl&sv=2026-04-06&sr=s&sig=C2kVBHWIxNXZM3nqYZjD6LvlpuKy%2B5eDcWlcJIE7PD8%3D"
+  },
+  productionChecklistStages: [
+    {
+      id: "stage-1",
+      title: "Stage 1: Skool Ideation & Research",
+      icon: "🏫",
+      items: [
+        { id: "s1-review-video", label: "Review source classroom module & discussion threads in Skool." },
+        { id: "s1-research-pics", label: "Extract subject research pictures, Antigravity IDE UI screens & benchmarks." },
+        { id: "s1-roger-rabbit", label: "Define Roger Rabbit signature styling (cartoon overlays over real IDE at 127.0.0.1:3847)." }
+      ]
+    },
+    {
+      id: "stage-2",
+      title: "Stage 2: Gemini 8s Script Engineering",
+      icon: "🤖",
+      items: [
+        { id: "s2-run-prompt", label: "Execute Master Gemini Director Prompt for 22 scenes x 8s pacing." },
+        { id: "s2-word-count", label: "Verify each VO line is strictly within 18–22 words." },
+        { id: "s2-visual-cards", label: "Review and lock all 22 Google Flow visual motion graphic prompts." }
+      ]
+    },
+    {
+      id: "stage-2-5",
+      title: "Stage 2.5: Simulation & Split-Screen Setup",
+      icon: "🪟",
+      items: [
+        { id: "s25-split-view", label: "Arrange Gemini on right and Google Flow on left in FlyWheelMVP tab group." },
+        { id: "s25-approve-mode", label: "Enable 'Approve, do not ask again' for continuous 15-credit generation flow." }
+      ]
+    },
+    {
+      id: "stage-3",
+      title: "Stage 3: Google Flow Visual Generation",
+      icon: "🎬",
+      items: [
+        { id: "s3-test-render", label: "Render 1 representative clip to lock isometric dark-mode visual style." },
+        { id: "s3-batch-gen", label: "Generate all 22 8s clips in Google Flow (330 base credits)." },
+        { id: "s3-download-label", label: "Download and label MP4 files from scene_01.mp4 to scene_22.mp4." }
+      ]
+    },
+    {
+      id: "stage-qc",
+      title: "QC: Production Sanity Check & Quality Gate",
+      icon: "🧪",
+      items: [
+        { id: "sqc-code-check", label: "Text/Code Hallucination Defense: Capture real IDE for fine text/numbers." },
+        { id: "sqc-style-check", label: "Visual Continuity Check: Verify color palette & lighting consistency across scenes." },
+        { id: "sqc-drift-check", label: "Pacing Drift Check: Verify voice cadence matches 8-second cuts." }
+      ]
+    },
+    {
+      id: "stage-4",
+      title: "Stage 4: Canva 3-Section Production Suite",
+      icon: "🎨",
+      items: [
+        { id: "s4-preprod-postits", label: "Pre-Prod: Populate 22 digital Post-it notes with scripts along timeline." },
+        { id: "s4-prod-footage", label: "Prod: Drop Google Flow 8s MP4 clips into 8-second video tracks." },
+        { id: "s4-vo-sync", label: "Post-Prod: Record master voice-over in own authentic voice." },
+        { id: "s4-roger-stamp", label: "Post-Prod: Overlay Roger Rabbit animated cartoon signature badge." },
+        { id: "s4-export-master", label: "Post-Prod: Export final 1080p 60fps master video (176s)." }
+      ]
+    },
+    {
+      id: "stage-4-5",
+      title: "Stage 4.5: 8s Teleprompter & VO Rehearsal",
+      icon: "🎙️",
+      items: [
+        { id: "s45-studio-loop", label: "Rehearse all 22 scenes in the 8-Second Teleprompter Studio." },
+        { id: "s45-audio-cue", label: "Verify natural breathing pause at the end of each 8s beat." }
+      ]
+    },
+    {
+      id: "stage-5",
+      title: "Stage 5: Multi-Platform Distribution & Funnel",
+      icon: "🚀",
+      items: [
+        { id: "s5-youtube-chapters", label: "Upload to YouTube with 22 scene chapter timestamps (0:00 - 2:48)." },
+        { id: "s5-linkedin-post", label: "Publish 5-pillar technical summary post on LinkedIn." },
+        { id: "s5-x-thread", label: "Post 5-part key takeaways thread on X (Twitter)." },
+        { id: "s5-skool-packaging", label: "Upload raw template pack to Skool Community & Classroom." }
+      ]
+    }
+  ],
   flywheel: [
     {
       step: 1,
