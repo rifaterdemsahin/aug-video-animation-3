@@ -92,12 +92,13 @@
         <div class="excalidraw-toolbar">
           <!-- Tool Selection -->
           <div class="tool-group">
-            <button class="tool-btn active" onclick="setExcaliTool('pen', this)" title="Pen Tool (Freehand)">✏️</button>
+            <button class="tool-btn active" onclick="setExcaliTool('pen', this)" title="Pen Tool (Freehand Draw)">✏️</button>
             <button class="tool-btn" onclick="setExcaliTool('highlighter', this)" title="Highlighter (Glow marker)">🖍️</button>
-            <button class="tool-btn" onclick="setExcaliTool('arrow', this)" title="Arrow Tool">➡️</button>
+            <button class="tool-btn" onclick="setExcaliTool('arrow', this)" title="Arrow Tool (Drag to point)">➡️</button>
             <button class="tool-btn" onclick="setExcaliTool('rect', this)" title="Rectangle Tool">⬜</button>
             <button class="tool-btn" onclick="setExcaliTool('circle', this)" title="Circle/Ellipse Tool">⭕</button>
-            <button class="tool-btn" onclick="setExcaliTool('text', this)" title="Text Note Tool">📝</button>
+            <button class="tool-btn" onclick="setExcaliTool('text', this)" title="Text Tool (Click anywhere to type inline)">📝 Text</button>
+            <button class="tool-btn" onclick="setExcaliTool('sticky', this)" title="Sticky Note Tool (Click to place sticky note)">📌 Sticky</button>
             <button class="tool-btn" onclick="setExcaliTool('eraser', this)" title="Eraser Tool">🧹</button>
           </div>
 
@@ -113,12 +114,28 @@
 
           <!-- Stroke Width -->
           <div class="tool-group" style="padding: 2px 6px;">
-            <span style="font-size:0.7rem; color:var(--text-dim); margin-right:4px;">Width:</span>
+            <span style="font-size:0.7rem; color:var(--text-dim); margin-right:4px;">Stroke:</span>
             <select onchange="setExcaliStrokeWidth(this.value)" style="background:transparent; color:#fff; border:none; font-size:0.75rem; font-family:var(--font-mono); outline:none; cursor:pointer;">
               <option value="2" style="background:#111827;">Fine (2px)</option>
-              <option value="4" selected style="background:#111827;">Medium (4px)</option>
-              <option value="8" style="background:#111827;">Thick (8px)</option>
+              <option value="3" selected style="background:#111827;">Medium (3px)</option>
+              <option value="6" style="background:#111827;">Thick (6px)</option>
             </select>
+          </div>
+
+          <!-- Font Size -->
+          <div class="tool-group" style="padding: 2px 6px;">
+            <span style="font-size:0.7rem; color:var(--text-dim); margin-right:4px;">Font:</span>
+            <select onchange="setExcaliFontSize(this.value)" style="background:transparent; color:#fff; border:none; font-size:0.75rem; font-family:var(--font-mono); outline:none; cursor:pointer;">
+              <option value="12" style="background:#111827;">Small (12px)</option>
+              <option value="14" selected style="background:#111827;">Normal (14px)</option>
+              <option value="18" style="background:#111827;">Large (18px)</option>
+            </select>
+          </div>
+
+          <!-- Quick Note Helpers -->
+          <div class="tool-group" style="gap: 4px; padding: 2px 6px;">
+            <button class="btn btn-secondary btn-sm" style="padding:2px 6px; font-size:0.7rem;" onclick="addQuickNote('left')">➕ Note Left</button>
+            <button class="btn btn-secondary btn-sm" style="padding:2px 6px; font-size:0.7rem;" onclick="addQuickNote('right')">➕ Note Right</button>
           </div>
         </div>
 

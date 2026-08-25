@@ -1,14 +1,15 @@
 // Interactive Pipeline Excalidraw / Whiteboard Engine
-// Vertical Pipeline Architecture with Note-Taking Zones on Both Sides
+// Vertical Pipeline Architecture with Note-Taking Zones on Both Sides + Rich Inline Text Tool
 
 (function() {
   const STORAGE_KEY = 'aug_video_pipeline_drawing_v1';
   let canvas, ctx;
   let isDrawing = false;
   let startX = 0, startY = 0;
-  let currentTool = 'pen'; // 'pen' | 'highlighter' | 'arrow' | 'rect' | 'circle' | 'text' | 'eraser'
+  let currentTool = 'pen'; // 'pen' | 'highlighter' | 'arrow' | 'rect' | 'circle' | 'text' | 'sticky' | 'eraser'
   let currentColor = '#06b6d4'; // default cyan
   let currentStrokeWidth = 3;
+  let currentFontSize = 14;
 
   let strokes = []; // Array of drawn objects
   let undoStack = [];
@@ -86,7 +87,7 @@
 
     context.fillStyle = '#06b6d4';
     context.font = '11px JetBrains Mono, monospace';
-    context.fillText('Total Turnaround: ~2h 15m (135 min) • 176s Video (22 Scenes) • 330 Credits • Annotate notes freely on LEFT & RIGHT!', 24, 48);
+    context.fillText('Total Turnaround: ~2h 15m (135 min) • 176s Video (22 Scenes) • 330 Credits • Click 📝 Text to write notes on LEFT & RIGHT!', 24, 48);
 
     // Layout Dimensions: 3-Column Architecture (Left Note Zone | Center Spine | Right Note Zone)
     const cardWidth = Math.min(360, Math.max(300, width * 0.38));
@@ -372,7 +373,7 @@
       ctx.save();
       ctx.strokeStyle = s.color;
       ctx.fillStyle = s.color;
-      ctx.lineWidth = s.width;
+      ctx.lineWidth = s.width || 3;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.globalAlpha = s.tool === 'highlighter' ? 0.35 : 1.0;
@@ -399,9 +400,35 @@
         const cy = Math.min(s.startY, s.endY) + ry;
         ctx.ellipse(cx, cy, rx, ry, 0, 0, 2 * Math.PI);
         ctx.stroke();
-      } else if (s.tool === 'text') {
-        ctx.font = 'bold 13.5px Inter, sans-serif';
-        ctx.fillText(s.text, s.startX, s.startY);
+      } else if (s.tool === 'text' || s.tool === 'sticky') {
+        const fontSize = s.fontSize || 14;
+        ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+        const lines = (s.text || '').split('\n');
+        const lineHeight = fontSize * 1.35;
+
+        if (s.isSticky || s.tool === 'sticky') {
+          // Draw a sticky card container
+          let maxLineW = 0;
+          lines.forEach(l => {
+            const w = ctx.measureText(l).width;
+            if (w > maxLineW) maxLineW = w;
+          });
+          const boxW = Math.max(140, maxLineW + 20);
+          const boxH = Math.max(50, lines.length * lineHeight + 18);
+
+          ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
+          ctx.strokeStyle = s.color || '#06b6d4';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.roundRect(s.startX - 8, s.startY - fontSize, boxW, boxH, 6);
+          ctx.fill();
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = s.color || '#ffffff';
+        lines.forEach((line, idx) => {
+          ctx.fillText(line, s.startX, s.startY + idx * lineHeight);
+        });
       }
       ctx.restore();
     });
@@ -421,6 +448,76 @@
     c.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
     c.closePath();
     c.fill();
+  }
+
+  // Interactive Inline Text Input Overlay
+  function closeInlineTextInput() {
+    const existing = document.getElementById('excali-inline-text-input');
+    if (existing && existing.parentElement) {
+      existing.parentElement.removeChild(existing);
+    }
+  }
+
+  function openInlineTextInput(x, y, isSticky = false) {
+    closeInlineTextInput();
+
+    const wrapper = canvas.parentElement;
+    const input = document.createElement('textarea');
+    input.id = 'excali-inline-text-input';
+    input.placeholder = isSticky ? 'Write sticky note...\n(Click outside to place)' : 'Type note text...\n(Click outside to place)';
+    input.style.position = 'absolute';
+    input.style.left = `${x}px`;
+    input.style.top = `${y}px`;
+    input.style.minWidth = isSticky ? '180px' : '160px';
+    input.style.minHeight = isSticky ? '64px' : '44px';
+    input.style.background = isSticky ? 'rgba(15, 23, 42, 0.95)' : 'rgba(10, 14, 23, 0.92)';
+    input.style.color = currentColor;
+    input.style.border = `2px solid ${currentColor}`;
+    input.style.borderRadius = '6px';
+    input.style.padding = '8px 10px';
+    input.style.fontSize = `${currentFontSize}px`;
+    input.style.fontFamily = 'Inter, sans-serif';
+    input.style.fontWeight = '600';
+    input.style.outline = 'none';
+    input.style.zIndex = '100';
+    input.style.boxShadow = `0 4px 20px rgba(0,0,0,0.6), 0 0 12px ${currentColor}50`;
+    input.style.resize = 'both';
+
+    wrapper.appendChild(input);
+    input.focus();
+
+    let committed = false;
+    function commitText() {
+      if (committed) return;
+      committed = true;
+      const val = input.value.trim();
+      if (val) {
+        strokes.push({
+          tool: isSticky ? 'sticky' : 'text',
+          text: val,
+          startX: x,
+          startY: y + currentFontSize,
+          color: currentColor,
+          fontSize: currentFontSize,
+          isSticky: isSticky
+        });
+        undoStack = [];
+        saveStrokes();
+        redrawCanvas();
+        if (window.showToast) window.showToast(`📝 Note added: "${val.slice(0, 20)}..."`, 'success');
+      }
+      closeInlineTextInput();
+    }
+
+    input.addEventListener('blur', commitText);
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        commitText();
+      } else if (e.key === 'Enter' && !e.shiftKey && !isSticky) {
+        e.preventDefault();
+        commitText();
+      }
+    });
   }
 
   // Event Listeners for Drawing
@@ -443,19 +540,13 @@
     startY = pos.y;
 
     if (currentTool === 'text') {
-      const text = prompt('Enter your note/feedback text:');
-      if (text) {
-        strokes.push({
-          tool: 'text',
-          text: text,
-          startX: pos.x,
-          startY: pos.y,
-          color: currentColor,
-          width: currentStrokeWidth
-        });
-        saveStrokes();
-        redrawCanvas();
-      }
+      openInlineTextInput(pos.x, pos.y, false);
+      isDrawing = false;
+      return;
+    }
+
+    if (currentTool === 'sticky') {
+      openInlineTextInput(pos.x, pos.y, true);
       isDrawing = false;
       return;
     }
@@ -582,6 +673,22 @@
 
   window.setExcaliStrokeWidth = function(w) {
     currentStrokeWidth = parseInt(w) || 3;
+  };
+
+  window.setExcaliFontSize = function(size) {
+    currentFontSize = parseInt(size) || 14;
+  };
+
+  window.addQuickNote = function(side) {
+    if (!canvas) return;
+    const rect = canvas.getBoundingClientRect();
+    const cardWidth = Math.min(360, Math.max(300, rect.width * 0.38));
+    const cardX = (rect.width - cardWidth) / 2;
+    
+    let targetX = side === 'left' ? 40 : cardX + cardWidth + 30;
+    let targetY = 160;
+
+    openInlineTextInput(targetX, targetY, true);
   };
 
   window.undoExcali = function() {
