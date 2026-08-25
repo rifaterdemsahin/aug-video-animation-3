@@ -323,6 +323,29 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
+  // Render Chrome Tabs Production Cockpit
+  function renderChromeTabsCockpit() {
+    const container = document.getElementById('chrome-tabs-cockpit-grid');
+    if (!container || !data.chromeTabs) return;
+
+    container.innerHTML = data.chromeTabs.map((tab, idx) => `
+      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.75rem 0.9rem; display: flex; flex-direction: column; gap: 0.35rem; transition: transform 0.2s, border-color 0.2s;">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:0.68rem; font-weight:700; text-transform:uppercase; color:var(--accent-cyan); background:rgba(6,182,212,0.12); padding:2px 6px; border-radius:4px;">
+            Tab ${String(idx + 1).padStart(2, '0')} • ${tab.category}
+          </span>
+          <span style="font-size:1.1rem;">${tab.icon}</span>
+        </div>
+        <div style="font-weight:700; font-size:0.82rem; color:#ffffff; font-family:var(--font-mono); word-break:break-word;">
+          ${tab.title}
+        </div>
+        <div style="font-size:0.75rem; color:var(--text-muted); line-height:1.35;">
+          ${tab.role}
+        </div>
+      </div>
+    `).join('');
+  }
+
   // Advance or set footage status in aug video 3 / used asset workflow
   window.setFootageStatus = function(sceneId, status) {
     if (!appState.footageStatus) appState.footageStatus = {};
@@ -892,6 +915,7 @@ RT and like if you found this valuable! 🚀`;
   // Initial Renders & Setup
   renderFlywheel();
   renderCanvaSuite();
+  renderChromeTabsCockpit();
   renderStoryboard();
   renderAllStageChecklists();
   updateProgressStats();

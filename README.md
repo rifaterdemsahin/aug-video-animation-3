@@ -26,7 +26,22 @@ flowchart LR
     D --> E[🚀 Stage 5: Multi-Platform Distribution & Skool Flywheel]
 ```
 
-### 🏫 Stage 1: Skool Ideation & Research
+### 🏫 Stage 1: Skool Ideation & Research (Pre-Prod Setup)
+- **🌐 Chrome Tabs Production Cockpit**: 14 orchestrated tabs managing the entire workflow:
+  1. `aug 3 video - Video` (Canva primary timeline & sliding Post-it note)
+  2. `~/projects/aug-video-animation-3 · chromeTerminal` (Antigravity CLI workspace)
+  3. `Google Flow - 25 Aug, 1` (AI 8s video rendering engine)
+  4. `Building a Token-Managing IDE - Google Gemini` (22-scene pacing & script director)
+  5. `Building a Token-Managing IDE - Google Gemini (Active)` (Live prompt tuning)
+  6. `aug 3 video - Video (Tab 2)` (Canva asset staging)
+  7. `Google Flow - 25 Aug, 1 (Batch)` (Continuous render queue)
+  8. `Community - YouTube Studio` (Distribution & chapter timestamps)
+  9. `3_Simulation/prod_stage_read_...` (Footage gap review with sliding Post-it)
+  10. `rifaterdemsahin/roger-rabbit` (Toon-meets-reality format repo)
+  11. `🌱 Become the person who does what they say they will` (Skool accountability thread)
+  12. `3-Minute AI Animation Video Production Suite (Live)` (GitHub Pages cockpit)
+  13. `agy · chromeTerminal` (AGY custom terminal)
+  14. `3-Minute AI Animation Video Production Suite (Local)` (Local dev test suite)
 - **Source Classroom Video**: [Delivery Pilot Skool Classroom](https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df)
 - **Signature Style**: Roger Rabbit style (cartoon overlay + real code/terminal UI at `127.0.0.1:3847`)
 - **Voice Identity**: Authentic voice recording with precise 8-second pacing.

@@ -18,6 +18,22 @@ window.VIDEO_DATA = {
     rogerRabbitRepo: "https://github.com/rifaterdemsahin/roger-rabbit/tree/main",
     rogerRabbitLive: "https://rifaterdemsahin.github.io/roger-rabbit/"
   },
+  chromeTabs: [
+    { category: "🎨 Canva Production", title: "aug 3 video - Video", icon: "🎨", role: "Primary Canva video timeline, sliding Post-it note script reader, and 8s asset tracks." },
+    { category: "💻 CLI Terminal", title: "~/projects/aug-video-animation-3 · chromeTerminal", icon: "💻", role: "Antigravity CLI terminal running git, Azure sync scripts, and file management." },
+    { category: "🎬 Generative Video", title: "Google Flow - 25 Aug, 1", icon: "🎬", role: "AI video generation engine (15 credits/8s clip) in FlyWheelMVP tab group." },
+    { category: "🤖 Script Director", title: "Building a Token-Managing IDE - Google Gemini", icon: "🤖", role: "Master Gemini session generating 22 scenes x 8s visual prompts and VO lines." },
+    { category: "🤖 Script Director", title: "Building a Token-Managing IDE - Google Gemini (Active)", icon: "⚡", role: "Live Gemini prompt iteration and script tweaking workspace." },
+    { category: "🎨 Canva Secondary", title: "aug 3 video - Video (Tab 2)", icon: "🎞️", role: "Secondary Canva tab for asset uploads and component formatting." },
+    { category: "🎬 Flow Batch Queue", title: "Google Flow - 25 Aug, 1 (Batch)", icon: "🚀", role: "Active Google Flow render queue with 'Approve, do not ask again' active." },
+    { category: "📊 Social Distribution", title: "Community - YouTube Studio", icon: "🔴", role: "YouTube Studio for chapter timestamp uploading and community video launch." },
+    { category: "🖼️ Simulation QC", title: "aug-video-animation-3/3_Simulation/prod_stage_read_...", icon: "🔍", role: "Sliding Post-it footage gap check reference capture on GitHub." },
+    { category: "🐰 Style Signature", title: "rifaterdemsahin/roger-rabbit: Animation in real world", icon: "🐰", role: "Roger Rabbit toon-meets-reality and La Linea style reference repository." },
+    { category: "🌱 Community Flywheel", title: "🌱 Become the person who does what they say they will", icon: "🌱", role: "Skool community commitment thread and peer accountability hub." },
+    { category: "⚡ Production Helper", title: "3-Minute AI Animation Video Production Suite 🎬 | Helper... (Live)", icon: "🌐", role: "GitHub Pages live production cockpit with Azure state sync." },
+    { category: "💻 CLI IDE Workspace", title: "agy · chromeTerminal", icon: "⚡", role: "Antigravity (AGY) custom browser terminal and developer agent interface." },
+    { category: "⚡ Production Helper", title: "3-Minute AI Animation Video Production Suite 🎬 | Helper... (Local)", icon: "🛠️", role: "Local dev helper suite (file:///.../index.html) for instantaneous testing." }
+  ],
   azureConfig: {
     storageAccount: "animationasistant",
     fileShare: "aug-video-state",
@@ -29,9 +45,10 @@ window.VIDEO_DATA = {
   productionChecklistStages: [
     {
       id: "stage-1",
-      title: "Stage 1: Skool Ideation & Research",
+      title: "Stage 1: Skool Ideation & Research (Pre-Prod Setup)",
       icon: "🏫",
       items: [
+        { id: "s1-chrome-tabs-cockpit", label: "Pre-Prod: Set up Chrome Tabs Production Cockpit (14 orchestrated tabs: Canva 'aug 3 video', Google Flow, Gemini 'Building a Token-Managing IDE', chromeTerminal, YouTube Studio, Skool Community, Roger Rabbit repo, and Helper Suite)." },
         { id: "s1-review-video", label: "Review source classroom module & discussion threads in Skool." },
         { id: "s1-research-pics", label: "Extract subject research pictures, Antigravity IDE UI screens & benchmarks." },
         { id: "s1-roger-rabbit", label: "Define Roger Rabbit signature styling (cartoon overlays over real IDE at 127.0.0.1:3847, see roger-rabbit repo)." }
