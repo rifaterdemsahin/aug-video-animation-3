@@ -1,25 +1,25 @@
 // HTML Vertical Pipeline Note-Taking & Feedback Aggregator Engine
 
 (function() {
-  const STORAGE_KEY = 'aug_video_html_pipeline_feedback_v1';
+  const STORAGE_KEY = 'aug_video_html_pipeline_feedback_v3';
 
-  // Default stage templates
+  // Default stage templates matching the production report
   const DEFAULT_FEEDBACK = {
     stage_1: {
-      left: 'Prompt tweaks: Isometric 3D dark-mode UI aesthetic, Claude Token Optimization.\nRef screenshots: 127.0.0.1:3847 terminal.',
-      right: 'Topic approved. Focus on Token Optimizer & FlyWheelMVP.'
+      left: '',
+      right: ''
     },
     stage_2: {
-      left: 'Gemini 8s prompt format: 18-22 words per VO line. 22 scenes = 176s master duration.',
-      right: 'Pacing verified. VO word counts strictly under 22 words.'
+      left: '',
+      right: ''
     },
     stage_2_5: {
-      left: 'Dual-pane Chrome setup: Left window Gemini prompt generator, Right window Google Flow queue.',
-      right: 'Smooth handoff. 14 tabs loaded in cockpit.'
+      left: '',
+      right: ''
     },
     stage_3: {
-      left: 'Google Flow Veo prompts: Isometric render style, camera pan speed 1.0x, 3D animated graphs.',
-      right: '330 base credits allocated. 25% retake buffer reserved.'
+      left: '',
+      right: ''
     },
     stage_qc: {
       left: 'Shotlist in hand: Sort clips 1-by-1 to used asset. Verify 0 blank frames.',
