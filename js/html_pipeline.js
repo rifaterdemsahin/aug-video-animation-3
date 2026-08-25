@@ -125,10 +125,10 @@
     stagesMeta.forEach(s => {
       const data = feedbackData[s.key] || { left: '', right: '' };
       report += `### ${s.title} (⏱️ ${s.time})\n`;
-      report += `* **📝 Inputs, Prompts & Research**:\n`;
-      report += data.left.trim() ? `${data.left.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No notes added)*\n`;
-      report += `* **💡 Reviews, Feedback & Gaps**:\n`;
-      report += data.right.trim() ? `${data.right.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No feedback added)*\n`;
+      report += `* **📝 Updates**:\n`;
+      report += data.left.trim() ? `${data.left.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No updates added)*\n`;
+      report += `* **⚠️ Issues**:\n`;
+      report += data.right.trim() ? `${data.right.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No issues reported)*\n`;
       report += `\n`;
     });
 
@@ -164,8 +164,8 @@
     stagesMeta.forEach(s => {
       const data = feedbackData[s.key] || { left: '', right: '' };
       report += `## ${s.title}\n`;
-      report += `### 📝 Inputs, Prompts & Research\n${data.left || '(None)'}\n\n`;
-      report += `### 💡 Reviews, Feedback & Gaps\n${data.right || '(None)'}\n\n`;
+      report += `### 📝 Updates\n${data.left || '(None)'}\n\n`;
+      report += `### ⚠️ Issues\n${data.right || '(None)'}\n\n`;
     });
 
     const blob = new Blob([report], { type: 'text/markdown;charset=utf-8;' });
