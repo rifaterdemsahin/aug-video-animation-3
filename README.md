@@ -11,8 +11,10 @@
 ```mermaid
 flowchart LR
     A[🏫 Stage 1: Skool Ideation] --> B[🤖 Stage 2: Gemini 8s Script]
-    B --> C[🎬 Stage 3: Google Flow Visuals]
-    C --> D[🎨 Stage 4: Canva 3-Section Suite]
+    B --> S[🪟 Stage 2.5: Split-View Bridge]
+    S --> C[🎬 Stage 3: Google Flow Visuals]
+    C --> QC[🧪 Quality Gate & Sanity Check]
+    QC --> D[🎨 Stage 4: Canva 3-Section Suite]
     D --> E[🚀 Stage 5: Multi-Platform Distribution & Skool Flywheel]
 ```
 
@@ -27,6 +29,17 @@ flowchart LR
   - 8-second visual motion graphic concept
   - AI video generation prompt (Google Flow / Veo)
   - 18–24 word voice-over (VO) narration timed to 8 seconds.
+
+### 🪟 Stage 2.5: Split-View Generation Bridge (`3_Simulation/`)
+- **Live Pair Interface**: Operating [Google Flow](https://labs.google/flow) on the left side-by-side with [Gemini](https://gemini.google.com) on the right.
+- **Credit Accounting**: 15 credits per 8s generation (330 base credits for 22 scenes).
+- **Batch Streaming**: Enabling *"Approve, do not ask again"* for frictionless prompt copying.
+
+### 🧪 Sanity Check & Production Quality Gate
+- 🪙 **Budget Estimator**: 22 scenes × 15 credits = **330 base credits** (~420 credits with 25% retakes).
+- 🔤 **Text Hallucination Rule**: Never ask generative video models to render exact code or IPs (`127.0.0.1:3847`). Use real screen captures in Canva overlays, and reserve Google Flow for abstract 3D motion metaphors.
+- 🎨 **Style Continuity**: Use consistent style anchor keywords (*isometric 3D, cyber-blue/emerald palette, 60fps*).
+- ⏱️ **Audio Drift Protection**: Strict 18–22 word limit per 8-second scene.
 
 ### 🎬 Stage 3: Google Flow Visual Generation
 - **Tool**: [Google Flow](https://labs.google/flow)
@@ -53,11 +66,12 @@ flowchart LR
 
 ## 🛠️ Helper Web App Features
 
-- 🎯 **Stage-by-Stage Navigation**: Sticky top header for fast switching across all 5 stages.
+- 🎯 **Stage-by-Stage Navigation**: Sticky top header for fast switching across all stages.
+- 🪟 **Split-View Simulation Inspector**: Visual breakdown of Gemini + Flow side-by-side workflow.
+- 🧪 **Interactive Sanity Check & Credit Calculator**: Dynamic budget estimations and pre-flight validation.
 - 🎙️ **8-Second VO Teleprompter Studio**: Interactive rehearsal loop with 8-second countdown timer, metronome audio cues, and Web Speech TTS voice preview.
 - 📋 **Master 22-Scene Matrix**: Search, filter by production phase, and toggle completion with persistent `localStorage`.
 - 📥 **One-Click Generators**: Instant export for YouTube Chapters, LinkedIn posts, X threads, and `.SRT` subtitle captions.
-- 🎨 **Canva 3-Section Board Simulator**: Digital post-it notes and footage sync timeline.
 
 ---
 

@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
       return saved ? JSON.parse(saved) : {
         completedScenes: {},
         stageChecklist: {},
+        sanityChecklist: {},
         currentPrompterIndex: 0
       };
     } catch (e) {
-      return { completedScenes: {}, stageChecklist: {}, currentPrompterIndex: 0 };
+      return { completedScenes: {}, stageChecklist: {}, sanityChecklist: {}, currentPrompterIndex: 0 };
     }
   }
 
@@ -59,6 +60,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
+  // Credit Budget Estimator Logic
+  window.updateBudgetEstimate = function() {
+    const sceneCountInput = document.getElementById('calc-scenes');
+    const creditPerClipInput = document.getElementById('calc-credits-per-clip');
+    const retakeRateSelect = document.getElementById('calc-retakes');
+
+    if (!sceneCountInput || !creditPerClipInput || !retakeRateSelect) return;
+
+    const scenes = parseInt(sceneCountInput.value) || 22;
+    const creditsPerClip = parseInt(creditPerClipInput.value) || 15;
+    const retakeRate = parseFloat(retakeRateSelect.value) || 0.25;
+
+    const baseCredits = scenes * creditsPerClip;
+    const totalGens = Math.round(scenes * (1 + retakeRate));
+    const totalCredits = totalGens * creditsPerClip;
+    const durationSec = scenes * 8;
+    const durationMin = (durationSec / 60).toFixed(1);
+
+    const baseEl = document.getElementById('est-base-credits');
+    const totalEl = document.getElementById('est-total-credits');
+    const gensEl = document.getElementById('est-total-gens');
+    const durEl = document.getElementById('est-duration');
+
+    if (baseEl) baseEl.innerText = `${baseCredits}`;
+    if (totalEl) totalEl.innerText = `${totalCredits}`;
+    if (gensEl) gensEl.innerText = `${totalGens} clips`;
+    if (durEl) durEl.innerText = `${durationSec}s (${durationMin}m)`;
+  };
+
   // Render Flywheel Cards
   function renderFlywheel() {
     const container = document.getElementById('flywheel-container');
@@ -80,7 +110,6 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderCanvaSuite() {
     const preprodContainer = document.getElementById('canva-preprod-postits');
     const prodContainer = document.getElementById('canva-prod-timeline');
-    const postprodContainer = document.getElementById('canva-postprod-checks');
 
     if (preprodContainer) {
       preprodContainer.innerHTML = data.scenes.map(s => `
@@ -110,7 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
             <p style="font-size:0.78rem; color:#d1d5db; margin:0.3rem 0;">${s.visual}</p>
             <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-muted);">
-              <span>Target: 8.0s Clip</span>
+              <span>Target: 8.0s Clip (15 Credits)</span>
               <label style="cursor:pointer; display:flex; align-items:center; gap:4px;">
                 <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleSceneDone(${s.id}, this.checked)">
                 Uploaded to Canva
@@ -160,12 +189,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
     container.innerHTML = filtered.map(s => {
       const isCompleted = !!appState.completedScenes[s.id];
+      const wordCount = s.vo.split(/\s+/).filter(Boolean).length;
+      const paceStatus = wordCount >= 16 && wordCount <= 24 ? '🟢 Optimal Pace' : (wordCount > 24 ? '🔴 Too Fast (>24 words)' : '🟡 Too Slow (<16 words)');
+
       return `
         <div class="scene-item-card ${isCompleted ? 'completed' : ''}" id="scene-card-${s.id}">
           <div class="scene-time-col">
             <div class="scene-num-badge">#${s.id}</div>
             <div class="scene-time-badge">${s.timecode}</div>
             <div class="scene-duration">⏱️ 8.0s</div>
+            <div style="font-size:0.62rem; color:var(--text-muted); margin-top:2px;">15 Cr</div>
           </div>
 
           <div class="scene-content-col">
@@ -178,7 +211,10 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="scene-content-col">
-            <span class="label-tag" style="color: var(--accent-cyan);">🎙️ Voice-Over Narration</span>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span class="label-tag" style="color: var(--accent-cyan);">🎙️ Voice-Over Narration</span>
+              <span style="font-size:0.68rem; color:var(--text-muted); font-family:var(--font-mono);">${wordCount} words • ${paceStatus}</span>
+            </div>
             <p style="font-size: 0.9rem; font-weight: 500; color: #ffffff; background: rgba(0,0,0,0.25); padding: 0.6rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
               "${s.vo}"
             </p>
@@ -244,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let prompterTimer = null;
   let currentPrompterIndex = 0;
   let secondsRemaining = 8;
-  let isAutoAdvance = true;
   let isPlaying = false;
 
   function updatePrompterUI() {
@@ -525,10 +560,11 @@ RT and like if you found this valuable! 🚀`;
     });
   });
 
-  // Initial Renders
+  // Initial Renders & Setup
   renderFlywheel();
   renderCanvaSuite();
   renderStoryboard();
   updateProgressStats();
   updatePrompterUI();
+  updateBudgetEstimate();
 });
