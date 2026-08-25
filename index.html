@@ -72,23 +72,15 @@
           <!-- Table Header -->
           <thead>
             <tr>
-              <th class="th-left">📝 UPDATES</th>
-              <th class="th-center">⚡ PRODUCTION PIPELINE (TOP ➔ BOTTOM)</th>
-              <th class="th-right">⚠️ ISSUES</th>
+              <th class="th-pipeline">⚡ PRODUCTION PIPELINE (TOP ➔ BOTTOM)</th>
+              <th class="th-issues">⚠️ ISSUES</th>
             </tr>
           </thead>
 
           <tbody>
             <!-- STAGE 1 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-1" data-stage-id="stage-1" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_1" data-side="left" placeholder="Enter Stage 1 updates, prompt tweaks, and progress..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-1">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -113,7 +105,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_1" data-side="right" placeholder="Enter Stage 1 issues, scope bottlenecks, and blockers..."></textarea>
@@ -123,7 +115,6 @@
 
             <!-- Arrow Connector Row 1 -> 2 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow"></div>
@@ -134,14 +125,7 @@
 
             <!-- STAGE 2 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-2" data-stage-id="stage-2" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_2" data-side="left" placeholder="Enter Stage 2 script updates and 8s pacing adjustments..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-2">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -166,7 +150,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_2" data-side="right" placeholder="Enter Stage 2 issues, cadence flaws, and word count overflows..."></textarea>
@@ -176,7 +160,6 @@
 
             <!-- Arrow Connector Row 2 -> 2.5 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-cyan"></div>
@@ -187,14 +170,7 @@
 
             <!-- STAGE 2.5 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-2-5" data-stage-id="stage-2-5" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_2_5" data-side="left" placeholder="Enter Stage 2.5 split-view updates and dual-screen layout..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-2-5">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -219,7 +195,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_2_5" data-side="right" placeholder="Enter Stage 2.5 window arrangement issues and switching delays..."></textarea>
@@ -229,7 +205,6 @@
 
             <!-- Arrow Connector Row 2.5 -> 3 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-sky"></div>
@@ -240,14 +215,7 @@
 
             <!-- STAGE 3 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-3" data-stage-id="stage-3" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_3" data-side="left" placeholder="Enter Stage 3 Google Flow prompt updates and render progress..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-3">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -272,7 +240,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_3" data-side="right" placeholder="Enter Stage 3 generation issues, style drifts, and retakes..."></textarea>
@@ -282,7 +250,6 @@
 
             <!-- Arrow Connector Row 3 -> QC -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-purple"></div>
@@ -293,14 +260,7 @@
 
             <!-- STAGE QC ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-qc" data-stage-id="stage-qc" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_qc" data-side="left" placeholder="Enter Stage QC footage verification and sorting updates..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-qc">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -325,7 +285,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_qc" data-side="right" placeholder="Enter Stage QC blockers, missing clips, and text hallucination issues..."></textarea>
@@ -335,7 +295,6 @@
 
             <!-- Arrow Connector Row QC -> 4 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-rose"></div>
@@ -346,14 +305,7 @@
 
             <!-- STAGE 4 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-4" data-stage-id="stage-4" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_4" data-side="left" placeholder="Enter Stage 4 Canva timeline arrangement updates..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-4">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -378,7 +330,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_4" data-side="right" placeholder="Enter Stage 4 timeline alignment and video overlay issues..."></textarea>
@@ -388,7 +340,6 @@
 
             <!-- Arrow Connector Row 4 -> 4.5 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-pink"></div>
@@ -399,14 +350,7 @@
 
             <!-- STAGE 4.5 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-4-5" data-stage-id="stage-4-5" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_4_5" data-side="left" placeholder="Enter Stage 4.5 voice-over rehearsal and recording updates..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-4-5">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -431,7 +375,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_4_5" data-side="right" placeholder="Enter Stage 4.5 audio sync, mic noise, and VO retake issues..."></textarea>
@@ -441,7 +385,6 @@
 
             <!-- Arrow Connector Row 4.5 -> 5 -->
             <tr class="stage-connector-row">
-              <td></td>
               <td>
                 <div class="table-arrow-cell">
                   <div class="arrow arrow-emerald"></div>
@@ -452,14 +395,7 @@
 
             <!-- STAGE 5 ROW -->
             <tr class="pipeline-table-row" id="pipeline-row-stage-5" data-stage-id="stage-5" draggable="true">
-              <td class="td-left">
-                <div class="note-card left-card">
-                  <div class="note-title">UPDATES</div>
-                  <textarea class="note-textarea" data-stage="stage_5" data-side="left" placeholder="Enter Stage 5 multi-platform distribution updates and links..."></textarea>
-                </div>
-              </td>
-
-              <td class="td-center">
+              <td class="td-pipeline">
                 <div class="stage-card stage-5">
                   <div class="stage-title">
                     <div class="stage-title-left">
@@ -484,7 +420,7 @@
                 </div>
               </td>
 
-              <td class="td-right">
+              <td class="td-issues">
                 <div class="note-card right-card">
                   <div class="note-title">ISSUES</div>
                   <textarea class="note-textarea" data-stage="stage_5" data-side="right" placeholder="Enter Stage 5 social funnel issues, student dropoff, and feedback..."></textarea>

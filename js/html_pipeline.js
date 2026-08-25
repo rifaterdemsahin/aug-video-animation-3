@@ -238,10 +238,8 @@
 
       report += `### ${s.title} (⏱️ ${dur})\n`;
       if (desc) report += `*Scope: ${desc}*\n`;
-      report += `* **📝 Updates**:\n`;
-      report += data.left.trim() ? `${data.left.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No updates added)*\n`;
       report += `* **⚠️ Issues**:\n`;
-      report += data.right.trim() ? `${data.right.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No issues reported)*\n`;
+      report += data.right && data.right.trim() ? `${data.right.trim().split('\n').map(l => `  > ${l}`).join('\n')}\n` : `  > *(No issues reported)*\n`;
       report += `\n`;
     });
 
@@ -280,7 +278,6 @@
 
       report += `## ${s.title} (⏱️ ${dur})\n`;
       if (desc) report += `> **Scope**: ${desc}\n\n`;
-      report += `### 📝 Updates\n${data.left || '(None)'}\n\n`;
       report += `### ⚠️ Issues\n${data.right || '(None)'}\n\n`;
     });
 
@@ -314,15 +311,10 @@
   };
 
   // ============================================================
-  // MOVEABLE ROWS & DRAG-AND-DROP REORDERING ENGINE
+  // DRAG AND DROP REORDERING & ROW ORDER PERSISTENCE
   // ============================================================
   const ORDER_STORAGE_KEY = 'aug_video_pipeline_row_order_v1';
   let draggedRow = null;
-
-  function initRowReordering() {
-    restoreRowOrder();
-    setupDragAndDrop();
-  }
 
   function setupDragAndDrop() {
     const tbody = document.querySelector('.pipeline-table tbody');
@@ -330,12 +322,11 @@
 
     tbody.addEventListener('dragstart', (e) => {
       const row = e.target.closest('.pipeline-table-row');
-      if (row) {
-        draggedRow = row;
-        row.classList.add('is-dragging');
-        e.dataTransfer.effectAllowed = 'move';
-        e.dataTransfer.setData('text/plain', row.id);
-      }
+      if (!row) return;
+      draggedRow = row;
+      row.classList.add('is-dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', row.id);
     });
 
     tbody.addEventListener('dragend', () => {
@@ -426,7 +417,6 @@
         const connector = document.createElement('tr');
         connector.className = 'stage-connector-row';
         connector.innerHTML = `
-          <td></td>
           <td>
             <div class="table-arrow-cell">
               <div class="arrow"></div>

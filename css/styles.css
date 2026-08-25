@@ -412,21 +412,20 @@ header.sticky-header {
 }
 
 .pipeline-table thead th.th-left {
-  color: #38bdf8;
-  text-align: left;
-  width: 32%;
-}
-
+.pipeline-table thead th.th-pipeline,
 .pipeline-table thead th.th-center {
   color: #f59e0b;
-  text-align: center;
-  width: 36%;
+  text-align: left;
+  width: 50%;
+  padding-left: 4px;
 }
 
+.pipeline-table thead th.th-issues,
 .pipeline-table thead th.th-right {
   color: #f43f5e;
-  text-align: right;
-  width: 32%;
+  text-align: left;
+  width: 50%;
+  padding-left: 12px;
 }
 
 .pipeline-table tbody tr {
@@ -438,12 +437,18 @@ header.sticky-header {
   padding: 0 8px;
 }
 
-.pipeline-table tbody td.td-left {
+.pipeline-table tbody td.td-pipeline,
+.pipeline-table tbody td.td-center {
   padding-left: 0;
+  padding-right: 8px;
+  width: 50%;
 }
 
+.pipeline-table tbody td.td-issues,
 .pipeline-table tbody td.td-right {
+  padding-left: 8px;
   padding-right: 0;
+  width: 50%;
 }
 
 .stage-connector-row td {
@@ -453,7 +458,8 @@ header.sticky-header {
 
 .table-arrow-cell {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 48px;
   align-items: center;
   height: 24px;
 }
