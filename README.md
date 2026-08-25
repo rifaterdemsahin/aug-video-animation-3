@@ -53,16 +53,17 @@ flowchart LR
 1. **📁 Folder Setup**: Create project folder `aug 3` (or `aug video 3`) in Canva and local drive.
 2. **📥 Flow Uploads**: Upload all 22 Google Flow generated 8s MP4 video slices into `aug video 3`.
 3. **🗃️ Subfolder `used asset`**: Create `aug video 3/used asset` to archive clips as they are dropped into the Canva timeline.
-4. **📝 Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
-5. **🎥 Prod**: Drop footages from `aug video 3` into the 8s timeline tracks and move placed items into `used asset`.
-6. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
-7. **🎙️ Post-prod (VO & Sync)**: Record master voice-over in own authentic voice.
-8. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
-9. ☁️ **Azure Files Cloud State Synchronization**:
-   - **Storage Account**: `animationasistant`
-   - **Azure File Share**: `aug-video-state`
-   - **State Payload**: `aug_video_animation_state.json`
-   - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
+4. **📝 Pre-prod (Post-it Timeline Guides)**: Add 22 color-coded digital Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync.
+5. **🎬 Prod (Storyboard Video Upload)**: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene.
+6. **📦 Prod (Move Footages One by One)**: Move footages one by one from `aug video 3` to `used asset` as each clip is placed on the Canva track.
+7. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
+8. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
+9. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
+10. ☁️ **Azure Files Cloud State Synchronization**:
+    - **Storage Account**: `animationasistant`
+    - **Azure File Share**: `aug-video-state`
+    - **State Payload**: `aug_video_animation_state.json`
+    - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
 
 ### 🚀 Stage 5: Multi-Platform Distribution & The Skool Flywheel
 - **Free Social Distribution**:

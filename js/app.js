@@ -323,48 +323,143 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
+  // Advance or set footage status in aug video 3 / used asset workflow
+  window.setFootageStatus = function(sceneId, status) {
+    if (!appState.footageStatus) appState.footageStatus = {};
+    appState.footageStatus[sceneId] = status;
+    if (status === 'used' || status === 'uploaded') {
+      appState.completedScenes[sceneId] = true;
+    }
+    saveState(true);
+    renderCanvaSuite();
+    renderStoryboard(currentFilter, currentSearch);
+    updateGlobalProgress();
+    showToast(`Scene ${sceneId} footage: ${status === 'used' ? '🗃️ Moved to used asset' : status === 'uploaded' ? '🎥 Timeline Placed' : '📥 In aug video 3'}`);
+  };
+
+  window.moveAllNextFootage = function() {
+    if (!appState.footageStatus) appState.footageStatus = {};
+    const nextScene = data.scenes.find(s => appState.footageStatus[s.id] !== 'used');
+    if (nextScene) {
+      window.setFootageStatus(nextScene.id, 'used');
+    } else {
+      showToast('🎉 All 22 footages have been moved to used asset!', 'success');
+    }
+  };
+
+  window.resetAllFootageStatus = function() {
+    appState.footageStatus = {};
+    saveState(true);
+    renderCanvaSuite();
+    showToast('🔄 Footage placement reset to initial state');
+  };
+
   // Render Canva 3-Section Suite
   function renderCanvaSuite() {
     const preprodContainer = document.getElementById('canva-preprod-postits');
     const prodContainer = document.getElementById('canva-prod-timeline');
 
+    if (!appState.footageStatus) appState.footageStatus = {};
+
+    const usedCount = data.scenes.filter(s => appState.footageStatus[s.id] === 'used').length;
+    const uploadedCount = data.scenes.filter(s => appState.footageStatus[s.id] === 'uploaded').length;
+
+    // 1. Pre-Prod Column: Digital Post-it Notes with Script & Post-Prod Guides
     if (preprodContainer) {
       preprodContainer.innerHTML = data.scenes.map(s => `
-        <div class="postit-note" style="background-color: ${s.canvaPostItColor || '#fef08a'};" onclick="copyToClipboard('${escapeQuotes(s.vo)}', 'Scene ${s.id} Script Copied!')" title="Click to copy Scene ${s.id} script">
+        <div class="postit-note" style="background-color: ${s.canvaPostItColor || '#fef08a'};" onclick="copyToClipboard('${escapeQuotes(s.vo)}', 'Scene ${s.id} Script Copied!')" title="Click to copy Scene ${s.id} script for Post-Prod VO">
           <div class="postit-header">
             <span>Scene ${s.id} (${s.timecode})</span>
-            <span>📝 Post-it</span>
+            <span>📝 Post-it Script</span>
           </div>
           <div class="postit-body">
-            <strong>${s.title}</strong><br>
-            "${s.vo}"
+            <div style="font-weight:700; margin-bottom:2px;">${s.title}</div>
+            <div style="font-style:italic; font-size:0.79rem; color:#111827;">"${s.vo}"</div>
+            <div style="margin-top:6px; font-size:0.68rem; font-weight:700; text-transform:uppercase; color:#4b5563; border-top:1px dashed rgba(0,0,0,0.15); padding-top:4px;">
+              🎯 Post-Prod Cue: ~${s.vo.split(' ').length} words / 8s cadence
+            </div>
           </div>
         </div>
       `).join('');
     }
 
+    // 2. Prod Column: Storyboard-like Video Upload & Sequencer (Move footages one by one)
     if (prodContainer) {
-      prodContainer.innerHTML = data.scenes.map(s => {
-        const isDone = appState.completedScenes[s.id] || false;
+      const headerBar = `
+        <div style="background: rgba(0,0,0,0.35); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.6rem 0.75rem; margin-bottom: 0.75rem;">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; font-weight:700; margin-bottom:0.35rem;">
+            <span>📁 'aug video 3' ➔ 'used asset'</span>
+            <span style="color:var(--accent-emerald);">${usedCount}/22 Placed</span>
+          </div>
+          <div class="progress-bar-container" style="height:5px; margin-bottom:0.5rem;">
+            <div class="progress-bar-fill" style="width: ${(usedCount / 22) * 100}%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-emerald));"></div>
+          </div>
+          <div style="display:flex; gap:0.4rem;">
+            <button class="btn btn-secondary btn-sm" style="flex:1; font-size:0.7rem; padding:2px 6px;" onclick="moveAllNextFootage()">
+              ⚡ Move Next Footage
+            </button>
+            <button class="btn btn-secondary btn-sm" style="font-size:0.7rem; padding:2px 6px;" onclick="resetAllFootageStatus()">
+              🔄 Reset
+            </button>
+          </div>
+        </div>
+      `;
+
+      const cardsHtml = data.scenes.map(s => {
+        const status = appState.footageStatus[s.id] || (appState.completedScenes[s.id] ? 'uploaded' : 'incoming');
+        const isUsed = status === 'used';
+        const isUploaded = status === 'uploaded';
+
         return `
-          <div class="flow-prompt-card" style="margin-bottom: 0.75rem; padding: 0.75rem; background: rgba(15, 23, 42, 0.85);">
+          <div class="flow-prompt-card ${isUsed ? 'stage-card-complete' : ''}" style="margin-bottom: 0.75rem; padding: 0.85rem; background: ${isUsed ? 'rgba(6, 78, 59, 0.25)' : 'rgba(15, 23, 42, 0.85)'}; border-left: 3px solid ${isUsed ? 'var(--accent-emerald)' : isUploaded ? 'var(--accent-cyan)' : 'var(--accent-amber)'};">
+            <!-- Header -->
             <div class="flow-prompt-header">
-              <span style="font-size:0.75rem; font-weight:700; color:var(--accent-cyan);">Scene ${s.id}: ${s.timecode}</span>
-              <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('${escapeQuotes(s.googleFlowPrompt)}', 'Scene ${s.id} Flow Prompt Copied!')">
+              <div>
+                <span style="font-size:0.8rem; font-weight:800; color:#ffffff;">Scene ${s.id}</span>
+                <span style="font-size:0.72rem; font-family:var(--font-mono); color:var(--accent-cyan); margin-left:4px;">(${s.timecode})</span>
+              </div>
+              <span class="badge-pill" style="font-size:0.65rem; padding:1px 6px; ${isUsed ? 'background:rgba(16,185,129,0.2); color:#6ee7b7;' : isUploaded ? 'background:rgba(6,182,212,0.2); color:#67e8f9;' : 'background:rgba(245,158,11,0.2); color:#fcd34d;'}">
+                ${isUsed ? '🗃️ in used asset' : isUploaded ? '🎥 on Timeline' : '📥 in aug video 3'}
+              </span>
+            </div>
+
+            <!-- Post-it Script preview for Post-Prod guidance -->
+            <div style="background: ${s.canvaPostItColor || '#fef08a'}; color:#1f2937; padding: 0.4rem 0.6rem; border-radius: 4px; font-size: 0.72rem; margin: 0.4rem 0; box-shadow:0 1px 3px rgba(0,0,0,0.2);">
+              <strong>📝 Post-it:</strong> "${s.vo.substring(0, 75)}..."
+            </div>
+
+            <!-- Visual Prompt -->
+            <p style="font-size:0.75rem; color:#d1d5db; margin:0.3rem 0; line-height:1.35;">
+              <strong style="color:var(--accent-cyan);">Visual:</strong> ${s.visual}
+            </p>
+
+            <!-- Video File Tag & Prompt Copy -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin:0.4rem 0 0.6rem 0;">
+              <span style="font-family:var(--font-mono); font-size:0.7rem; color:var(--text-muted); background:rgba(0,0,0,0.3); padding:2px 6px; border-radius:4px;">
+                📼 scene_${String(s.id).padStart(2, '0')}.mp4 (8.0s)
+              </span>
+              <button class="btn btn-secondary btn-sm" style="font-size:0.68rem; padding:2px 6px;" onclick="copyToClipboard('${escapeQuotes(s.googleFlowPrompt)}', 'Scene ${s.id} Flow Prompt Copied!')">
                 📋 Copy Prompt
               </button>
             </div>
-            <p style="font-size:0.78rem; color:#d1d5db; margin:0.3rem 0;">${s.visual}</p>
-            <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.72rem; color:var(--text-muted);">
-              <span>Target: 8.0s Clip (15 Credits)</span>
-              <label style="cursor:pointer; display:flex; align-items:center; gap:4px;">
-                <input type="checkbox" ${isDone ? 'checked' : ''} onchange="toggleSceneDone(${s.id}, this.checked)">
-                Uploaded to Canva
-              </label>
+
+            <!-- Step Sequencer Action Buttons (Move one by one) -->
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 4px;">
+              <button class="btn btn-sm ${status === 'incoming' ? 'btn-primary' : 'btn-secondary'}" style="font-size:0.65rem; padding:3px 2px; justify-content:center;" onclick="setFootageStatus(${s.id}, 'incoming')">
+                📥 Incoming
+              </button>
+              <button class="btn btn-sm ${status === 'uploaded' ? 'btn-primary' : 'btn-secondary'}" style="font-size:0.65rem; padding:3px 2px; justify-content:center;" onclick="setFootageStatus(${s.id}, 'uploaded')">
+                🎥 Placed
+              </button>
+              <button class="btn btn-sm ${status === 'used' ? 'btn-accent' : 'btn-secondary'}" style="font-size:0.65rem; padding:3px 2px; justify-content:center;" onclick="setFootageStatus(${s.id}, 'used')">
+                🗃️ To used asset
+              </button>
             </div>
           </div>
         `;
       }).join('');
+
+      prodContainer.innerHTML = headerBar + cardsHtml;
     }
   }
 

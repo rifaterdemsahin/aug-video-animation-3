@@ -81,13 +81,14 @@ window.VIDEO_DATA = {
       title: "Stage 4: Canva 3-Section & 'aug 3' Asset Organization",
       icon: "🎨",
       items: [
-        { id: "s4-create-aug3-folder", label: "Create 'aug 3' ('aug video 3') project folder in Canva / local workspace." },
+        { id: "s4-create-aug3-folder", label: "Create 'aug 3' ('aug video 3') project folder in Canva & local workspace." },
         { id: "s4-upload-flow-assets", label: "Upload all 22 Google Flow generated 8s MP4 video footages into 'aug video 3'." },
-        { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to store placed clips." },
-        { id: "s4-preprod-postits", label: "Pre-Prod: Populate 22 digital Post-it notes with scripts along timeline." },
-        { id: "s4-prod-footage", label: "Prod: Drop Google Flow 8s MP4 clips into timeline and move to 'used asset'." },
+        { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to archive placed clips." },
+        { id: "s4-add-postits-to-canva", label: "Pre-Prod: Add 22 color-coded Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync." },
+        { id: "s4-storyboard-upload-prod", label: "Prod: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene." },
+        { id: "s4-move-footages-one-by-one", label: "Prod: Move footages one by one from 'aug video 3' to 'used asset' as each clip is placed on the Canva track." },
         { id: "s4-prod-roger-rabbit", label: "Prod: Apply Roger Rabbit Signature Format (blend real IDE/screen captures with animated cartoon & La Linea line overlays via Google Flow)." },
-        { id: "s4-vo-sync", label: "Post-Prod: Record master voice-over in own authentic voice." },
+        { id: "s4-vo-sync", label: "Post-Prod: Follow timeline Post-it notes to record master voice-over in own authentic voice." },
         { id: "s4-postprod-roger-rabbit", label: "Post-Prod: Sync Roger Rabbit character motion to VO audio beats, apply signature stamp overlay, and color-balance toon layers." },
         { id: "s4-export-master", label: "Post-Prod: Export final 1080p 60fps master video (176s)." }
       ]
