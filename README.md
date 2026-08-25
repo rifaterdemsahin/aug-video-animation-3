@@ -1,8 +1,15 @@
+# 🌐 Live Helper Web App: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live%20Application-22c55e?style=for-the-badge&logo=github)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+[![Status](https://img.shields.io/badge/Status-Active%20Production-blue?style=for-the-badge)](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+
+---
+
 # 🎬 3-Minute AI Animation Video Production Helper
 
 > **Project Title**: *Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs*  
 > **Production Format**: 22 Scenes × 8 Seconds = 176 Seconds (~2.93 Minutes)  
-> **Live App**: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+> **Direct Live Link**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/) 👈
 
 ---
 
@@ -75,6 +82,7 @@ flowchart LR
 
 ---
 
-## 🌐 Live Access
+## 🌐 Live Access & Links
 
-- **GitHub Pages**: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+- 🌐 **Live Web Application (GitHub Pages)**: [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/)
+- 🐙 **GitHub Repository**: [https://github.com/rifaterdemsahin/aug-video-animation-3](https://github.com/rifaterdemsahin/aug-video-animation-3)
