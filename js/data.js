@@ -7,6 +7,7 @@ window.VIDEO_DATA = {
   totalDuration: 176,
   sceneCount: 22,
   sceneDuration: 8,
+  totalTurnaroundMinutes: 135, // ~2.25 hours end-to-end
   links: {
     skoolClassroom: "https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df",
     geminiPromptApp: "https://gemini.google.com/app/5778f4a7d4e60f03",
@@ -18,6 +19,261 @@ window.VIDEO_DATA = {
     rogerRabbitRepo: "https://github.com/rifaterdemsahin/roger-rabbit/tree/main",
     rogerRabbitLive: "https://rifaterdemsahin.github.io/roger-rabbit/"
   },
+  
+  // Pipeline Stages with Detailed Timing and Operational Flow
+  pipelineStages: [
+    {
+      id: "stage-1",
+      number: "Stage 1",
+      name: "Skool Ideation & Research",
+      icon: "🏫",
+      phase: "Pre-Production",
+      estDuration: "15 - 20 min",
+      durationMinutes: 18,
+      percentOfTotal: "13%",
+      status: "ready", // ready | in_progress | completed
+      badge: "Pre-Prod Setup",
+      shortDesc: "Extract raw courseware, capture Antigravity IDE UI screens & benchmarks, and define Roger Rabbit signature directives.",
+      deliverables: ["Source lesson notes", "UI screenshots (127.0.0.1:3847)", "Core thesis outline"],
+      toolsUsed: ["Skool Classroom", "Antigravity CLI", "Chrome Cockpit (14 Tabs)"],
+      pageLink: "pipeline.html#stage-1"
+    },
+    {
+      id: "stage-2",
+      number: "Stage 2",
+      name: "Gemini 8s Script & Prompt Engineering",
+      icon: "🤖",
+      phase: "Pre-Production",
+      estDuration: "10 - 15 min",
+      durationMinutes: 12,
+      percentOfTotal: "9%",
+      status: "ready",
+      badge: "8-Second Formula",
+      shortDesc: "Execute Master Gemini Director Prompt to generate 22 scenes x 8s visual prompt specifications and ~18-22 word VO lines.",
+      deliverables: ["22-Scene Script Matrix", "22 Google Flow Visual Prompts", "18-22 Word VO Cadence"],
+      toolsUsed: ["Google Gemini (Director Session)", "Helper Prompt Engine"],
+      pageLink: "pipeline.html#stage-2"
+    },
+    {
+      id: "stage-2-5",
+      number: "Stage 2.5",
+      name: "Split-View Simulation & Workflow",
+      icon: "🪟",
+      phase: "Pre-Production / Staging",
+      estDuration: "5 min",
+      durationMinutes: 5,
+      percentOfTotal: "4%",
+      status: "ready",
+      badge: "FlyWheelMVP Staging",
+      shortDesc: "Arrange Gemini on right and Google Flow on left in split view. Enable 'Approve, do not ask again' for continuous 15-credit generations.",
+      deliverables: ["Dual-screen cockpit", "15-Credit auto-approval", "Batch generation readiness"],
+      toolsUsed: ["Google Flow", "Gemini AI", "FlyWheelMVP Tab Group"],
+      pageLink: "pipeline.html#simulation-stage"
+    },
+    {
+      id: "stage-3",
+      number: "Stage 3",
+      name: "Google Flow 8s Video Generation",
+      icon: "🎬",
+      phase: "Production",
+      estDuration: "25 - 35 min",
+      durationMinutes: 30,
+      percentOfTotal: "22%",
+      status: "in_progress",
+      badge: "AI Video Slices",
+      shortDesc: "Render 22 8-second isometric dark-mode visual slices in Google Flow (330 base credits + buffer), label scene_01.mp4 to scene_22.mp4.",
+      deliverables: ["22 MP4 Video Slices (1080p)", "Isometric style locked", "Numbered scene clips"],
+      toolsUsed: ["Google Flow (Labs)", "Veo Generation Engine"],
+      pageLink: "pipeline.html#stage-3"
+    },
+    {
+      id: "stage-qc",
+      number: "Stage QC",
+      name: "Sanity Gate & Footage Gap Inspection",
+      icon: "🧪",
+      phase: "Production Gate",
+      estDuration: "10 - 15 min",
+      durationMinutes: 12,
+      percentOfTotal: "9%",
+      status: "in_progress",
+      badge: "Critical Quality Gate",
+      shortDesc: "Audit all 22 sorted footages with shotlist in hand to detect missing clips or timeline gaps before Post-Production voice recording.",
+      deliverables: ["Zero-gap timeline audit", "Text hallucination check", "Style continuity pass"],
+      toolsUsed: ["Shotlist Matrix", "Canva Timeline Scrubber", "QC Calculator"],
+      pageLink: "qc-budget.html"
+    },
+    {
+      id: "stage-4",
+      number: "Stage 4",
+      name: "Canva 3-Section Assembly & Azure Sync",
+      icon: "🎨",
+      phase: "Production / Assembly",
+      estDuration: "30 - 45 min",
+      durationMinutes: 35,
+      percentOfTotal: "26%",
+      status: "in_progress",
+      badge: "3-Section Architecture",
+      shortDesc: "Bulk-paste 8s placeholders, place clips on timeline, move footages from 'aug video 3' to 'used asset', snap video as background, sync state to Azure.",
+      deliverables: ["Master Canva Timeline (176s)", "Sliding Post-it Script Sync", "Azure Files Cloud State Synced"],
+      toolsUsed: ["Canva Video Suite", "Azure Files Share", "Helper State Engine"],
+      pageLink: "pipeline.html#stage-4"
+    },
+    {
+      id: "stage-4-5",
+      number: "Stage 4.5",
+      name: "8s VO Studio & Rehearsal",
+      icon: "🎙️",
+      phase: "Post-Production",
+      estDuration: "15 - 20 min",
+      durationMinutes: 18,
+      percentOfTotal: "13%",
+      status: "ready",
+      badge: "Authentic Voice",
+      shortDesc: "Rehearse and record VO in your own authentic voice using the 8-second countdown teleprompter with metronome audio cues.",
+      deliverables: ["Synchronized VO Audio Track", "Paced 8s sentence cuts", "Roger Rabbit toon-audio lock"],
+      toolsUsed: ["8s Teleprompter Studio", "Web Audio Metronome", "TTS Voice Reference"],
+      pageLink: "studio.html"
+    },
+    {
+      id: "stage-5",
+      number: "Stage 5",
+      name: "Multi-Platform Distribution & Funnel",
+      icon: "🚀",
+      phase: "Distribution & Growth",
+      estDuration: "15 - 20 min",
+      durationMinutes: 15,
+      percentOfTotal: "11%",
+      status: "ready",
+      badge: "Skool Value Flywheel",
+      shortDesc: "Publish 3-minute video across YouTube, LinkedIn, X, and Skool with synchronized 22-chapter timestamps, SRT subtitles, and community funneling.",
+      deliverables: ["YouTube Video with 22 Chapters", "LinkedIn 5-Pillar Post", "X 5-Tweet Thread", "SRT Subtitles"],
+      toolsUsed: ["YouTube Studio", "LinkedIn", "X (Twitter)", "Skool Community"],
+      pageLink: "distribution.html"
+    }
+  ],
+
+  // Distinct Multi-Page Directory & Information
+  distinctPages: [
+    {
+      id: "page-intro",
+      title: "Pipeline Intro & Status Dashboard",
+      file: "index.html",
+      icon: "🎯",
+      category: "🎬 Overview & Pipeline",
+      badge: "Home Hub",
+      whatHappens: "The central executive overview of the 3-minute video production operating system. Displays end-to-end pipeline stages, duration estimates, live work status, Azure Files cloud sync telemetry, and the interactive portal to all distinct workspaces.",
+      keyFeatures: [
+        "Complete 5-Stage + QC Pipeline Architecture & Timeline",
+        "Turnaround Time Calculator (~2.25h total production)",
+        "Real-Time Progress & Azure Cloud Sync Monitor",
+        "Direct Navigation to all 7 Distinct Application Pages"
+      ],
+      actionText: "Current Page (Home Hub)",
+      url: "index.html"
+    },
+    {
+      id: "page-pipeline",
+      title: "Stages Deep-Dive & Simulation",
+      file: "pipeline.html",
+      icon: "⚡",
+      category: "🎬 Overview & Pipeline",
+      badge: "Workflow Deep-Dive",
+      whatHappens: "Provides in-depth operational walkthroughs for every stage: Skool ideation, Gemini prompt engineering, split-view Google Flow simulation, Canva 3-Section timeline setup, sliding Post-it note gap detection, and Roger Rabbit signature styling.",
+      keyFeatures: [
+        "Interactive Dual-Window Workspace Launcher (Flow + Canva)",
+        "Simulation Screenshot Showcases & Detailed Breakdown",
+        "Multi-Stage Tri-State Checklist synced to Azure Files",
+        "Sliding Post-it Script reader and footage mover engine"
+      ],
+      actionText: "⚡ Explore Pipeline Stages",
+      url: "pipeline.html"
+    },
+    {
+      id: "page-storyboard",
+      title: "22-Scene Storyboard & Prompts",
+      file: "storyboard.html",
+      icon: "📋",
+      category: "🎨 Production Studio",
+      badge: "176s Storyboard Matrix",
+      whatHappens: "The complete 22-scene timeline matrix (22 scenes × 8s = 176s). Filter by Pre-Prod, Prod, and Post-Prod sections or scene status (Done/In Progress/Todo). Copy individual visual prompts, Google Flow prompts, VO lines, and trigger TTS audio references.",
+      keyFeatures: [
+        "22 Individual 8-Second Scene Cards with Visuals & Prompts",
+        "Interactive Tri-State Status Toggles (⚪ Todo / 🟡 In Prog / 🟢 Done)",
+        "Word Count & Audio Pacing Speedometer for each scene",
+        "Batch & Single-Click Prompt Copy Utilities"
+      ],
+      actionText: "📋 Open 22-Scene Storyboard",
+      url: "storyboard.html"
+    },
+    {
+      id: "page-studio",
+      title: "8s Voice-Over Studio & Teleprompter",
+      file: "studio.html",
+      icon: "🎙️",
+      category: "🎨 Production Studio",
+      badge: "8-Second Loop Rehearsal",
+      whatHappens: "A dedicated recording booth teleprompter with a continuous 8-second circular countdown timer, rhythmic audio metronome cues, speech synthesis reference audio, and synchronized script advancement across all 22 scenes.",
+      keyFeatures: [
+        "Interactive 8-Second Circular Countdown Timer Loop",
+        "Web Audio Metronome Chimes at each 8-second boundary",
+        "Text-To-Speech (TTS) Voice Narration Reference",
+        "One-Click Script Copy & Jump to Any Scene"
+      ],
+      actionText: "🎙️ Launch VO Studio",
+      url: "studio.html"
+    },
+    {
+      id: "page-tools",
+      title: "Chrome Cockpit & Tools Ecosystem",
+      file: "tools.html",
+      icon: "🌐",
+      category: "🛠️ Tools & QC",
+      badge: "14-Tab Workspace",
+      whatHappens: "Maps the live 14-tab Chrome production cockpit and the 8 core platforms powering the video engine (Canva, Flow, Gemini, Skool, YouTube, GitHub, Azure, Antigravity IDE) with live category filtering and role definitions.",
+      keyFeatures: [
+        "14-Tab Chrome Cockpit Map with Real-Time Search & Category Filters",
+        "Deep-Dive into 8 Core Production Platforms & Capabilities",
+        "Tool-to-Stage Workflow Integration Matrix",
+        "Direct External Cloud Links & Repository Access"
+      ],
+      actionText: "🌐 Open Chrome Cockpit",
+      url: "tools.html"
+    },
+    {
+      id: "page-qc",
+      title: "QC Gate, Failure Matrix & Budget",
+      file: "qc-budget.html",
+      icon: "🧪",
+      category: "🛠️ Tools & QC",
+      badge: "Sanity & Quality Gate",
+      whatHappens: "Interactive credit cost estimator (calculates 15 credits/generation with retake buffers), critical failure points and mitigation matrix (gap detection, text hallucination defense, style drift, pacing desync), and pre-flight quality verification checklist.",
+      keyFeatures: [
+        "Interactive Google Flow Credit & Generation Budget Estimator",
+        "Critical Failure Points & Severity Mitigation Matrix",
+        "Text/Code Hallucination Defense & Style Anchor Guidelines",
+        "Shotlist-in-Hand Gap Detection Quality Gate"
+      ],
+      actionText: "🧪 Open QC & Budget Gate",
+      url: "qc-budget.html"
+    },
+    {
+      id: "page-distribution",
+      title: "Social Funnel & Export Suite",
+      file: "distribution.html",
+      icon: "🚀",
+      category: "🚀 Distribution",
+      badge: "Skool Value Flywheel",
+      whatHappens: "The 5-tier Skool Community Value Flywheel and automated copy-generators for multi-platform distribution. Generates YouTube 22-chapter timestamps, LinkedIn 5-pillar technical posts, X (Twitter) threads, and downloadable .SRT, .MD, and .JSON files.",
+      keyFeatures: [
+        "5-Tier Skool Community Value Flywheel Breakdown",
+        "One-Click YouTube Description with 22 Chapter Timestamps",
+        "LinkedIn 5-Pillar Technical Article Post Generator",
+        "X (Twitter) 5-Tweet Thread Generator & Downloadable SRT Subtitles"
+      ],
+      actionText: "🚀 Open Distribution & Exports",
+      url: "distribution.html"
+    }
+  ],
   chromeTabs: [
     { category: "Canva / Video Player", title: "aug 3 video - Video", icon: "📹", platform: "Canva Video Editor", role: "Primary Canva video timeline, sliding Post-it note script reader, and 8s asset tracks." },
     { category: "Chrome Terminal / Dev", title: "~/projects/aug-video-animation-3 · chromeTerminal", icon: "🌐", platform: "Chrome Terminal / Shell", role: "Antigravity CLI terminal running git commits, Azure sync scripts, and project repo management." },
@@ -102,11 +358,14 @@ window.VIDEO_DATA = {
         { id: "s4-create-aug3-folder", label: "Create 'aug 3' ('aug video 3') project folder in Canva & local workspace." },
         { id: "s4-upload-flow-assets", label: "Upload all 22 Google Flow generated 8s MP4 video footages into 'aug video 3'." },
         { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to archive placed clips." },
+        { id: "s4-create-8s-placeholders-bulk", label: "Prod: Create 1 master 8-second placeholder template in Canva and bulk paste/duplicate across all 22 scene slots to establish timeline structure." },
         { id: "s4-open-flow-canva-simultaneous", label: "Prod: Open Google Flow (labs.google/flow) and Canva Prod Section at the same time in split-view to place footage before importing to Post-Prod." },
         { id: "s4-add-postits-to-canva", label: "Pre-Prod: Add 22 color-coded Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync." },
         { id: "s4-storyboard-upload-prod", label: "Prod: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene." },
         { id: "s4-move-footages-one-by-one", label: "Prod: Move footages one by one from 'aug video 3' to 'used asset' as each clip is placed on the Canva track." },
         { id: "s4-sort-footages-and-gap-check-shotlist", label: "Main Production Issue & Gate: Sort all footages and inspect for timeline gaps with the shotlist in hand before Post-Production starts." },
+        { id: "s4-prod-to-post-transition", label: "Prod-to-Post Handoff: Advance from Production to Post-Production once all 22 8s placeholder containers are laid out with zero gaps." },
+        { id: "s4-postprod-video-as-background", label: "Post-Prod Placement: In placeholder slots, set each 8s video as the Background ('Set Video as Background') to auto-fit full frame and minimize manual adjustment." },
         { id: "s4-read-check-sliding-postit", label: "Prod: Read & check footages for timeline gaps using a sliding Post-it note overlay in Canva to verify scene-by-scene script sync." },
         { id: "s4-prod-roger-rabbit", label: "Prod: Apply Roger Rabbit Signature Format (blend real IDE/screen captures with animated cartoon & La Linea line overlays via Google Flow)." },
         { id: "s4-prod-playback-script-review", label: "Prod Review: Watch complete Canva Prod timeline playback and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod." },

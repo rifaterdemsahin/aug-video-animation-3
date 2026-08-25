@@ -398,6 +398,108 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
   }
 
+  // Render Pipeline Stages Duration & Overview Grid
+  function renderPipelineOverview() {
+    const container = document.getElementById('pipeline-stages-overview-grid');
+    if (!container || !data.pipelineStages) return;
+
+    container.innerHTML = data.pipelineStages.map(stage => {
+      // Determine stage readiness/status
+      let statusColor = 'var(--accent-cyan)';
+      let statusBg = 'rgba(6, 182, 212, 0.12)';
+      let statusText = 'Ready';
+
+      if (stage.id === 'stage-3' || stage.id === 'stage-4' || stage.id === 'stage-qc') {
+        statusColor = 'var(--accent-amber)';
+        statusBg = 'rgba(245, 158, 11, 0.12)';
+        statusText = 'Active / In Progress';
+      }
+
+      // Check checklist items if available
+      const stageConfig = data.productionChecklistStages ? data.productionChecklistStages.find(s => s.id === stage.id) : null;
+      if (stageConfig) {
+        const done = stageConfig.items.filter(it => window.getStageItemStatus(it.id) === 'done').length;
+        if (done === stageConfig.items.length) {
+          statusColor = 'var(--accent-emerald)';
+          statusBg = 'rgba(16, 185, 129, 0.15)';
+          statusText = '🟢 Completed';
+        } else if (done > 0) {
+          statusColor = 'var(--accent-amber)';
+          statusBg = 'rgba(245, 158, 11, 0.15)';
+          statusText = `🟡 In Progress (${done}/${stageConfig.items.length})`;
+        }
+      }
+
+      return `
+        <div class="pipeline-stage-card">
+          <div class="pipeline-stage-header">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:1.4rem;">${stage.icon}</span>
+              <div>
+                <div style="font-weight:700; font-size:0.92rem; color:#ffffff;">${stage.name}</div>
+                <div style="font-size:0.7rem; color:var(--text-muted); font-family:var(--font-mono);">${stage.number} • ${stage.phase}</div>
+              </div>
+            </div>
+            <span class="stage-timing-badge">⏱️ ${stage.estDuration}</span>
+          </div>
+
+          <p style="font-size:0.8rem; color:var(--text-muted); line-height:1.4;">
+            ${stage.shortDesc}
+          </p>
+
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.75rem; background:rgba(0,0,0,0.25); padding:0.4rem 0.6rem; border-radius:var(--radius-sm);">
+            <span style="color:var(--text-dim);">Turnaround Share: <strong>${stage.percentOfTotal}</strong></span>
+            <span style="font-weight:700; font-size:0.7rem; color:${statusColor}; background:${statusBg}; padding:2px 8px; border-radius:10px;">${statusText}</span>
+          </div>
+
+          <div style="margin-top:auto; display:flex; justify-content:space-between; align-items:center; pt-2;">
+            <div style="display:flex; gap:4px; flex-wrap:wrap;">
+              ${stage.toolsUsed.map(t => `<span style="font-size:0.65rem; background:rgba(255,255,255,0.06); padding:2px 6px; border-radius:4px; color:#d1d5db;">${t}</span>`).join('')}
+            </div>
+            <a href="${stage.pageLink}" class="btn btn-secondary btn-sm" style="font-size:0.72rem; padding:3px 8px;">
+              Details ↗
+            </a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Render Distinct Multi-Page Directory Portal
+  function renderDistinctPagesDirectory() {
+    const container = document.getElementById('distinct-pages-directory-grid');
+    if (!container || !data.distinctPages) return;
+
+    container.innerHTML = data.distinctPages.map(page => `
+      <div class="page-portal-card ${page.id === 'page-intro' ? 'card-featured' : ''}">
+        <div class="page-portal-header">
+          <div class="page-portal-title">
+            <span style="font-size:1.3rem;">${page.icon}</span>
+            <div>
+              <div>${page.title}</div>
+              <div style="font-size:0.68rem; font-weight:600; color:var(--text-dim); font-family:var(--font-mono);">${page.category} • <code>${page.file}</code></div>
+            </div>
+          </div>
+          <span class="badge-pill" style="font-size:0.68rem;">${page.badge}</span>
+        </div>
+
+        <p class="page-portal-desc">
+          <strong>What happens here:</strong> ${page.whatHappens}
+        </p>
+
+        <ul class="page-portal-features">
+          ${page.keyFeatures.map(feat => `<li><span style="color:var(--accent-cyan);">✦</span> ${feat}</li>`).join('')}
+        </ul>
+
+        <div class="page-portal-action">
+          <a href="${page.url}" class="btn ${page.id === 'page-intro' ? 'btn-secondary' : 'btn-primary'} btn-sm" style="width:100%; justify-content:center;">
+            ${page.actionText}
+          </a>
+        </div>
+      </div>
+    `).join('');
+  }
+
   // Advance or set footage status in aug video 3 / used asset workflow
   window.setFootageStatus = function(sceneId, status) {
     if (!appState.footageStatus) appState.footageStatus = {};
@@ -998,6 +1100,8 @@ RT and like if you found this valuable! 🚀`;
   });
 
   // Initial Renders & Setup
+  renderPipelineOverview();
+  renderDistinctPagesDirectory();
   renderFlywheel();
   renderCanvaSuite();
   renderChromeTabsCockpit();

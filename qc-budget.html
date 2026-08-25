@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🧪 QC Quality Gate & Credit Budget Estimator | 3-Min Animation Suite</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .qc-hero {
+      background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(244, 63, 94, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 25px rgba(244, 63, 94, 0.15);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Sticky Top Header -->
+  <header class="sticky-header">
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <h1>3-Min Animation Video Engine</h1>
+          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
+          <span class="badge-pulse"></span>
+          <span id="azure-sync-status-text">Azure Files Connected</span>
+        </div>
+        <div class="badge-pill">
+          <span class="badge-pulse"></span>
+          <span id="stat-progress-percent">0%</span> Complete
+        </div>
+        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+          ☁️ Sync Azure
+        </button>
+        <a href="studio.html" class="btn btn-primary btn-sm">
+          🎙️ VO Studio
+        </a>
+      </div>
+    </div>
+
+    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
+    <div class="nav-groups-container">
+      <nav class="nav-groups">
+        <!-- Group 1: 🎬 Overview & Pipeline -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎬 Overview</span>
+          <div class="nav-group-links">
+            <a href="index.html" class="nav-link">
+              <span>🎯</span> Pipeline Intro & Status
+            </a>
+            <a href="pipeline.html" class="nav-link">
+              <span>⚡</span> Stages Deep-Dive
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 2: 🎨 Production Studio -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎨 Production</span>
+          <div class="nav-group-links">
+            <a href="storyboard.html" class="nav-link">
+              <span>📋</span> 22-Scene Storyboard
+            </a>
+            <a href="studio.html" class="nav-link">
+              <span>🎙️</span> 8s VO Studio
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 3: 🛠️ Tools & QC -->
+        <div class="nav-group">
+          <span class="nav-group-label">🛠️ Tools & QC</span>
+          <div class="nav-group-links">
+            <a href="tools.html" class="nav-link">
+              <span>🌐</span> Chrome Cockpit
+            </a>
+            <a href="qc-budget.html" class="nav-link active">
+              <span>🧪</span> QC & Budget
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 4: 🚀 Distribution -->
+        <div class="nav-group">
+          <span class="nav-group-label">🚀 Distribution</span>
+          <div class="nav-group-links">
+            <a href="distribution.html" class="nav-link">
+              <span>📤</span> Social & Flywheel
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Banner -->
+    <section class="qc-hero">
+      <div class="hero-tag" style="color:var(--accent-rose);">🧪 Production Quality Gate & Cost Accounting</div>
+      <h2 class="hero-title">QC Sanity Check, Failure Point Defense & Credit Budget</h2>
+      <p class="hero-desc">
+        Calculate generation costs in Google Flow (15 credits per clip), prevent text hallucination, eliminate timeline black gaps before voice-over recording, and audit production standards before final handoff.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-rose);">🪙</div>
+          <div class="stat-info">
+            <div class="stat-num">15 Cr</div>
+            <div class="stat-label">Per 8s Clip</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-amber);">🛡️</div>
+          <div class="stat-info">
+            <div class="stat-num">6 Risks</div>
+            <div class="stat-label">Mitigated in Matrix</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon" style="color:var(--accent-cyan);">🔍</div>
+          <div class="stat-info">
+            <div class="stat-num">Zero-Gap</div>
+            <div class="stat-label">Shotlist Gate</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-info">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Pre-Flight Pass</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Credit & Budget Estimator -->
+    <section class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-amber);">🪙</div>
+          <div>
+            <h3 class="section-title">Interactive Generation Budget & Credit Calculator</h3>
+            <p class="section-subtitle">Real-time simulation of Google Flow credit expenditure with retake rate buffers.</p>
+          </div>
+        </div>
+        <span class="badge-pill">Google Flow Pricing Engine</span>
+      </div>
+
+      <div class="estimator-card">
+        <div class="estimator-controls">
+          <div class="estimator-input-group">
+            <label>Scene Count</label>
+            <input type="number" id="calc-scenes" value="22" min="1" max="50" oninput="updateBudgetEstimate()">
+          </div>
+          <div class="estimator-input-group">
+            <label>Credits Per 8s Clip</label>
+            <input type="number" id="calc-credits-per-clip" value="15" min="1" max="50" oninput="updateBudgetEstimate()">
+          </div>
+          <div class="estimator-input-group">
+            <label>Estimated Retake Rate (%)</label>
+            <select id="calc-retakes" onchange="updateBudgetEstimate()">
+              <option value="0.0">0% (Perfect First Try - 22 Gens)</option>
+              <option value="0.25" selected>25% Retakes (~5-6 Regenerations - 28 Gens)</option>
+              <option value="0.50">50% Retakes (~11 Regenerations - 33 Gens)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="estimator-result-box">
+          <div>
+            <div class="estimator-stat-val" id="est-base-credits">330</div>
+            <div class="estimator-stat-lbl">Base Credits (22 Clips)</div>
+          </div>
+          <div>
+            <div class="estimator-stat-val" id="est-total-credits" style="color:var(--accent-amber);">420</div>
+            <div class="estimator-stat-lbl">Est. Total Credits with Buffer</div>
+          </div>
+          <div>
+            <div class="estimator-stat-val" id="est-total-gens" style="color:var(--accent-purple);">28 clips</div>
+            <div class="estimator-stat-lbl">Total Renders</div>
+          </div>
+          <div>
+            <div class="estimator-stat-val" id="est-duration" style="color:var(--accent-emerald);">176s (2.9m)</div>
+            <div class="estimator-stat-lbl">Master Timeline</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Critical Analysis & Failure Points Matrix -->
+    <section class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-rose); background: rgba(244, 63, 94, 0.15);">🔍</div>
+          <div>
+            <h3 class="section-title">Critical Failure Points & Severity Mitigation Matrix</h3>
+            <p class="section-subtitle">Systematic strategies to defend against the 6 primary AI video production pitfalls.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="overflow-x: auto;">
+        <table class="sanity-matrix-table">
+          <thead>
+            <tr>
+              <th>Risk Dimension</th>
+              <th>Failure Mode / Pitfall</th>
+              <th>Severity</th>
+              <th>Mitigation Strategy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>🗂️ Sorting Footages & Timeline Gaps (Main Production Issue)</strong></td>
+              <td>Unsorted footages, missing scene slices, or blank timeline gaps between 8s clips going undetected into voice recording.</td>
+              <td><span class="risk-badge risk-high">High Risk (Critical Gate)</span></td>
+              <td><strong>Shotlist-in-Hand Verification:</strong> Sort and move footages one-by-one from <code>aug video 3</code> to <code>used asset</code>, hold the 22-scene shotlist in hand, and scrub the Canva timeline with the sliding Post-it overlay to detect and resolve any gaps before Post-Production starts.</td>
+            </tr>
+            <tr>
+              <td><strong>🔤 Text Hallucination</strong></td>
+              <td>AI video models distort numbers like <code>127.0.0.1:3847</code> or exact code keywords.</td>
+              <td><span class="risk-badge risk-high">High Risk</span></td>
+              <td><strong>Golden Rule:</strong> Never render fine code in Google Flow. Use real screen captures for UI/terminal and use Flow for abstract 3D visual metaphors.</td>
+            </tr>
+            <tr>
+              <td><strong>🎨 Style Drift</strong></td>
+              <td>Clips generate with wildly differing art styles (e.g. flat 2D vs photo CGI vs neon cyberpunk).</td>
+              <td><span class="risk-badge risk-high">High Risk</span></td>
+              <td>Prefix every prompt with a standard <strong>Style Anchor</strong>: <em>"Isometric 3D dark-mode UI aesthetic, cyber-blue and emerald palette, 60fps..."</em></td>
+            </tr>
+            <tr>
+              <td><strong>⏱️ Audio Pacing Desync</strong></td>
+              <td>Voice narration for an 8s scene exceeds 8.5s, pushing the timeline out of sync in Canva.</td>
+              <td><span class="risk-badge risk-med">Medium</span></td>
+              <td>Enforce <strong>18–22 words per VO line</strong>. Rehearse with the built-in 8s Teleprompter Studio before locking video cuts.</td>
+            </tr>
+            <tr>
+              <td><strong>🪙 Credit Budget Exhaustion</strong></td>
+              <td>Blindly clicking "Approve, do not ask again" on multiple failed prompt iterations burns 500+ credits.</td>
+              <td><span class="risk-badge risk-med">Medium</span></td>
+              <td>Test 1 representative prompt first. Once style is locked, generate in batches of 4-5 scenes.</td>
+            </tr>
+            <tr>
+              <td><strong>🎭 Lack of Creator Identity</strong></td>
+              <td>Pure stock AI video feels detached, impersonal, and easily forgotten by viewers.</td>
+              <td><span class="risk-badge risk-low">Low</span></td>
+              <td>Incorporate your <strong>own voice</strong> + <strong>Roger Rabbit signature stamp</strong> (cartoon over real IDE) to build recognizable brand equity.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Shared Footer -->
+  <footer class="app-footer">
+    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+    <div class="footer-links">
+      <a href="index.html">🎯 Pipeline Intro</a>
+      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+      <a href="storyboard.html">📋 22-Scene Storyboard</a>
+      <a href="studio.html">🎙️ VO Studio</a>
+      <a href="tools.html">🌐 Chrome Cockpit</a>
+      <a href="qc-budget.html">🧪 QC & Budget</a>
+      <a href="distribution.html">📤 Social & Flywheel</a>
+      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

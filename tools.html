@@ -69,44 +69,85 @@
 </head>
 <body>
 
-  <!-- Sticky Top Header -->
+  <!-- Shared Sticky Top Header -->
   <header class="sticky-header">
     <div class="header-top">
       <a href="index.html" class="brand">
         <div class="brand-icon">✨</div>
         <div class="brand-text">
           <h1>3-Min Animation Video Engine</h1>
-          <p>🛠️ Production Tools & Chrome Tabs Ecosystem</p>
+          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
         </div>
       </a>
       <div class="header-actions">
-        <a href="index.html" class="btn btn-secondary btn-sm">
-          🎯 Main Production Suite
-        </a>
-        <a href="tools.html" class="btn btn-primary btn-sm">
-          🛠️ Tools Hub
-        </a>
-        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-          🐙 GitHub Repo
+        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
+          <span class="badge-pulse"></span>
+          <span id="azure-sync-status-text">Azure Files Connected</span>
+        </div>
+        <div class="badge-pill">
+          <span class="badge-pulse"></span>
+          <span id="stat-progress-percent">0%</span> Complete
+        </div>
+        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+          ☁️ Sync Azure
+        </button>
+        <a href="studio.html" class="btn btn-primary btn-sm">
+          🎙️ VO Studio
         </a>
       </div>
     </div>
 
-    <!-- Navigation Bar -->
-    <div class="stage-nav-container">
-      <nav class="stage-nav">
-        <a href="index.html" class="stage-nav-btn">
-          <span>🎬</span> Master Suite
-        </a>
-        <a href="#cockpit-section" class="stage-nav-btn active">
-          <span>🌐</span> 14-Tab Chrome Cockpit
-        </a>
-        <a href="#core-tools-section" class="stage-nav-btn">
-          <span>🛠️</span> 8 Core Platforms
-        </a>
-        <a href="#pipeline-integration" class="stage-nav-btn">
-          <span>🔄</span> Pipeline Integration
-        </a>
+    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
+    <div class="nav-groups-container">
+      <nav class="nav-groups">
+        <!-- Group 1: 🎬 Overview & Pipeline -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎬 Overview</span>
+          <div class="nav-group-links">
+            <a href="index.html" class="nav-link">
+              <span>🎯</span> Pipeline Intro & Status
+            </a>
+            <a href="pipeline.html" class="nav-link">
+              <span>⚡</span> Stages Deep-Dive
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 2: 🎨 Production Studio -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎨 Production</span>
+          <div class="nav-group-links">
+            <a href="storyboard.html" class="nav-link">
+              <span>📋</span> 22-Scene Storyboard
+            </a>
+            <a href="studio.html" class="nav-link">
+              <span>🎙️</span> 8s VO Studio
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 3: 🛠️ Tools & QC -->
+        <div class="nav-group">
+          <span class="nav-group-label">🛠️ Tools & QC</span>
+          <div class="nav-group-links">
+            <a href="tools.html" class="nav-link active">
+              <span>🌐</span> Chrome Cockpit
+            </a>
+            <a href="qc-budget.html" class="nav-link">
+              <span>🧪</span> QC & Budget
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 4: 🚀 Distribution -->
+        <div class="nav-group">
+          <span class="nav-group-label">🚀 Distribution</span>
+          <div class="nav-group-links">
+            <a href="distribution.html" class="nav-link">
+              <span>📤</span> Social & Flywheel
+            </a>
+          </div>
+        </div>
       </nav>
     </div>
   </header>
@@ -443,23 +484,23 @@
 
   </div>
 
-  <!-- Footer -->
+  <!-- Shared Footer -->
   <footer class="app-footer">
     <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
     <div class="footer-links">
-      <a href="index.html">🎯 Master Suite</a>
-      <a href="tools.html">🛠️ Tools Hub</a>
-      <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer">🏫 Skool Classroom</a>
-      <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer">🤖 Gemini App</a>
-      <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer">🎬 Google Flow</a>
-      <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🎨 Canva</a>
-      <a href="https://github.com/rifaterdemsahin/roger-rabbit/tree/main" target="_blank" rel="noopener noreferrer">🐰 Roger Rabbit Format</a>
-      <a href="https://portal.azure.com" target="_blank" rel="noopener noreferrer">☁️ Azure Portal</a>
-      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repository</a>
+      <a href="index.html">🎯 Pipeline Intro</a>
+      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+      <a href="storyboard.html">📋 22-Scene Storyboard</a>
+      <a href="studio.html">🎙️ VO Studio</a>
+      <a href="tools.html">🌐 Chrome Cockpit</a>
+      <a href="qc-budget.html">🧪 QC & Budget</a>
+      <a href="distribution.html">📤 Social & Flywheel</a>
+      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
     </div>
   </footer>
 
   <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
   <script>
     const tabsData = window.VIDEO_DATA.chromeTabs || [];
 

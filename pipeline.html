@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚡ Stages Deep-Dive & Simulation Studio | 3-Min Animation Suite</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Shared Sticky Top Header -->
+  <header class="sticky-header">
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <h1>3-Min Animation Video Engine</h1>
+          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
+          <span class="badge-pulse"></span>
+          <span id="azure-sync-status-text">Azure Files Connected</span>
+        </div>
+        <div class="badge-pill">
+          <span class="badge-pulse"></span>
+          <span id="stat-progress-percent">0%</span> Complete
+        </div>
+        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+          ☁️ Sync Azure
+        </button>
+        <a href="studio.html" class="btn btn-primary btn-sm">
+          🎙️ VO Studio
+        </a>
+      </div>
+    </div>
+
+    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
+    <div class="nav-groups-container">
+      <nav class="nav-groups">
+        <!-- Group 1: 🎬 Overview & Pipeline -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎬 Overview</span>
+          <div class="nav-group-links">
+            <a href="index.html" class="nav-link">
+              <span>🎯</span> Pipeline Intro & Status
+            </a>
+            <a href="pipeline.html" class="nav-link active">
+              <span>⚡</span> Stages Deep-Dive
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 2: 🎨 Production Studio -->
+        <div class="nav-group">
+          <span class="nav-group-label">🎨 Production</span>
+          <div class="nav-group-links">
+            <a href="storyboard.html" class="nav-link">
+              <span>📋</span> 22-Scene Storyboard
+            </a>
+            <a href="studio.html" class="nav-link">
+              <span>🎙️</span> 8s VO Studio
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 3: 🛠️ Tools & QC -->
+        <div class="nav-group">
+          <span class="nav-group-label">🛠️ Tools & QC</span>
+          <div class="nav-group-links">
+            <a href="tools.html" class="nav-link">
+              <span>🌐</span> Chrome Cockpit
+            </a>
+            <a href="qc-budget.html" class="nav-link">
+              <span>🧪</span> QC & Budget
+            </a>
+          </div>
+        </div>
+
+        <!-- Group 4: 🚀 Distribution -->
+        <div class="nav-group">
+          <span class="nav-group-label">🚀 Distribution</span>
+          <div class="nav-group-links">
+            <a href="distribution.html" class="nav-link">
+              <span>📤</span> Social & Flywheel
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-tag">⚡ Pipeline Stages Deep-Dive & Simulation</div>
+        <h2 class="hero-title">Operational Guide: The 5 Core Production Stages</h2>
+        <p class="hero-desc">
+          Detailed operational instructions, split-view simulation setups, Canva 3-Section workspace layouts, and sliding Post-it note gap inspection procedures that make the 3-minute video flywheel rapid and repeatable.
+        </p>
+
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-top: 1rem;">
+          <a href="#stage-1" class="btn btn-secondary btn-sm">🏫 Stage 1: Skool</a>
+          <a href="#stage-2" class="btn btn-secondary btn-sm">🤖 Stage 2: Gemini</a>
+          <a href="#simulation-stage" class="btn btn-secondary btn-sm">🪟 Stage 2.5: Simulation</a>
+          <a href="#stage-3" class="btn btn-secondary btn-sm">🎬 Stage 3: Google Flow</a>
+          <a href="#stage-4" class="btn btn-secondary btn-sm">🎨 Stage 4: Canva 3-Section</a>
+          <a href="qc-budget.html" class="btn btn-secondary btn-sm">🧪 QC Quality Gate</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 1: Skool Ideation & Research -->
+    <section id="stage-1" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-amber);">🏫</div>
+          <div>
+            <h3 class="section-title">Stage 1: Skool Ideation & Research (Pre-Prod Setup)</h3>
+            <p class="section-subtitle">Duration: ~15-20 min • Extract source material, capture subject research pictures, and define signature stylistic elements.</p>
+          </div>
+        </div>
+        <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🔗 Open Skool Classroom ↗
+        </a>
+      </div>
+
+      <div class="skool-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>📌</span> Source Classroom Video & Topic Input
+          </div>
+          <div class="link-box">
+            <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer">
+              skool.com/delivery-pilot-8938/classroom/2193c55b...
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df', 'Skool link copied!')">📋</button>
+          </div>
+          <ul class="checklist">
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-1" checked>
+              <label for="check-skool-1">Review raw video & classroom module notes.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-2" checked>
+              <label for="check-skool-2">Gather research pictures, UI screenshots & benchmark graphs from Skool.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-3" checked>
+              <label for="check-skool-3">Extract core theme: Claude Developer Certification & Token Optimization.</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>🎭</span> Creative Identity & Signature Directives
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 0.9rem; border-radius: var(--radius-sm); margin-bottom: 0.75rem; border-left: 3px solid var(--accent-amber);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.25rem;">
+              <div style="font-weight:700; font-size:0.85rem; color:#ffffff;">🎬 Roger Rabbit Signature Style</div>
+              <a href="https://github.com/rifaterdemsahin/roger-rabbit/tree/main" target="_blank" rel="noopener noreferrer" style="font-size:0.72rem; color:var(--accent-cyan); text-decoration:none; font-weight:600;">roger-rabbit repo ↗</a>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              <strong>Animation in the real world:</strong> Blend real terminal & IDE screen captures (<code>127.0.0.1:3847</code>) with cartoon characters and <em>La Linea</em> minimalist continuous line overlays via Google Flow to create high-energy toon-meets-reality visuals.
+            </p>
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 0.9rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.25rem;">🎙️ Authentic Voice Identity</div>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              Recorded in your own voice: crisp, authoritative, energetic cadence with steady ~18-22 words per 8-second window.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 2: Gemini Script & 8s Prompts -->
+    <section id="stage-2" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan);">🤖</div>
+          <div>
+            <h3 class="section-title">Stage 2: Gemini Script & 8-Second Prompt Engineering</h3>
+            <p class="section-subtitle">Duration: ~10-15 min • Transform raw subject matter into a rigorous 22-scene pacing framework with synchronized visual concepts and VO.</p>
+          </div>
+        </div>
+        <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          ⚡ Open Gemini Session ↗
+        </a>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span style="font-size:0.85rem; font-weight:700; color:var(--text-main);">📋 Reusable Master System Prompt for Gemini:</span>
+          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard(document.getElementById('gemini-master-prompt').innerText, 'Gemini Master Prompt Copied!')">
+            📋 Copy System Prompt
+          </button>
+        </div>
+        <div class="prompt-box" id="gemini-master-prompt">Act as an expert Video Director & AI Technical Educator.
+Take my topic/input and generate a high-tempo 3-minute video production script:
+1. Break down into exactly 22 scenes of 8 seconds each (22 x 8s = 176 seconds / ~2.9 minutes).
+2. For each scene provide:
+   - Visual: 8-second animation/clip motion graphic concept (high visual detail, UI, charts).
+   - Google Flow Prompt: Photographic/3D isometric prompt for AI video generation.
+   - Voice-over (VO): Exactly 18-24 words timed for 8 seconds natural narration.
+3. Structure:
+   - Scenes 1-4: Hook & Core Problem (Cost & Token Burn).
+   - Scenes 5-8: Technical Deep Dive & Quota Mechanics (0% Dashboard, Asynchronous updates).
+   - Scenes 9-14: Model Battle & Benchmarks (Grok Low vs Gemini 3.7 Flash Low).
+   - Scenes 15-20: Practical Decision Framework & WebDev Arena Leaderboard (1588 Elo).
+   - Scenes 21-22: Custom IDE Oversight & Outro with Roger Rabbit Signature & Community CTA.</div>
+      </div>
+    </section>
+
+    <!-- Stage 2.5: Simulation Stage Deep Dive -->
+    <section id="simulation-stage" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan);">🪟</div>
+          <div>
+            <h3 class="section-title">Stage 2.5: Split-View Generation Workflow Simulation</h3>
+            <p class="section-subtitle">Duration: ~5 min • Real-time side-by-side production setup: Gemini (Script Engine) paired with Google Flow (Video Render Engine).</p>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm" onclick="launchDualProductionWorkspace()">
+          🪟 Launch Flow + Canva Split View
+        </button>
+      </div>
+
+      <div class="simulation-showcase">
+        <div class="simulation-img-container">
+          <img src="3_Simulation/split_view_google_flow_gemini_usage.jpeg" alt="Split View: Google Flow and Gemini Production Setup" loading="lazy">
+        </div>
+
+        <div class="simulation-callouts-grid">
+          <div class="callout-box">
+            <h4><span>🤖</span> Right Pane: Gemini Prompt Engine</h4>
+            <p>
+              The user provides research screenshots of the <strong>Antigravity CLI IDE (127.0.0.1:3847)</strong> and telemetry dashboard. Gemini acts as the <em>Director</em>, outputting the structured 22-scene × 8-second visual concepts and synchronized voice-over script.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>🎬</span> Left Pane: Google Flow Render Engine</h4>
+            <p>
+              Operating project <code>25 Aug, 14:00 aug video 3</code> in the <code>FlyWheelMVP</code> tab group. The visual prompt from Scene 1 is fed into Flow to generate the first 8-second motion graphic slice.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>🪙</span> 15-Credit Approval Mechanism</h4>
+            <p>
+              Each 8-second generation costs <strong>15 credits</strong>. The dialog prompts: <em>"Would you like me to kick off this 1 video generation, costing 15 credits?"</em> Selecting <strong>"Approve, do not ask again"</strong> enables high-speed batch generation.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>🗂️</span> FlyWheelMVP Tab Group Navigation</h4>
+            <p>
+              Integrated multi-tab workstation keeping <em>Skool classroom</em>, <em>YouTube analytics</em>, <em>GitHub repository</em>, and <em>Antigravity CLI terminal</em> immediately accessible for instant asset referencing.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Simulation Showcase 2: Prod Stage Sliding Post-it & Footage Gap Check -->
+      <div class="simulation-showcase" style="margin-top: 1.5rem; border-color: rgba(245, 158, 11, 0.4);">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: #ffffff; display: flex; align-items: center; gap: 0.5rem;">
+            <span>📝</span> Canva Prod Stage: Read & Check for Footage Gaps (Sliding Post-it)
+          </h4>
+          <a href="https://github.com/rifaterdemsahin/aug-video-animation-3/blob/main/3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            🔍 View on GitHub ↗
+          </a>
+        </div>
+
+        <div class="simulation-img-container">
+          <img src="3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg" alt="Canva Prod Stage: Read and Check Footage Gaps with Sliding Post-it" loading="lazy">
+        </div>
+
+        <div class="simulation-callouts-grid">
+          <div class="callout-box">
+            <h4><span>🟨</span> Sliding Post-it Script Overlay</h4>
+            <p>
+              The full 22-scene script is placed inside a floating text box on top of the live video canvas in project <code>aug 3 video</code>. This allows seamless reading without switching between separate windows.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>🔍</span> Main Issue: Sorting Footages & Gap Detection (Shotlist in Hand)</h4>
+            <p>
+              The primary bottleneck in production is sorting footages and catching gaps before post-production starts. By scrubbing across the <strong>0:00 to 2:43 timeline with the 22-scene shotlist in hand</strong>, the creator catches missing clips, track misalignments, or black gaps between 8s scenes before VO recording.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>⏱️</span> 8s Pacing & Continuity Sync</h4>
+            <p>
+              Ensures that each Google Flow footage aligns perfectly with the 18–22 word Post-it narration beat before locking the visual track and advancing to Post-Prod voice recording.
+            </p>
+          </div>
+
+          <div class="callout-box">
+            <h4><span>🗃️</span> Move to 'used asset' Confirmation</h4>
+            <p>
+              Once a footage clip is visually confirmed against the shotlist on the track with zero gaps, it is moved from <code>aug video 3</code> into the <code>used asset</code> subfolder.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 3: Google Flow Visual Generation -->
+    <section id="stage-3" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-purple);">🎬</div>
+          <div>
+            <h3 class="section-title">Stage 3: Google Flow / Video Footage Generation</h3>
+            <p class="section-subtitle">Duration: ~25-35 min • Generate 8-second motion graphic visual clips for each scene using Google Flow & Veo prompt templates.</p>
+          </div>
+        </div>
+        <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🚀 Open Google Flow ↗
+        </a>
+      </div>
+
+      <div class="skool-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>⚙️</span> Video Generation Guidelines
+          </div>
+          <ul class="checklist">
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-1" checked>
+              <label for="check-flow-1">Aspect Ratio: 16:9 Landscape (1920x1080) for Master & YouTube; 9:16 crop for Shorts/Reels.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-2">
+              <label for="check-flow-2">Motion Preset: Smooth dynamic camera pan, holographic HUD, cinematic 60fps.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-3">
+              <label for="check-flow-3">Generate 8-second video slices matching scenes 1 through 22 (15 credits each).</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-4">
+              <label for="check-flow-4">Save and label downloaded clips as <code>scene_01.mp4</code> to <code>scene_22.mp4</code>.</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>💡</span> Batch Prompt Clipboard Utility
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">
+            Copy individual visual prompts from the Storyboard section or copy all 22 Google Flow prompts in a single batch file.
+          </p>
+          <button class="btn btn-primary btn-sm" onclick="copyAllFlowPrompts()">
+            📋 Copy All 22 Google Flow Prompts
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 4: Canva 3-Section Production Suite & Azure Cloud Sync -->
+    <section id="stage-4" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-rose);">🎨</div>
+          <div>
+            <h3 class="section-title">Stage 4: Canva 3-Section Production Suite & Azure Files Sync</h3>
+            <p class="section-subtitle">Duration: ~30-45 min • Organize project timeline into Pre-Prod, Prod, and Post-Prod with real-time state synchronization to Azure Files.</p>
+          </div>
+        </div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+          <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
+            ☁️ Push State to Azure Files
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="pullStateFromAzure()">
+            🔄 Pull from Azure
+          </button>
+          <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+            🎨 Open Canva ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Master Multi-Stage Full Pipeline Checklist synced to Azure -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.9rem; display: flex; justify-content: space-between; align-items: center;">
+        <span>📋 Master Multi-Stage Production Checklist (Synced to Azure Files)</span>
+        <span style="font-size: 0.75rem; color: var(--accent-cyan); font-weight: 600;">☁️ Auto-syncs on toggle</span>
+      </h4>
+      <div id="canva-multi-stage-checklist" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Canva 3-Section Visual Layout -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.9rem;">
+        🎨 Canva 3-Section Workspace View
+      </h4>
+      <div class="canva-suite-grid">
+        <!-- Section 1: Pre-Prod -->
+        <div class="canva-column canva-col-preprod">
+          <div class="canva-column-header">
+            <span>📝</span>
+            <h3>1. Pre-Prod: Post-it Script Tracks</h3>
+            <span class="count-badge">22 Notes</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Color-coded Post-it notes placed directly above Canva timeline tracks with exact ~18-22 word scripts to guide smooth Post-Prod voice recording.
+          </p>
+          <div class="postit-stack" id="canva-preprod-postits">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 2: Prod -->
+        <div class="canva-column canva-col-prod">
+          <div class="canva-column-header">
+            <span>🎥</span>
+            <h3>2. Prod: Storyboard Upload & Move Footages</h3>
+            <span class="count-badge">22 Clips</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Storyboard sequencer: upload 8s Google Flow clips to <code>aug video 3</code>, place on Canva timeline, and <strong>move footages one by one</strong> into <code>used asset</code>.
+          </p>
+          <div class="postit-stack" id="canva-prod-timeline">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 3: Post-Prod -->
+        <div class="canva-column canva-col-postprod">
+          <div class="canva-column-header">
+            <span>🎙️</span>
+            <h3>3. Post-Prod: VO & Roger Stamp</h3>
+            <span class="count-badge">Mastering</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Record voice-over in your own voice, sync cartoon motion to VO beats, add Roger Rabbit signature stamp, and export.
+          </p>
+          
+          <div class="info-card" style="background: rgba(0,0,0,0.3);">
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.5rem;">🎙️ Voice-Over & Post-Prod Sync Checklist</div>
+            <ul class="checklist">
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-0" checked>
+                <label for="vo-check-0"><strong>Main Production Gate:</strong> Sort all footages & verify zero gaps with shotlist in hand before starting VO.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-placeholder" checked>
+                <label for="vo-check-placeholder"><strong>Placeholder Handoff:</strong> Bulk-paste 1 master 8s placeholder across all 22 timeline slots before Post-Prod placement.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-bg" checked>
+                <label for="vo-check-bg"><strong>Video as Background:</strong> Drop 8s video clips directly as placeholder Background to auto-fit full screen and minimize editing.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-1">
+                <label for="vo-check-1">Record master VO audio track (176s).</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-2">
+                <label for="vo-check-2">Align 8s VO beats to Canva video cuts.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-3">
+                <label for="vo-check-3">Add <a href="https://github.com/rifaterdemsahin/roger-rabbit/tree/main" target="_blank" rel="noopener noreferrer" style="color:var(--accent-cyan);">Roger Rabbit</a> animated cartoon signature stamp.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-4">
+                <label for="vo-check-4">Color-balance toon overlays against real screen recording layers.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-5">
+                <label for="vo-check-5">Add subtle background synth music (-22dB).</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-6">
+                <label for="vo-check-6">Export 1080p 60fps MP4 master video.</label>
+              </li>
+            </ul>
+          </div>
+
+          <a href="studio.html" class="btn btn-primary" style="margin-top:auto; justify-content:center;">
+            🎙️ Launch 8s Teleprompter Studio
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Shared Footer -->
+  <footer class="app-footer">
+    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+    <div class="footer-links">
+      <a href="index.html">🎯 Pipeline Intro</a>
+      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+      <a href="storyboard.html">📋 22-Scene Storyboard</a>
+      <a href="studio.html">🎙️ VO Studio</a>
+      <a href="tools.html">🌐 Chrome Cockpit</a>
+      <a href="qc-budget.html">🧪 QC & Budget</a>
+      <a href="distribution.html">📤 Social & Flywheel</a>
+      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    function copyAllFlowPrompts() {
+      const allPrompts = window.VIDEO_DATA.scenes.map(s => `Scene ${s.id} (${s.timecode}):\n${s.googleFlowPrompt}`).join('\n\n');
+      window.copyToClipboard(allPrompts, 'All 22 Google Flow Prompts Copied!');
+    }
+  </script>
+</body>
+</html>

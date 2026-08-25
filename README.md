@@ -12,8 +12,24 @@
 
 > **Project Title**: *Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs*  
 > **Production Format**: 22 Scenes × 8 Seconds = 176 Seconds (~2.93 Minutes)  
+> **Total Production Turnaround**: ~2 hours 15 minutes (135 Minutes)  
 > **Direct Live Link**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/](https://rifaterdemsahin.github.io/aug-video-animation-3/) 👈  
-> **Tools & Tabs Hub**: 👉 [https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html](https://rifaterdemsahin.github.io/aug-video-animation-3/tools.html) 👈
+
+---
+
+## 🧭 Multi-Page Architecture & Distinct Workspaces
+
+The application is structured into **7 dedicated, logically grouped pages** with a shared top navigation header:
+
+| Group | Emoji & Page | File | Purpose & Operational Flow |
+| :--- | :--- | :--- | :--- |
+| **🎬 Overview** | 🎯 **Pipeline Intro & Status** | [`index.html`](index.html) | Primary production hub: stage roadmap, duration breakdown (~2.25h), real-time progress monitor, and workspace directory. |
+| **🎬 Overview** | ⚡ **Stages Deep-Dive** | [`pipeline.html`](pipeline.html) | Step-by-step guides for Stages 1 to 5, split-view simulations, Canva 3-Section workspace, and Azure-synced checklists. |
+| **🎨 Production** | 📋 **22-Scene Storyboard** | [`storyboard.html`](storyboard.html) | Master 22-scene matrix (8s slices), Google Flow prompts, VO scripts, word count checker, and tri-state status toggles. |
+| **🎨 Production** | 🎙️ **8s VO Studio** | [`studio.html`](studio.html) | Dedicated voice recording booth with 8-second countdown timer, metronome audio cues, and speech synthesis reference. |
+| **🛠️ Tools & QC** | 🌐 **Chrome Cockpit** | [`tools.html`](tools.html) | 14-Tab Chrome cockpit map, 8 core software platforms, and tool-to-stage integration matrix. |
+| **🛠️ Tools & QC** | 🧪 **QC & Budget Gate** | [`qc-budget.html`](qc-budget.html) | Interactive 15-credit calculator, 6 critical failure points mitigation matrix, and pre-flight quality verification. |
+| **🚀 Distribution** | 📤 **Social & Flywheel** | [`distribution.html`](distribution.html) | 5-step Skool Community Value Flywheel, one-click social post generators (YouTube, LinkedIn, X), and SRT export. |
 
 ---
 
@@ -72,16 +88,19 @@ flowchart LR
 1. **📁 Folder Setup**: Create project folder `aug 3` (or `aug video 3`) in Canva and local drive.
 2. **📥 Flow Uploads**: Upload all 22 Google Flow generated 8s MP4 video slices into `aug video 3`.
 3. **🗃️ Subfolder `used asset`**: Create `aug video 3/used asset` to archive clips as they are dropped into the Canva timeline.
-4. **🪟 Prod (Dual-Window Flow + Canva Placement)**: Open Google Flow (`labs.google/flow`) and Canva Prod Section at the same time in split-view to place footage directly onto 8s timeline tracks before importing to Post-Prod.
-5. **📝 Pre-prod (Post-it Timeline Guides)**: Add 22 color-coded digital Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync.
-6. **🎬 Prod (Storyboard Video Upload)**: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene.
-7. **📦 Prod (Move Footages One by One)**: Move footages one by one from `aug video 3` to `used asset` as each clip is placed on the Canva track.
-8. **⚠️ Prod (Main Production Gate — Sort Footages & Shotlist-in-Hand Gap Check)**: With the **master 22-scene shotlist in hand**, scrub the timeline using the sliding Post-it note overlay in Canva to verify every footage slice is sorted, correctly sequenced, and has zero missing clips or blank gaps before Post-Prod begins (see [`3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg`](https://github.com/rifaterdemsahin/aug-video-animation-3/blob/main/3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg)).
-9. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
-10. **👀 Prod Review (Playback & Script Verification Gate)**: Watch complete Canva Prod timeline playback (176s) and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod.
-11. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
-12. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
-13. ☁️ **Azure Files Cloud State Synchronization & Tri-State Engine**:
+4. **⚡ 8-Second Master Placeholder & Bulk Paste**: Create **1 master 8-second placeholder container** in Canva (locked to exactly 8.0s with Post-it script framing) and **bulk-paste / duplicate** it across all 22 scene slots on the timeline to eliminate repetitive layout work.
+5. **🪟 Prod (Dual-Window Flow + Canva Placement)**: Open Google Flow (`labs.google/flow`) and Canva Prod Section at the same time in split-view to place footage directly onto 8s timeline tracks before importing to Post-Prod.
+6. **📝 Pre-prod (Post-it Timeline Guides)**: Add 22 color-coded digital Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync.
+7. **🎬 Prod (Storyboard Video Upload)**: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene.
+8. **📦 Prod (Move Footages One by One)**: Move footages one by one from `aug video 3` to `used asset` as each clip is placed on the Canva track.
+9. **⚠️ Prod (Main Production Gate — Sort Footages & Shotlist-in-Hand Gap Check)**: With the **master 22-scene shotlist in hand**, scrub the timeline using the sliding Post-it note overlay in Canva to verify every footage slice is sorted, correctly sequenced, and has zero missing clips or blank gaps before Post-Prod begins (see [`3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg`](https://github.com/rifaterdemsahin/aug-video-animation-3/blob/main/3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg)).
+10. **🚀 Prod-to-Post Transition Gate**: Move from Production to Post-Production immediately after creating and verifying the 22 8-second placeholder slots on the timeline.
+11. **🖼️ Post-Prod (Video as Background Optimization)**: In post placement for each placeholder slot, right-click and choose **"Set Video as Background"** — this automatically snaps the 8s Google Flow footage to full frame, maintaining perfect aspect ratio and minimizing manual resizing/positioning overhead.
+12. **🐰 Prod/Post-Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
+13. **👀 Prod Review (Playback & Script Verification Gate)**: Watch complete Canva Prod timeline playback (176s) and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod.
+14. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
+15. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
+16. ☁️ **Azure Files Cloud State Synchronization & Tri-State Engine**:
     - **Storage Account**: `animationasistant`
     - **Azure File Share**: `aug-video-state`
     - **State Payload**: `aug_video_animation_state.json`
