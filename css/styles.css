@@ -460,15 +460,14 @@ header.sticky-header {
 
 /* Side Note Cards */
 .note-card {
-  border-radius: 8px;
-  padding: 14px;
-  min-height: 130px;
+  border-radius: 10px;
+  padding: 16px;
+  min-height: 180px;
   background: rgba(15, 23, 42, 0.45);
   font-size: 13px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 8px;
+  gap: 10px;
   transition: all 0.2s ease;
   height: 100%;
 }
@@ -479,7 +478,7 @@ header.sticky-header {
 .left-card:focus-within {
   border-color: #38bdf8;
   background: rgba(15, 23, 42, 0.85);
-  box-shadow: 0 0 15px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
 }
 
 .right-card { 
@@ -488,16 +487,15 @@ header.sticky-header {
 .right-card:focus-within {
   border-color: #fb7185;
   background: rgba(15, 23, 42, 0.85);
-  box-shadow: 0 0 15px rgba(251, 113, 133, 0.2);
+  box-shadow: 0 0 15px rgba(251, 113, 133, 0.25);
 }
 
 .note-title {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
@@ -505,26 +503,24 @@ header.sticky-header {
 .right-card .note-title { color: #fb7185; }
 
 .note-content {
-  color: #94a3b8;
-  font-style: italic;
-  font-size: 12px;
-  line-height: 1.4;
+  display: none;
 }
 
 .note-textarea {
   width: 100%;
-  min-height: 68px;
-  background: rgba(0, 0, 0, 0.35);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px;
-  color: #f1f5f9;
-  padding: 8px 10px;
-  font-size: 12.5px;
+  min-height: 135px;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #f8fafc;
+  padding: 12px 14px;
+  font-size: 13px;
   font-family: inherit;
-  line-height: 1.4;
+  line-height: 1.5;
   resize: vertical;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .left-card .note-textarea:focus { border-color: #38bdf8; }
