@@ -22,7 +22,7 @@ flowchart LR
     B --> S[🪟 Stage 2.5: Split-View Bridge]
     S --> C[🎬 Stage 3: Google Flow Visuals]
     C --> QC[🧪 Quality Gate & Sanity Check]
-    QC --> D[🎨 Stage 4: Canva Suite & Azure Sync]
+    QC --> D["🎨 Stage 4: Canva Suite & 'aug 3' Assets"]
     D --> E[🚀 Stage 5: Multi-Platform Distribution & Skool Flywheel]
 ```
 
@@ -49,26 +49,18 @@ flowchart LR
 - 🎨 **Style Continuity**: Use consistent style anchor keywords (*isometric 3D, cyber-blue/emerald palette, 60fps*).
 - ⏱️ **Audio Drift Protection**: Strict 18–22 word limit per 8-second scene.
 
-### 🎨 Stage 4: Canva 3-Section Suite & Azure Files Sync
-- **Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
-- **Prod**: Uploading and aligning Google Flow generated 8s video footages.
-- **Post-prod**: VO recording in own voice, Roger Rabbit animated signature stamp, audio leveling, and master export.
-- ☁️ **Azure Files Cloud State Synchronization**:
-  - **Storage Account**: `animationasistant`
-  - **Azure File Share**: `aug-video-state`
-  - **State Payload**: `aug_video_animation_state.json`
-  - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
-  - **CLI Sync Commands**:
-    ```bash
-    # Check status
-    ./scripts/azure_sync.sh status
-
-    # Push state to Azure Files
-    ./scripts/azure_sync.sh push
-
-    # Pull state from Azure Files
-    ./scripts/azure_sync.sh pull
-    ```
+### 🎨 Stage 4: Canva 3-Section Suite & 'aug 3' Asset Organization
+1. **📁 Folder Setup**: Create project folder `aug 3` (or `aug video 3`) in Canva and local drive.
+2. **📥 Flow Uploads**: Upload all 22 Google Flow generated 8s MP4 video slices into `aug video 3`.
+3. **🗃️ Subfolder `used asset`**: Create `aug video 3/used asset` to archive clips as they are dropped into the Canva timeline.
+4. **📝 Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
+5. **🎥 Prod**: Drop footages from `aug video 3` into the 8s timeline tracks and move placed items into `used asset`.
+6. **🎙️ Post-prod**: VO recording in own voice, Roger Rabbit animated signature stamp, audio leveling, and master export.
+7. ☁️ **Azure Files Cloud State Synchronization**:
+   - **Storage Account**: `animationasistant`
+   - **Azure File Share**: `aug-video-state`
+   - **State Payload**: `aug_video_animation_state.json`
+   - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
 
 ### 🚀 Stage 5: Multi-Platform Distribution & The Skool Flywheel
 - **Free Social Distribution**:
@@ -88,6 +80,7 @@ flowchart LR
 
 - 🎯 **Stage-by-Stage Navigation**: Sticky top header for fast switching across all stages.
 - ☁️ **Azure Files Live Sync**: Two-way synchronization of scene completion and multi-stage checklist state via REST API and CLI.
+- 📁 **'aug 3' Asset Pipeline**: Structured tracking for Google Flow uploads and `used asset` subfolder archiving.
 - 🪟 **Split-View Simulation Inspector**: Visual breakdown of Gemini + Flow side-by-side workflow.
 - 🧪 **Interactive Sanity Check & Credit Calculator**: Dynamic budget estimations and pre-flight validation.
 - 🎙️ **8-Second VO Teleprompter Studio**: Interactive rehearsal loop with 8-second countdown timer, metronome audio cues, and Web Speech TTS voice preview.

@@ -76,11 +76,14 @@ window.VIDEO_DATA = {
     },
     {
       id: "stage-4",
-      title: "Stage 4: Canva 3-Section Production Suite",
+      title: "Stage 4: Canva 3-Section & 'aug 3' Asset Organization",
       icon: "🎨",
       items: [
+        { id: "s4-create-aug3-folder", label: "Create 'aug 3' ('aug video 3') project folder in Canva / local workspace." },
+        { id: "s4-upload-flow-assets", label: "Upload all 22 Google Flow generated 8s MP4 video footages into 'aug video 3'." },
+        { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to store placed clips." },
         { id: "s4-preprod-postits", label: "Pre-Prod: Populate 22 digital Post-it notes with scripts along timeline." },
-        { id: "s4-prod-footage", label: "Prod: Drop Google Flow 8s MP4 clips into 8-second video tracks." },
+        { id: "s4-prod-footage", label: "Prod: Drop Google Flow 8s MP4 clips into timeline and move to 'used asset'." },
         { id: "s4-vo-sync", label: "Post-Prod: Record master voice-over in own authentic voice." },
         { id: "s4-roger-stamp", label: "Post-Prod: Overlay Roger Rabbit animated cartoon signature badge." },
         { id: "s4-export-master", label: "Post-Prod: Export final 1080p 60fps master video (176s)." }
