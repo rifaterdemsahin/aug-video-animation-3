@@ -1,5 +1,5 @@
 // Interactive Pipeline Excalidraw / Whiteboard Engine
-// Allows drawing, annotating, highlighting, and exporting the 3-Minute Video Animation Pipeline
+// Vertical Pipeline Architecture with Note-Taking Zones on Both Sides
 
 (function() {
   const STORAGE_KEY = 'aug_video_pipeline_drawing_v1';
@@ -12,6 +12,8 @@
 
   let strokes = []; // Array of drawn objects
   let undoStack = [];
+
+  const VIRTUAL_CANVAS_HEIGHT = 1320;
 
   // Initialize Canvas on Load
   window.initPipelineExcalidraw = function() {
@@ -33,8 +35,14 @@
     const rect = wrapper.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
 
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
+    const width = Math.max(900, rect.width);
+    const height = VIRTUAL_CANVAS_HEIGHT;
+
+    canvas.width = width * dpr;
+    canvas.height = height * dpr;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+
     ctx.scale(dpr, dpr);
     redrawCanvas();
   }
@@ -49,92 +57,188 @@
     };
   }
 
-  // Draw the Pre-Rendered Base Pipeline Architecture Blueprint
+  // Draw the Pre-Rendered Vertical Base Pipeline Blueprint with Note Zones
   function drawBasePipelineBlueprint(context, width, height) {
     // Background Grid
     context.fillStyle = '#080c14';
     context.fillRect(0, 0, width, height);
 
-    // Subtle grid lines
-    context.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+    // Subtle grid pattern
+    context.strokeStyle = 'rgba(255, 255, 255, 0.035)';
     context.lineWidth = 1;
-    for (let x = 0; x < width; x += 30) {
+    for (let x = 0; x < width; x += 28) {
       context.beginPath();
       context.moveTo(x, 0);
       context.lineTo(x, height);
       context.stroke();
     }
-    for (let y = 0; y < height; y += 30) {
+    for (let y = 0; y < height; y += 28) {
       context.beginPath();
       context.moveTo(0, y);
       context.lineTo(width, y);
       context.stroke();
     }
 
-    // Pipeline Title Header inside canvas
-    context.fillStyle = 'rgba(255, 255, 255, 0.9)';
+    // Top Header Banner inside Canvas
+    context.fillStyle = 'rgba(255, 255, 255, 0.95)';
     context.font = 'bold 15px Inter, sans-serif';
-    context.fillText('⚡ 3-MINUTE AI ANIMATION PIPELINE ARCHITECTURE (176s / 22 Scenes)', 24, 32);
+    context.fillText('⚡ 3-MINUTE VIDEO PRODUCTION PIPELINE • VERTICAL WORKFLOW BLUEPRINT', 24, 30);
 
     context.fillStyle = '#06b6d4';
     context.font = '11px JetBrains Mono, monospace';
-    context.fillText('Total Turnaround: ~2h 15m (135 min) • 330 Base Credits • 18-22 Words/8s • Draw & annotate your feedback below!', 24, 50);
+    context.fillText('Total Turnaround: ~2h 15m (135 min) • 176s Video (22 Scenes) • 330 Credits • Annotate notes freely on LEFT & RIGHT!', 24, 48);
 
-    // Define 8 stages across 2 rows
-    const colWidth = Math.min(220, (width - 80) / 4);
-    const cardHeight = 135;
-    const row1Y = 75;
-    const row2Y = 265;
+    // Layout Dimensions: 3-Column Architecture (Left Note Zone | Center Spine | Right Note Zone)
+    const cardWidth = Math.min(360, Math.max(300, width * 0.38));
+    const cardX = (width - cardWidth) / 2;
+    const leftZoneWidth = cardX - 35;
+    const rightZoneX = cardX + cardWidth + 20;
+    const rightZoneWidth = width - rightZoneX - 15;
 
-    const stagesRow1 = [
-      { id: '1', name: 'Stage 1: Skool Ideation', icon: '🏫', time: '15-20 min', color: '#f59e0b', desc: 'Raw topic extraction & UI research (127.0.0.1:3847)' },
-      { id: '2', name: 'Stage 2: Gemini Script', icon: '🤖', time: '10-15 min', color: '#06b6d4', desc: '22 Scenes x 8s pacing & 18-22 word VO lines' },
-      { id: '2.5', name: 'Stage 2.5: Simulation', icon: '🪟', time: '5 min', color: '#38bdf8', desc: 'Split-view Flow + Gemini pair staging' },
-      { id: '3', name: 'Stage 3: Google Flow', icon: '🎬', time: '25-35 min', color: '#a855f7', desc: 'Render 22 8s isometric clips (15 credits/ea)' }
+    // Column Header Labels
+    // Left Zone Header
+    context.fillStyle = '#38bdf8';
+    context.font = 'bold 11px Inter, sans-serif';
+    context.fillText('📝 LEFT NOTE ZONE: Inputs, Prompts & Research', 20, 72);
+
+    // Center Spine Header
+    context.fillStyle = '#f59e0b';
+    context.font = 'bold 11px Inter, sans-serif';
+    const centerTitle = '⚡ PRODUCTION PIPELINE (TOP ➔ BOTTOM)';
+    const centerMetrics = context.measureText(centerTitle);
+    context.fillText(centerTitle, cardX + (cardWidth - centerMetrics.width) / 2, 72);
+
+    // Right Zone Header
+    context.fillStyle = '#f43f5e';
+    context.font = 'bold 11px Inter, sans-serif';
+    context.fillText('💡 RIGHT NOTE ZONE: Reviews, Feedback & Gaps', rightZoneX, 72);
+
+    // Define All 8 Vertical Stages in Linear Sequence
+    const stages = [
+      {
+        id: '1',
+        name: 'Stage 1: Skool Ideation & Setup',
+        icon: '🏫',
+        time: '15-20 min (13%)',
+        color: '#f59e0b',
+        desc: 'Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.',
+        leftHint: '📌 Prompts, research links & raw module notes',
+        rightHint: '💡 Topic approval & scope bottlenecks'
+      },
+      {
+        id: '2',
+        name: 'Stage 2: Gemini Script & 8s Prompts',
+        icon: '🤖',
+        time: '10-15 min (9%)',
+        color: '#06b6d4',
+        desc: 'Generate 22 scenes × 8s pacing (176s) with strict 18-22 word voice-over lines.',
+        leftHint: '📌 Master Gemini prompt tweaks & scene scripts',
+        rightHint: '💡 Word count cadence & pacing checks'
+      },
+      {
+        id: '2.5',
+        name: 'Stage 2.5: Simulation & Dual Setup',
+        icon: '🪟',
+        time: '5 min (4%)',
+        color: '#38bdf8',
+        desc: 'Split-view staging: Gemini prompt director paired with Google Flow generation queue.',
+        leftHint: '📌 Dual-pane window config & FlyWheelMVP tabs',
+        rightHint: '💡 Multi-tab switching & handoff friction'
+      },
+      {
+        id: '3',
+        name: 'Stage 3: Google Flow 8s Generation',
+        icon: '🎬',
+        time: '25-35 min (22%)',
+        color: '#a855f7',
+        desc: 'Batch render 22 8s clips in Google Flow (15 credits/ea = 330 base credits).',
+        leftHint: '📌 Veo prompt templates & camera motion presets',
+        rightHint: '💡 Retakes (~25% buffer) & credit monitoring'
+      },
+      {
+        id: 'QC',
+        name: 'Stage QC: Quality Gate & Gap Audit',
+        icon: '🧪',
+        time: '10-15 min (9%)',
+        color: '#fb7185',
+        desc: 'CRITICAL GATE: Sort footages to used asset & verify zero timeline gaps with shotlist in hand.',
+        leftHint: '📌 22-scene shotlist & text hallucination rules',
+        rightHint: '💡 Blocker alert: Black gaps or missing clips'
+      },
+      {
+        id: '4',
+        name: 'Stage 4: Canva 3-Section Timeline',
+        icon: '🎨',
+        time: '30-45 min (26%)',
+        color: '#f43f5e',
+        desc: 'Pre-prod Post-its ➔ Bulk paste 22 8s placeholders ➔ Set Video as Background.',
+        leftHint: '📌 8s placeholder container & track stacking',
+        rightHint: '💡 Move footages one-by-one to used asset'
+      },
+      {
+        id: '4.5',
+        name: 'Stage 4.5: 8s VO Studio & Rehearsal',
+        icon: '🎙️',
+        time: '15-20 min (13%)',
+        color: '#34d399',
+        desc: 'Rehearse with 8s countdown loop & metronome, record authentic VO & apply Roger stamp.',
+        leftHint: '📌 Teleprompter speed, audio cues & mic settings',
+        rightHint: '💡 VO beat sync & Roger Rabbit cartoon stamp'
+      },
+      {
+        id: '5',
+        name: 'Stage 5: Multi-Platform Funnel',
+        icon: '🚀',
+        time: '15-20 min (11%)',
+        color: '#10b981',
+        desc: 'Export 1080p 60fps MP4, generate 22-chapter YouTube description, LinkedIn & Skool flywheel.',
+        leftHint: '📌 SRT subtitles, social post copy & tags',
+        rightHint: '💡 Value flywheel conversion & student feedback'
+      }
     ];
 
-    const stagesRow2 = [
-      { id: '5', name: 'Stage 5: Distribute', icon: '🚀', time: '15-20 min', color: '#10b981', desc: 'YouTube 22 chaps, LinkedIn post & Skool flywheel' },
-      { id: '4.5', name: 'Stage 4.5: VO Studio', icon: '🎙️', time: '15-20 min', color: '#34d399', desc: '8s Teleprompter rehearsal in authentic voice' },
-      { id: '4', name: 'Stage 4: Canva 3-Sec', icon: '🎨', time: '30-45 min', color: '#f43f5e', desc: '8s placeholder bulk paste & move to used asset' },
-      { id: 'QC', name: 'QC: Quality Gate', icon: '🧪', time: '10-15 min', color: '#fb7185', desc: 'Sort footages & zero-gap check with shotlist' }
-    ];
+    const startY = 90;
+    const cardHeight = 98;
+    const gapY = 46;
 
-    // Render Row 1 Nodes
-    stagesRow1.forEach((stage, i) => {
-      const x = 24 + i * (colWidth + 24);
-      drawBlueprintCard(context, x, row1Y, colWidth, cardHeight, stage);
+    stages.forEach((stage, i) => {
+      const y = startY + i * (cardHeight + gapY);
 
-      // Arrow to next
-      if (i < stagesRow1.length - 1) {
-        drawBlueprintArrow(context, x + colWidth + 4, row1Y + cardHeight / 2, x + colWidth + 20, row1Y + cardHeight / 2, '#3b82f6');
+      // 1. LEFT NOTE ZONE GUIDELINE CARD
+      if (leftZoneWidth > 60) {
+        drawNoteGuideBox(context, 20, y, leftZoneWidth, cardHeight, 'rgba(6, 182, 212, 0.18)', 'rgba(6, 182, 212, 0.4)', stage.leftHint, 'LEFT NOTE AREA');
+      }
+
+      // 2. CENTER STAGE CARD (VERTICAL SPINE)
+      drawVerticalBlueprintCard(context, cardX, y, cardWidth, cardHeight, stage);
+
+      // 3. RIGHT NOTE ZONE GUIDELINE CARD
+      if (rightZoneWidth > 60) {
+        drawNoteGuideBox(context, rightZoneX, y, rightZoneWidth, cardHeight, 'rgba(244, 63, 94, 0.18)', 'rgba(244, 63, 94, 0.4)', stage.rightHint, 'RIGHT NOTE AREA');
+      }
+
+      // 4. VERTICAL DOWNWARD CONNECTING ARROW TO NEXT STAGE
+      if (i < stages.length - 1) {
+        const arrowFromY = y + cardHeight + 4;
+        const arrowToY = y + cardHeight + gapY - 6;
+        const arrowX = cardX + cardWidth / 2;
+        drawBlueprintVerticalArrow(context, arrowX, arrowFromY, arrowX, arrowToY, stage.color || '#3b82f6');
       }
     });
 
-    // Connector from Row 1 to Row 2
-    const lastX1 = 24 + 3 * (colWidth + 24) + colWidth / 2;
-    drawBlueprintArrow(context, lastX1, row1Y + cardHeight + 4, lastX1, row2Y - 8, '#f43f5e');
-
-    // Render Row 2 Nodes (Right to Left flow)
-    const reversedRow2 = [stagesRow2[3], stagesRow2[2], stagesRow2[1], stagesRow2[0]];
-    reversedRow2.forEach((stage, i) => {
-      const x = 24 + (3 - i) * (colWidth + 24);
-      drawBlueprintCard(context, x, row2Y, colWidth, cardHeight, stage);
-
-      // Arrow pointing left
-      if (i < reversedRow2.length - 1) {
-        drawBlueprintArrow(context, x - 4, row2Y + cardHeight / 2, x - 20, row2Y + cardHeight / 2, '#10b981');
-      }
-    });
+    // Reset dash
+    context.setLineDash([]);
   }
 
-  function drawBlueprintCard(c, x, y, w, h, stage) {
-    // Card background
-    c.fillStyle = 'rgba(15, 23, 42, 0.85)';
-    c.strokeStyle = stage.color || 'rgba(255, 255, 255, 0.15)';
+  // Draw a Vertical Stage Card
+  function drawVerticalBlueprintCard(c, x, y, w, h, stage) {
+    c.save();
+    c.setLineDash([]);
+    c.fillStyle = 'rgba(15, 23, 42, 0.92)';
+    c.strokeStyle = stage.color || 'rgba(255, 255, 255, 0.2)';
     c.lineWidth = 1.5;
 
-    // Rounded rect
+    // Rounded rectangle
     const r = 8;
     c.beginPath();
     c.moveTo(x + r, y);
@@ -153,46 +257,86 @@
     // Stage Icon & Title
     c.fillStyle = '#ffffff';
     c.font = 'bold 12px Inter, sans-serif';
-    c.fillText(`${stage.icon} ${stage.name}`, x + 10, y + 24);
+    c.fillText(`${stage.icon} ${stage.name}`, x + 12, y + 22);
 
     // Duration Pill
-    c.fillStyle = 'rgba(245, 158, 11, 0.18)';
+    c.fillStyle = 'rgba(245, 158, 11, 0.15)';
     c.strokeStyle = 'rgba(245, 158, 11, 0.4)';
     c.lineWidth = 1;
     c.beginPath();
-    c.roundRect(x + 10, y + 36, w - 20, 20, 4);
+    c.roundRect(x + 12, y + 32, w - 24, 18, 4);
     c.fill();
     c.stroke();
 
     c.fillStyle = '#fbbf24';
-    c.font = 'bold 10px JetBrains Mono, monospace';
-    c.fillText(`⏱️ Est: ${stage.time}`, x + 16, y + 50);
+    c.font = 'bold 9.5px JetBrains Mono, monospace';
+    c.fillText(`⏱️ Duration: ${stage.time}`, x + 18, y + 44);
 
     // Description text
     c.fillStyle = '#9ca3af';
-    c.font = '10px Inter, sans-serif';
-    wrapText(c, stage.desc, x + 10, y + 74, w - 20, 14);
+    c.font = '9.5px Inter, sans-serif';
+    wrapText(c, stage.desc, x + 12, y + 64, w - 24, 13);
+    c.restore();
   }
 
-  function drawBlueprintArrow(c, fromX, fromY, toX, toY, color = '#3b82f6') {
+  // Draw Dashed Note Taking Guideline Container on Both Sides
+  function drawNoteGuideBox(c, x, y, w, h, bgFill, borderStroke, hintText, tag) {
+    c.save();
+    c.setLineDash([4, 4]);
+    c.fillStyle = 'rgba(15, 23, 42, 0.45)';
+    c.strokeStyle = borderStroke;
+    c.lineWidth = 1;
+
+    const r = 6;
+    c.beginPath();
+    c.moveTo(x + r, y);
+    c.lineTo(x + w - r, y);
+    c.quadraticCurveTo(x + w, y, x + w, y + r);
+    c.lineTo(x + w, y + h - r);
+    c.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    c.lineTo(x + r, y + h);
+    c.quadraticCurveTo(x, y + h, x, y + h - r);
+    c.lineTo(x, y + r);
+    c.quadraticCurveTo(x, y, x + r, y);
+    c.closePath();
+    c.fill();
+    c.stroke();
+
+    // Subtle Tag Header
+    c.setLineDash([]);
+    c.fillStyle = borderStroke;
+    c.font = 'bold 8.5px JetBrains Mono, monospace';
+    c.fillText(`✏️ ${tag}`, x + 8, y + 16);
+
+    // Hint text
+    c.fillStyle = 'rgba(255, 255, 255, 0.45)';
+    c.font = 'italic 9.5px Inter, sans-serif';
+    wrapText(c, hintText, x + 8, y + 36, w - 16, 13);
+    c.restore();
+  }
+
+  // Draw Vertical Downward Arrow ⬇️
+  function drawBlueprintVerticalArrow(c, fromX, fromY, toX, toY, color = '#3b82f6') {
+    c.save();
+    c.setLineDash([]);
     c.strokeStyle = color;
     c.fillStyle = color;
-    c.lineWidth = 2;
+    c.lineWidth = 2.5;
 
     c.beginPath();
     c.moveTo(fromX, fromY);
     c.lineTo(toX, toY);
     c.stroke();
 
-    // Arrowhead
-    const angle = Math.atan2(toY - fromY, toX - fromX);
-    const headLen = 7;
+    // Arrowhead pointing straight down
+    const headLen = 8;
     c.beginPath();
     c.moveTo(toX, toY);
-    c.lineTo(toX - headLen * Math.cos(angle - Math.PI / 6), toY - headLen * Math.sin(angle - Math.PI / 6));
-    c.lineTo(toX - headLen * Math.cos(angle + Math.PI / 6), toY - headLen * Math.sin(angle + Math.PI / 6));
+    c.lineTo(toX - headLen * 0.7, toY - headLen);
+    c.lineTo(toX + headLen * 0.7, toY - headLen);
     c.closePath();
     c.fill();
+    c.restore();
   }
 
   function wrapText(context, text, x, y, maxWidth, lineHeight) {
@@ -219,9 +363,9 @@
   function redrawCanvas() {
     if (!canvas || !ctx) return;
     const rect = canvas.getBoundingClientRect();
-    ctx.clearRect(0, 0, rect.width, rect.height);
+    ctx.clearRect(0, 0, rect.width, VIRTUAL_CANVAS_HEIGHT);
 
-    drawBasePipelineBlueprint(ctx, rect.width, rect.height);
+    drawBasePipelineBlueprint(ctx, rect.width, VIRTUAL_CANVAS_HEIGHT);
 
     // Draw user strokes
     strokes.forEach(s => {
@@ -256,7 +400,7 @@
         ctx.ellipse(cx, cy, rx, ry, 0, 0, 2 * Math.PI);
         ctx.stroke();
       } else if (s.tool === 'text') {
-        ctx.font = 'bold 14px Inter, sans-serif';
+        ctx.font = 'bold 13.5px Inter, sans-serif';
         ctx.fillText(s.text, s.startX, s.startY);
       }
       ctx.restore();
@@ -469,7 +613,7 @@
   window.saveExcaliDrawing = function() {
     saveStrokes();
     if (window.pushStateToAzure) window.pushStateToAzure(false);
-    if (window.showToast) window.showToast('💾 Pipeline feedback drawing saved & synced!', 'success');
+    if (window.showToast) window.showToast('💾 Vertical pipeline feedback saved & synced!', 'success');
   };
 
   window.downloadExcaliPNG = function() {
@@ -478,11 +622,11 @@
     const dataUrl = canvas.toDataURL('image/png');
     const a = document.createElement('a');
     a.href = dataUrl;
-    a.download = 'pipeline_feedback_annotated.png';
+    a.download = 'vertical_pipeline_feedback_annotated.png';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
-    if (window.showToast) window.showToast('📥 Feedback drawing exported as PNG!', 'success');
+    if (window.showToast) window.showToast('📥 Vertical feedback diagram exported as PNG!', 'success');
   };
 
   function saveStrokes() {
