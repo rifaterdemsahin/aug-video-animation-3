@@ -88,6 +88,7 @@ window.VIDEO_DATA = {
         { id: "s4-add-postits-to-canva", label: "Pre-Prod: Add 22 color-coded Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync." },
         { id: "s4-storyboard-upload-prod", label: "Prod: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene." },
         { id: "s4-move-footages-one-by-one", label: "Prod: Move footages one by one from 'aug video 3' to 'used asset' as each clip is placed on the Canva track." },
+        { id: "s4-read-check-sliding-postit", label: "Prod: Read & check footages for timeline gaps using a sliding Post-it note overlay in Canva to verify scene-by-scene script sync." },
         { id: "s4-prod-roger-rabbit", label: "Prod: Apply Roger Rabbit Signature Format (blend real IDE/screen captures with animated cartoon & La Linea line overlays via Google Flow)." },
         { id: "s4-prod-playback-script-review", label: "Prod Review: Watch complete Canva Prod timeline playback and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod." },
         { id: "s4-vo-sync", label: "Post-Prod: Follow timeline Post-it notes to record master voice-over in own authentic voice." },

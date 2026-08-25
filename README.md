@@ -57,11 +57,12 @@ flowchart LR
 5. **📝 Pre-prod (Post-it Timeline Guides)**: Add 22 color-coded digital Post-it notes containing scripts directly above Canva timeline tracks to guide Post-Prod sync.
 6. **🎬 Prod (Storyboard Video Upload)**: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene.
 7. **📦 Prod (Move Footages One by One)**: Move footages one by one from `aug video 3` to `used asset` as each clip is placed on the Canva track.
-8. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
-9. **👀 Prod Review (Playback & Script Verification Gate)**: Watch complete Canva Prod timeline playback (176s) and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod.
-10. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
-11. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
-12. ☁️ **Azure Files Cloud State Synchronization**:
+8. **📝 Prod (Sliding Post-it & Footage Gap Check)**: Use a sliding Post-it note overlay in Canva to scrub the timeline and check for missing clips or empty gaps between scenes (see [`3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg`](https://github.com/rifaterdemsahin/aug-video-animation-3/blob/main/3_Simulation/prod_stage_read_and_check_for_footage_gaps.jpeg)).
+9. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
+10. **👀 Prod Review (Playback & Script Verification Gate)**: Watch complete Canva Prod timeline playback (176s) and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod.
+11. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
+12. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
+13. ☁️ **Azure Files Cloud State Synchronization**:
     - **Storage Account**: `animationasistant`
     - **Azure File Share**: `aug-video-state`
     - **State Payload**: `aug_video_animation_state.json`
