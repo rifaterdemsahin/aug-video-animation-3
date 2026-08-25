@@ -466,7 +466,22 @@ document.addEventListener('DOMContentLoaded', () => {
         `;
       }).join('');
 
-      prodContainer.innerHTML = headerBar + cardsHtml;
+      const isVerified = !!appState.stageChecklist['s4-prod-playback-script-review'];
+      const verificationFooter = `
+        <div style="background: ${isVerified ? 'rgba(6, 78, 59, 0.4)' : 'rgba(30, 41, 59, 0.7)'}; border: 1px solid ${isVerified ? 'var(--accent-emerald)' : 'var(--accent-amber)'}; border-radius: var(--radius-sm); padding: 0.75rem; margin-top: 0.75rem; text-align: center;">
+          <div style="font-weight:700; font-size:0.8rem; color:#ffffff; margin-bottom:0.25rem;">
+            ${isVerified ? '✅ Prod Playback & Script Verified!' : '👀 Final Step: Playback & Script Cross-Check'}
+          </div>
+          <p style="font-size:0.72rem; color:var(--text-muted); margin-bottom:0.5rem;">
+            Watch complete 176s Prod timeline in Canva, cross-checking every cut against Post-it scripts to ensure 100% sync before Post-Prod handoff.
+          </p>
+          <button class="btn btn-sm ${isVerified ? 'btn-accent' : 'btn-primary'}" style="width:100%; justify-content:center; font-size:0.75rem;" onclick="toggleStageItem('s4-prod-playback-script-review')">
+            ${isVerified ? '✅ Verified (Ready for Post-Prod)' : '🔍 Mark Playback & Script Checked'}
+          </button>
+        </div>
+      `;
+
+      prodContainer.innerHTML = headerBar + cardsHtml + verificationFooter;
     }
   }
 

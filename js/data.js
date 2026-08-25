@@ -89,6 +89,7 @@ window.VIDEO_DATA = {
         { id: "s4-storyboard-upload-prod", label: "Prod: Use Storyboard-like sequence grid in Canva to upload and align 8-second video slices scene-by-scene." },
         { id: "s4-move-footages-one-by-one", label: "Prod: Move footages one by one from 'aug video 3' to 'used asset' as each clip is placed on the Canva track." },
         { id: "s4-prod-roger-rabbit", label: "Prod: Apply Roger Rabbit Signature Format (blend real IDE/screen captures with animated cartoon & La Linea line overlays via Google Flow)." },
+        { id: "s4-prod-playback-script-review", label: "Prod Review: Watch complete Canva Prod timeline playback and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod." },
         { id: "s4-vo-sync", label: "Post-Prod: Follow timeline Post-it notes to record master voice-over in own authentic voice." },
         { id: "s4-postprod-roger-rabbit", label: "Post-Prod: Sync Roger Rabbit character motion to VO audio beats, apply signature stamp overlay, and color-balance toon layers." },
         { id: "s4-export-master", label: "Post-Prod: Export final 1080p 60fps master video (176s)." }
