@@ -643,6 +643,22 @@ header.sticky-header {
   gap: 8px;
 }
 
+.color-specifier-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  border: 1px solid;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  user-select: none;
+  line-height: 1.2;
+}
+
 .stage-title-left {
   display: flex;
   align-items: center;
