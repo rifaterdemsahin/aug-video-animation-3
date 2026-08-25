@@ -1,18 +1,24 @@
 // Interactive Pipeline Excalidraw / Whiteboard Engine
-// Vertical Pipeline Architecture with Note-Taking Zones on Both Sides + Rich Inline Text Tool
+// Vertical Pipeline Architecture with Draggable Notes & Text Tools on Both Sides
 
 (function() {
   const STORAGE_KEY = 'aug_video_pipeline_drawing_v1';
   let canvas, ctx;
   let isDrawing = false;
   let startX = 0, startY = 0;
-  let currentTool = 'pen'; // 'pen' | 'highlighter' | 'arrow' | 'rect' | 'circle' | 'text' | 'sticky' | 'eraser'
+  let currentTool = 'pen'; // 'select' | 'pen' | 'highlighter' | 'arrow' | 'rect' | 'circle' | 'text' | 'sticky' | 'eraser'
   let currentColor = '#06b6d4'; // default cyan
   let currentStrokeWidth = 3;
   let currentFontSize = 14;
 
   let strokes = []; // Array of drawn objects
   let undoStack = [];
+
+  // Dragging State
+  let draggedStroke = null;
+  let dragOffsetX = 0;
+  let dragOffsetY = 0;
+  let hoveredStroke = null;
 
   const VIRTUAL_CANVAS_HEIGHT = 1320;
 
@@ -58,6 +64,55 @@
     };
   }
 
+  // Hit Test to find which stroke/note is under cursor
+  function hitTestStroke(pos) {
+    if (!ctx) return null;
+    // Iterate in reverse (topmost first)
+    for (let i = strokes.length - 1; i >= 0; i--) {
+      const s = strokes[i];
+      if (s.tool === 'text' || s.tool === 'sticky') {
+        const fontSize = s.fontSize || 14;
+        ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+        const lines = (s.text || '').split('\n');
+        const lineHeight = fontSize * 1.35;
+        let maxLineW = 0;
+        lines.forEach(l => {
+          const w = ctx.measureText(l).width;
+          if (w > maxLineW) maxLineW = w;
+        });
+
+        const boxW = Math.max(120, maxLineW + 24);
+        const boxH = Math.max(36, lines.length * lineHeight + 18);
+        const minX = s.startX - 10;
+        const minY = s.startY - fontSize;
+        const maxX = minX + boxW;
+        const maxY = minY + boxH;
+
+        if (pos.x >= minX && pos.x <= maxX && pos.y >= minY && pos.y <= maxY) {
+          return { stroke: s, index: i, box: { x: minX, y: minY, w: boxW, h: boxH } };
+        }
+      } else if (s.tool === 'rect') {
+        const minX = Math.min(s.startX, s.endX);
+        const maxX = Math.max(s.startX, s.endX);
+        const minY = Math.min(s.startY, s.endY);
+        const maxY = Math.max(s.startY, s.endY);
+        if (pos.x >= minX - 10 && pos.x <= maxX + 10 && pos.y >= minY - 10 && pos.y <= maxY + 10) {
+          return { stroke: s, index: i, box: { x: minX, y: minY, w: maxX - minX, h: maxY - minY } };
+        }
+      } else if (s.tool === 'circle') {
+        const rx = Math.abs(s.endX - s.startX) / 2;
+        const ry = Math.abs(s.endY - s.startY) / 2;
+        const cx = Math.min(s.startX, s.endX) + rx;
+        const cy = Math.min(s.startY, s.endY) + ry;
+        const dist = Math.hypot(pos.x - cx, pos.y - cy);
+        if (dist <= Math.max(rx, ry) + 10) {
+          return { stroke: s, index: i, box: { x: cx - rx, y: cy - ry, w: rx * 2, h: ry * 2 } };
+        }
+      }
+    }
+    return null;
+  }
+
   // Draw the Pre-Rendered Vertical Base Pipeline Blueprint with Note Zones
   function drawBasePipelineBlueprint(context, width, height) {
     // Background Grid
@@ -87,7 +142,7 @@
 
     context.fillStyle = '#06b6d4';
     context.font = '11px JetBrains Mono, monospace';
-    context.fillText('Total Turnaround: ~2h 15m (135 min) • 176s Video (22 Scenes) • 330 Credits • Click 📝 Text to write notes on LEFT & RIGHT!', 24, 48);
+    context.fillText('Total Turnaround: ~2h 15m (135 min) • 176s Video (22 Scenes) • 330 Credits • Click & Drag notes anywhere on LEFT & RIGHT!', 24, 48);
 
     // Layout Dimensions: 3-Column Architecture (Left Note Zone | Center Spine | Right Note Zone)
     const cardWidth = Math.min(360, Math.max(300, width * 0.38));
@@ -123,8 +178,8 @@
         time: '15-20 min (13%)',
         color: '#f59e0b',
         desc: 'Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.',
-        leftHint: '📌 Prompts, research links & raw module notes',
-        rightHint: '💡 Topic approval & scope bottlenecks'
+        leftHint: '📌 Prompts, research links & raw module notes (Drag notes here!)',
+        rightHint: '💡 Topic approval & scope bottlenecks (Drag notes here!)'
       },
       {
         id: '2',
@@ -360,7 +415,7 @@
     context.fillText(line, x, currY);
   }
 
-  // Redraw Complete Canvas (Base blueprint + all user strokes)
+  // Redraw Complete Canvas (Base blueprint + all user strokes + drag highlight)
   function redrawCanvas() {
     if (!canvas || !ctx) return;
     const rect = canvas.getBoundingClientRect();
@@ -406,16 +461,16 @@
         const lines = (s.text || '').split('\n');
         const lineHeight = fontSize * 1.35;
 
-        if (s.isSticky || s.tool === 'sticky') {
-          // Draw a sticky card container
-          let maxLineW = 0;
-          lines.forEach(l => {
-            const w = ctx.measureText(l).width;
-            if (w > maxLineW) maxLineW = w;
-          });
-          const boxW = Math.max(140, maxLineW + 20);
-          const boxH = Math.max(50, lines.length * lineHeight + 18);
+        // Draw background container
+        let maxLineW = 0;
+        lines.forEach(l => {
+          const w = ctx.measureText(l).width;
+          if (w > maxLineW) maxLineW = w;
+        });
+        const boxW = Math.max(130, maxLineW + 20);
+        const boxH = Math.max(42, lines.length * lineHeight + 18);
 
+        if (s.isSticky || s.tool === 'sticky') {
           ctx.fillStyle = 'rgba(15, 23, 42, 0.94)';
           ctx.strokeStyle = s.color || '#06b6d4';
           ctx.lineWidth = 1.5;
@@ -432,6 +487,36 @@
       }
       ctx.restore();
     });
+
+    // Highlight actively dragged or selected stroke
+    if (draggedStroke) {
+      ctx.save();
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+
+      if (draggedStroke.tool === 'text' || draggedStroke.tool === 'sticky') {
+        const fontSize = draggedStroke.fontSize || 14;
+        ctx.font = `bold ${fontSize}px Inter, sans-serif`;
+        const lines = (draggedStroke.text || '').split('\n');
+        const lineHeight = fontSize * 1.35;
+        let maxLineW = 0;
+        lines.forEach(l => {
+          const w = ctx.measureText(l).width;
+          if (w > maxLineW) maxLineW = w;
+        });
+        const boxW = Math.max(130, maxLineW + 20);
+        const boxH = Math.max(42, lines.length * lineHeight + 18);
+        ctx.strokeRect(draggedStroke.startX - 12, draggedStroke.startY - fontSize - 4, boxW + 8, boxH + 8);
+      } else if (draggedStroke.tool === 'rect' || draggedStroke.tool === 'circle') {
+        const minX = Math.min(draggedStroke.startX, draggedStroke.endX);
+        const maxX = Math.max(draggedStroke.startX, draggedStroke.endX);
+        const minY = Math.min(draggedStroke.startY, draggedStroke.endY);
+        const maxY = Math.max(draggedStroke.startY, draggedStroke.endY);
+        ctx.strokeRect(minX - 6, minY - 6, maxX - minX + 12, maxY - minY + 12);
+      }
+      ctx.restore();
+    }
   }
 
   function drawUserArrow(c, fromX, fromY, toX, toY, color, width) {
@@ -464,7 +549,7 @@
     const wrapper = canvas.parentElement;
     const input = document.createElement('textarea');
     input.id = 'excali-inline-text-input';
-    input.placeholder = isSticky ? 'Write sticky note...\n(Click outside to place)' : 'Type note text...\n(Click outside to place)';
+    input.placeholder = isSticky ? 'Write sticky note...\n(Click outside to place & drag!)' : 'Type note text...\n(Click outside to place & drag!)';
     input.style.position = 'absolute';
     input.style.left = `${x}px`;
     input.style.top = `${y}px`;
@@ -492,7 +577,7 @@
       committed = true;
       const val = input.value.trim();
       if (val) {
-        strokes.push({
+        const newStroke = {
           tool: isSticky ? 'sticky' : 'text',
           text: val,
           startX: x,
@@ -500,11 +585,12 @@
           color: currentColor,
           fontSize: currentFontSize,
           isSticky: isSticky
-        });
+        };
+        strokes.push(newStroke);
         undoStack = [];
         saveStrokes();
         redrawCanvas();
-        if (window.showToast) window.showToast(`📝 Note added: "${val.slice(0, 20)}..."`, 'success');
+        if (window.showToast) window.showToast(`📝 Note placed! You can click and drag it anytime.`, 'success');
       }
       closeInlineTextInput();
     }
@@ -520,7 +606,7 @@
     });
   }
 
-  // Event Listeners for Drawing
+  // Event Listeners for Drawing & Dragging
   let currentStroke = null;
 
   function setupEventListeners() {
@@ -535,21 +621,43 @@
 
   function onPointerDown(e) {
     const pos = getCanvasPos(e);
-    isDrawing = true;
     startX = pos.x;
     startY = pos.y;
 
+    // Check if user clicked on an existing note/shape to drag it
+    const hit = hitTestStroke(pos);
+    if (hit && (currentTool === 'select' || hit.stroke.tool === 'text' || hit.stroke.tool === 'sticky' || currentTool === 'eraser')) {
+      if (currentTool === 'eraser') {
+        strokes.splice(hit.index, 1);
+        saveStrokes();
+        redrawCanvas();
+        return;
+      }
+      // Start Dragging Note/Shape
+      draggedStroke = hit.stroke;
+      dragOffsetX = pos.x - hit.stroke.startX;
+      dragOffsetY = pos.y - hit.stroke.startY;
+      canvas.style.cursor = 'grabbing';
+      redrawCanvas();
+      return;
+    }
+
+    if (currentTool === 'select') {
+      // Clicked on empty space in select mode
+      return;
+    }
+
     if (currentTool === 'text') {
       openInlineTextInput(pos.x, pos.y, false);
-      isDrawing = false;
       return;
     }
 
     if (currentTool === 'sticky') {
       openInlineTextInput(pos.x, pos.y, true);
-      isDrawing = false;
       return;
     }
+
+    isDrawing = true;
 
     if (currentTool === 'pen' || currentTool === 'highlighter') {
       currentStroke = {
@@ -564,9 +672,40 @@
   }
 
   function onPointerMove(e) {
-    if (!isDrawing) return;
-    if (e.preventDefault) e.preventDefault();
     const pos = getCanvasPos(e);
+
+    // 1. Handle Active Dragging of Notes / Shapes
+    if (draggedStroke) {
+      if (e.preventDefault) e.preventDefault();
+      const newX = pos.x - dragOffsetX;
+      const newY = pos.y - dragOffsetY;
+
+      if (draggedStroke.endX !== undefined) {
+        const dx = newX - draggedStroke.startX;
+        const dy = newY - draggedStroke.startY;
+        draggedStroke.endX += dx;
+        draggedStroke.endY += dy;
+      }
+
+      draggedStroke.startX = newX;
+      draggedStroke.startY = newY;
+      redrawCanvas();
+      return;
+    }
+
+    // 2. Hover Cursor Management
+    if (!isDrawing) {
+      const hit = hitTestStroke(pos);
+      if (hit) {
+        canvas.style.cursor = 'grab';
+      } else {
+        canvas.style.cursor = currentTool === 'select' ? 'default' : 'crosshair';
+      }
+      return;
+    }
+
+    // 3. Handle Active Drawing
+    if (e.preventDefault) e.preventDefault();
 
     if (currentTool === 'pen' || currentTool === 'highlighter') {
       if (currentStroke) {
@@ -611,6 +750,14 @@
   }
 
   function onPointerUp(e) {
+    if (draggedStroke) {
+      draggedStroke = null;
+      canvas.style.cursor = 'grab';
+      saveStrokes();
+      redrawCanvas();
+      return;
+    }
+
     if (!isDrawing) return;
     isDrawing = false;
 
@@ -663,6 +810,9 @@
     currentTool = tool;
     document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
     if (btn) btn.classList.add('active');
+    if (canvas) {
+      canvas.style.cursor = tool === 'select' ? 'default' : 'crosshair';
+    }
   };
 
   window.setExcaliColor = function(color, btn) {
