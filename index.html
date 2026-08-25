@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3-Minute AI Animation Video Production Suite 🎬 | Helper Hub</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Sticky Top Header & Stage Navigation -->
+  <header class="sticky-header">
+    <div class="header-top">
+      <a href="#overview" class="brand">
+        <div class="brand-icon">✨</div>
+        <div class="brand-text">
+          <h1>3-Min Animation Video Engine</h1>
+          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Multi-Platform Funnel</p>
+        </div>
+      </a>
+      <div class="header-actions">
+        <div class="badge-pill">
+          <span class="badge-pulse"></span>
+          <span id="stat-progress-percent">0%</span> Complete
+        </div>
+        <a href="#teleprompter-section" class="btn btn-primary btn-sm">
+          🎙️ Teleprompter Studio
+        </a>
+      </div>
+    </div>
+
+    <!-- Top Menu for Each Stage -->
+    <div class="stage-nav-container">
+      <nav class="stage-nav">
+        <a href="#overview" class="stage-nav-btn active">
+          <span>🎯</span> Overview
+        </a>
+        <a href="#stage-1" class="stage-nav-btn">
+          <span class="stage-step">Stage 1</span> 🏫 Skool Ideation
+        </a>
+        <a href="#stage-2" class="stage-nav-btn">
+          <span class="stage-step">Stage 2</span> 🤖 Gemini Script & Prompts
+        </a>
+        <a href="#stage-3" class="stage-nav-btn">
+          <span class="stage-step">Stage 3</span> 🎬 Google Flow Visuals
+        </a>
+        <a href="#stage-4" class="stage-nav-btn">
+          <span class="stage-step">Stage 4</span> 🎨 Canva 3-Section Suite
+        </a>
+        <a href="#teleprompter-section" class="stage-nav-btn">
+          <span class="stage-step">Stage 4.5</span> 🎙️ 8s VO Studio
+        </a>
+        <a href="#stage-5" class="stage-nav-btn">
+          <span class="stage-step">Stage 5</span> 🚀 Distribution & Funnel
+        </a>
+        <a href="#storyboard-section" class="stage-nav-btn">
+          <span>📋</span> 22-Scene Storyboard
+        </a>
+        <a href="#export-section" class="stage-nav-btn">
+          <span>📤</span> Export & Subtitles
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="container">
+    
+    <!-- Hero / Overview Banner -->
+    <section id="overview" class="hero-banner">
+      <div class="hero-content">
+        <div class="hero-tag">⚡ Production Pipeline Helper</div>
+        <h2 class="hero-title">Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs</h2>
+        <p class="hero-desc">
+          End-to-end production operating system for creating high-impact <strong>3-minute animated educational videos</strong> (22 scenes × 8 seconds = 176s). From Skool research and Gemini 8s prompt engineering to Google Flow generation, Canva 3-section timeline assembly, and multi-channel audience funneling.
+        </p>
+
+        <!-- Global Progress Bar -->
+        <div style="margin: 1.25rem 0 0.5rem 0;">
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; font-weight:600; color:var(--text-muted); margin-bottom: 0.35rem;">
+            <span>🎬 Overall Production Progress</span>
+            <span id="stat-completed-scenes">0 / 22 Scenes Ready</span>
+          </div>
+          <div class="progress-bar-container">
+            <div id="global-progress-fill" class="progress-bar-fill"></div>
+          </div>
+        </div>
+
+        <!-- Quick Stats Grid -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-cyan); background:rgba(6,182,212,0.1);">⏱️</div>
+            <div class="stat-info">
+              <div class="stat-num">176s</div>
+              <div class="stat-label">Total Duration (~2.9m)</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-amber); background:rgba(245,158,11,0.1);">🎞️</div>
+            <div class="stat-info">
+              <div class="stat-num">22 Scenes</div>
+              <div class="stat-label">8s Animation Slices</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-purple); background:rgba(139,92,246,0.1);">🎨</div>
+            <div class="stat-info">
+              <div class="stat-num">3 Sections</div>
+              <div class="stat-label">Pre-Prod / Prod / Post</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-emerald); background:rgba(16,185,129,0.1);">🌐</div>
+            <div class="stat-info">
+              <div class="stat-num">4 Channels</div>
+              <div class="stat-label">Skool / YT / LI / X</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 1: Skool Ideation & Research -->
+    <section id="stage-1" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-amber);">🏫</div>
+          <div>
+            <h3 class="section-title">Stage 1: Skool Ideation & Research</h3>
+            <p class="section-subtitle">Extract source material, capture subject research pictures, and define signature stylistic elements.</p>
+          </div>
+        </div>
+        <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🔗 Open Skool Classroom ↗
+        </a>
+      </div>
+
+      <div class="skool-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>📌</span> Source Classroom Video & Topic Input
+          </div>
+          <div class="link-box">
+            <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer">
+              skool.com/delivery-pilot-8938/classroom/2193c55b...
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df', 'Skool link copied!')">📋</button>
+          </div>
+          <ul class="checklist">
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-1" checked>
+              <label for="check-skool-1">Review raw video & classroom module notes.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-2" checked>
+              <label for="check-skool-2">Gather research pictures, UI screenshots & benchmark graphs from Skool.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-skool-3" checked>
+              <label for="check-skool-3">Extract core theme: Claude Developer Certification & Token Optimization.</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>🎭</span> Creative Identity & Signature Directives
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 0.9rem; border-radius: var(--radius-sm); margin-bottom: 0.75rem; border-left: 3px solid var(--accent-amber);">
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.25rem;">🎬 Roger Rabbit Signature Style</div>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              Blend real terminal & IDE screen captures (127.0.0.1:3847) with dynamic, expressive 3D cartoon/motion-graphic overlays to make complex technical concepts deeply engaging.
+            </p>
+          </div>
+          <div style="background: rgba(0,0,0,0.25); padding: 0.9rem; border-radius: var(--radius-sm); border-left: 3px solid var(--accent-cyan);">
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.25rem;">🎙️ Authentic Voice Identity</div>
+            <p style="font-size:0.8rem; color:var(--text-muted);">
+              Recorded in your own voice: crisp, authoritative, energetic cadence with steady ~18-22 words per 8-second window.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 2: Gemini Script & 8s Prompts -->
+    <section id="stage-2" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan);">🤖</div>
+          <div>
+            <h3 class="section-title">Stage 2: Gemini Script & 8-Second Prompt Engineering</h3>
+            <p class="section-subtitle">Transform raw subject matter into a rigorous 22-scene pacing framework with synchronized visual concepts and VO.</p>
+          </div>
+        </div>
+        <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          ⚡ Open Gemini Session ↗
+        </a>
+      </div>
+
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.5rem;">
+          <span style="font-size:0.85rem; font-weight:700; color:var(--text-main);">📋 Reusable Master System Prompt for Gemini:</span>
+          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard(document.getElementById('gemini-master-prompt').innerText, 'Gemini Master Prompt Copied!')">
+            📋 Copy System Prompt
+          </button>
+        </div>
+        <div class="prompt-box" id="gemini-master-prompt">Act as an expert Video Director & AI Technical Educator.
+Take my topic/input and generate a high-tempo 3-minute video production script:
+1. Break down into exactly 22 scenes of 8 seconds each (22 x 8s = 176 seconds / ~2.9 minutes).
+2. For each scene provide:
+   - Visual: 8-second animation/clip motion graphic concept (high visual detail, UI, charts).
+   - Google Flow Prompt: Photographic/3D isometric prompt for AI video generation.
+   - Voice-over (VO): Exactly 18-24 words timed for 8 seconds natural narration.
+3. Structure:
+   - Scenes 1-4: Hook & Core Problem (Cost & Token Burn).
+   - Scenes 5-8: Technical Deep Dive & Quota Mechanics (0% Dashboard, Asynchronous updates).
+   - Scenes 9-14: Model Battle & Benchmarks (Grok Low vs Gemini 3.7 Flash Low).
+   - Scenes 15-20: Practical Decision Framework & WebDev Arena Leaderboard (1588 Elo).
+   - Scenes 21-22: Custom IDE Oversight & Outro with Roger Rabbit Signature & Community CTA.</div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+        <div class="info-card">
+          <div style="font-weight:700; color:var(--accent-cyan); font-size:0.85rem; margin-bottom:0.3rem;">⚡ The 8-Second Formula</div>
+          <p style="font-size:0.8rem; color:var(--text-muted);">
+            8 seconds is the optimal attention window for social algorithms (YouTube Shorts, LinkedIn, X, Reels) while maintaining clear technical substance.
+          </p>
+        </div>
+        <div class="info-card">
+          <div style="font-weight:700; color:var(--accent-purple); font-size:0.85rem; margin-bottom:0.3rem;">🎯 Pacing & Word Count</div>
+          <p style="font-size:0.8rem; color:var(--text-muted);">
+            Average speech speed is ~2.5 words per second. An 8-second block holds 18–22 words with natural breathing room.
+          </p>
+        </div>
+        <div class="info-card">
+          <div style="font-weight:700; color:var(--accent-emerald); font-size:0.85rem; margin-bottom:0.3rem;">🧩 Modular Scene Slices</div>
+          <p style="font-size:0.8rem; color:var(--text-muted);">
+            Each scene functions as an independent micro-hook, allowing seamless rearrangement or repurposing into standalone clips.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 3: Google Flow Visual Generation -->
+    <section id="stage-3" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-purple);">🎬</div>
+          <div>
+            <h3 class="section-title">Stage 3: Google Flow / Video Footage Generation</h3>
+            <p class="section-subtitle">Generate 8-second motion graphic visual clips for each scene using Google Flow & Veo prompt templates.</p>
+          </div>
+        </div>
+        <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🚀 Open Google Flow ↗
+        </a>
+      </div>
+
+      <div class="skool-grid">
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>⚙️</span> Video Generation Guidelines
+          </div>
+          <ul class="checklist">
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-1" checked>
+              <label for="check-flow-1">Aspect Ratio: 16:9 Landscape (1920x1080) for Master & YouTube; 9:16 crop for Shorts/Reels.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-2">
+              <label for="check-flow-2">Motion Preset: Smooth dynamic camera pan, holographic HUD, cinematic 60fps.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-3">
+              <label for="check-flow-3">Generate 8-second video slices matching scenes 1 through 22.</label>
+            </li>
+            <li class="checklist-item">
+              <input type="checkbox" id="check-flow-4">
+              <label for="check-flow-4">Save and label downloaded clips as <code>scene_01.mp4</code> to <code>scene_22.mp4</code>.</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <div class="info-card-header">
+            <span>💡</span> Batch Prompt Clipboard Utility
+          </div>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.75rem;">
+            Copy individual visual prompts from the Storyboard section or copy all 22 Google Flow prompts in a single batch file.
+          </p>
+          <button class="btn btn-primary btn-sm" onclick="copyAllFlowPrompts()">
+            📋 Copy All 22 Google Flow Prompts
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 4: Canva 3-Section Production Suite -->
+    <section id="stage-4" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-rose);">🎨</div>
+          <div>
+            <h3 class="section-title">Stage 4: Canva 3-Section Production Workspace</h3>
+            <p class="section-subtitle">Organize your Canva project timeline into Pre-Prod (Post-its), Prod (Footage clips), and Post-Prod (VO & Master Export).</p>
+          </div>
+        </div>
+        <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+          🎨 Open Canva ↗
+        </a>
+      </div>
+
+      <div class="canva-suite-grid">
+        <!-- Section 1: Pre-Prod -->
+        <div class="canva-column canva-col-preprod">
+          <div class="canva-column-header">
+            <span>📝</span>
+            <h3>1. Pre-Prod: Post-it Scripts</h3>
+            <span class="count-badge">22 Notes</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Digital Post-it notes containing the voice-over and scene concept for each 8s timestamp. Click any note to copy!
+          </p>
+          <div class="postit-stack" id="canva-preprod-postits">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 2: Prod -->
+        <div class="canva-column canva-col-prod">
+          <div class="canva-column-header">
+            <span>🎥</span>
+            <h3>2. Prod: Video Footages</h3>
+            <span class="count-badge">22 Clips</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Upload Google Flow generated 8s MP4 clips into the Canva timeline, aligned with the 8-second grid.
+          </p>
+          <div class="postit-stack" id="canva-prod-timeline">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Section 3: Post-Prod -->
+        <div class="canva-column canva-col-postprod">
+          <div class="canva-column-header">
+            <span>🎙️</span>
+            <h3>3. Post-Prod: VO & Export</h3>
+            <span class="count-badge">Mastering</span>
+          </div>
+          <p style="font-size:0.78rem; color:var(--text-muted);">
+            Record voice-over in your own voice, add Roger Rabbit signature overlay, background audio, and export.
+          </p>
+          
+          <div class="info-card" style="background: rgba(0,0,0,0.3);">
+            <div style="font-weight:700; font-size:0.85rem; color:#ffffff; margin-bottom:0.5rem;">🎙️ Voice-Over Sync Checklist</div>
+            <ul class="checklist">
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-1">
+                <label for="vo-check-1">Record master VO audio track (176s).</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-2">
+                <label for="vo-check-2">Align 8s VO beats to Canva video cuts.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-3">
+                <label for="vo-check-3">Add Roger Rabbit animated signature stamp.</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-4">
+                <label for="vo-check-4">Add subtle background synth music (-22dB).</label>
+              </li>
+              <li class="checklist-item">
+                <input type="checkbox" id="vo-check-5">
+                <label for="vo-check-5">Export 1080p 60fps MP4 master video.</label>
+              </li>
+            </ul>
+          </div>
+
+          <a href="#teleprompter-section" class="btn btn-primary" style="margin-top:auto; justify-content:center;">
+            🎙️ Launch 8s Teleprompter Studio
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teleprompter / 8s Recording Studio -->
+    <section id="teleprompter-section" class="workflow-section teleprompter-studio">
+      <div class="section-header" style="border-color: rgba(6, 182, 212, 0.3);">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan); background: rgba(6, 182, 212, 0.15);">🎙️</div>
+          <div>
+            <h3 class="section-title">8-Second Voice-Over Rehearsal & Teleprompter Studio</h3>
+            <p class="section-subtitle">Paced rehearsal loop with 8-second countdown timer, speech audio cue, and scene auto-advancing.</p>
+          </div>
+        </div>
+        <div class="timer-display">
+          <div class="timer-circle" id="prompter-timer-circle">
+            <span id="prompter-timer-num">8s</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="prompter-controls">
+        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+          <button class="btn btn-primary" id="prompter-play-btn" onclick="startPrompter()">
+            ▶️ Start 8s Practice Loop
+          </button>
+          <button class="btn btn-secondary" onclick="prevPrompterScene()">
+            ⏮️ Prev Scene
+          </button>
+          <button class="btn btn-secondary" onclick="nextPrompterScene()">
+            ⏭️ Next Scene
+          </button>
+          <button class="btn btn-secondary" onclick="resetPrompter()">
+            🔄 Reset
+          </button>
+        </div>
+
+        <div style="display:flex; gap:1rem; align-items:center; font-size:0.85rem; color:var(--text-muted);">
+          <span>Scene: <strong id="prompter-index" style="color:#fff;">1 / 22</strong></span>
+          <span>Time: <strong id="prompter-timecode" style="color:var(--accent-cyan);">0:00 - 0:08</strong></span>
+        </div>
+      </div>
+
+      <div class="progress-bar-container" style="height:6px; margin: 1rem 0;">
+        <div class="progress-bar-fill" id="prompter-bar-fill"></div>
+      </div>
+
+      <div class="prompter-card">
+        <div class="prompter-scene-title" id="prompter-title">Scene 1: Hook: Token Optimization & Cost Controls</div>
+        <div class="prompter-vo-text" id="prompter-vo">
+          "Welcome! In this guide, we explore token optimization and cost control strategies for scaling your AI developer tooling without breaking the bank."
+        </div>
+        <div>
+          <div class="prompter-visual-hint" id="prompter-visual">
+            Visual: Motion graphic title card reading "Claude Developer Certification: Token Optimization & Cost Controls". Animated graphs show token burn rates dropping while performance spikes.
+          </div>
+        </div>
+        <div style="margin-top: 1rem; display:flex; justify-content:center; gap:0.6rem;">
+          <button class="btn btn-secondary btn-sm" onclick="speakText(document.getElementById('prompter-vo').innerText)">
+            🔊 Hear Reference Voice (TTS)
+          </button>
+          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard(document.getElementById('prompter-vo').innerText, 'VO copied!')">
+            📋 Copy Script
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stage 5: Multi-Platform Distribution & Funnel -->
+    <section id="stage-5" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-emerald);">🚀</div>
+          <div>
+            <h3 class="section-title">Stage 5: Multi-Platform Distribution & The Skool Value Flywheel</h3>
+            <p class="section-subtitle">Distribute the 3-minute video freely across YouTube, LinkedIn, X, and Skool to drive developer engagement into structured value tiers.</p>
+          </div>
+        </div>
+        <span class="badge-pill">Free Distribution ➔ Community Value</span>
+      </div>
+
+      <!-- Flywheel Cards -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin-bottom: 0.9rem;">
+        🔄 The Skool Community Value Flywheel
+      </h4>
+      <div class="flywheel-grid" id="flywheel-container">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Channel Distribution Cards -->
+      <h4 style="font-size: 1rem; font-weight: 700; color: #ffffff; margin: 1.5rem 0 0.9rem 0;">
+        📤 Social Channel Post Generators
+      </h4>
+      <div class="distribution-grid">
+        <div class="distribution-card">
+          <div class="dist-header">
+            <h4>🔴 YouTube & Chapters</h4>
+            <button class="btn btn-secondary btn-sm" onclick="generateYouTubeChapters()">📋 Copy Chapters</button>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted);">
+            Full video description with 22 chapter timestamps matching 8-second scene boundaries.
+          </p>
+          <div class="dist-content">0:00 Hook: Token Optimization
+0:08 Custom Antigravity IDE
+0:16 Strategic Model Switching
+0:24 Parallel Tool Usage
+0:32 Mystery of 0% Dashboard...</div>
+        </div>
+
+        <div class="distribution-card">
+          <div class="dist-header">
+            <h4>💼 LinkedIn Article / Post</h4>
+            <button class="btn btn-secondary btn-sm" onclick="generateLinkedInPost()">📋 Copy Post</button>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted);">
+            High-engagement professional breakdown summarizing the 5 token optimization pillars.
+          </p>
+          <div class="dist-content">🚀 Claude Developer Certification: Token Optimization...
+1️⃣ Dynamic Model Routing
+2️⃣ Asynchronous Quota
+3️⃣ Antigravity IDE Controls...</div>
+        </div>
+
+        <div class="distribution-card">
+          <div class="dist-header">
+            <h4>🐦 X (Twitter) Thread</h4>
+            <button class="btn btn-secondary btn-sm" onclick="generateXThread()">📋 Copy Thread</button>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted);">
+            Rapid-fire 5-tweet thread summarizing model routing and linking to the Skool community.
+          </p>
+          <div class="dist-content">🧵 Master Token Optimization & Custom IDE Routing in 3 Minutes:
+1/ How to scale AI developer tooling...</div>
+        </div>
+
+        <div class="distribution-card">
+          <div class="dist-header">
+            <h4>📝 Subtitles (SRT)</h4>
+            <button class="btn btn-primary btn-sm" onclick="generateSRT()">📥 Download .SRT</button>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted);">
+            Download synchronized .SRT caption file for YouTube, LinkedIn, and Canva uploads.
+          </p>
+          <div class="dist-content">1
+00:00:00,000 --> 00:00:08,000
+Welcome! In this guide, we explore...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Master 22-Scene Storyboard Matrix -->
+    <section id="storyboard-section" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-cyan);">📋</div>
+          <div>
+            <h3 class="section-title">Master 22-Scene Storyboard & Prompt Matrix</h3>
+            <p class="section-subtitle">Complete scene-by-scene script, visual directions, Google Flow generation prompts, and VO audio controls.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Controls, Search, and Filters -->
+      <div class="storyboard-controls">
+        <input type="text" id="scene-search" class="search-input" placeholder="🔍 Search scenes, prompts, keywords...">
+        
+        <div class="filter-pills">
+          <button class="filter-btn active" data-filter="all">All (22)</button>
+          <button class="filter-btn" data-filter="pre-prod">Pre-Prod (1)</button>
+          <button class="filter-btn" data-filter="prod">Prod (19)</button>
+          <button class="filter-btn" data-filter="post-prod">Post-Prod (2)</button>
+          <button class="filter-btn" data-filter="completed">Completed</button>
+          <button class="filter-btn" data-filter="pending">Pending</button>
+        </div>
+      </div>
+
+      <!-- Scenes Grid -->
+      <div class="scenes-grid" id="scenes-container">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- Export & Utilities Section -->
+    <section id="export-section" class="workflow-section">
+      <div class="section-header">
+        <div class="section-title-wrap">
+          <div class="section-badge" style="color: var(--accent-amber);">📤</div>
+          <div>
+            <h3 class="section-title">Export & Production Utilities</h3>
+            <p class="section-subtitle">Export the full project in multiple formats for archiving, pairing, or importing into external tools.</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <button class="btn btn-secondary" onclick="exportFullMarkdown()">
+          📄 Export Full Markdown Script
+        </button>
+        <button class="btn btn-secondary" onclick="exportJSON()">
+          💾 Export JSON Data
+        </button>
+        <button class="btn btn-secondary" onclick="generateSRT()">
+          📝 Download SRT Captions
+        </button>
+        <button class="btn btn-secondary" onclick="generateYouTubeChapters()">
+          🔴 Copy YouTube Description
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+    <div class="footer-links">
+      <a href="https://www.skool.com/delivery-pilot-8938/classroom/2193c55b?md=d5f6b19d348d4f28a062641d2fc3e4df" target="_blank" rel="noopener noreferrer">🏫 Skool Classroom</a>
+      <a href="https://gemini.google.com/app/5778f4a7d4e60f03" target="_blank" rel="noopener noreferrer">🤖 Gemini App</a>
+      <a href="https://labs.google/flow" target="_blank" rel="noopener noreferrer">🎬 Google Flow</a>
+      <a href="https://www.canva.com" target="_blank" rel="noopener noreferrer">🎨 Canva</a>
+      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repository</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Additional Export Utility Functions
+    function copyAllFlowPrompts() {
+      const allPrompts = window.VIDEO_DATA.scenes.map(s => `Scene ${s.id} (${s.timecode}):\n${s.googleFlowPrompt}`).join('\n\n');
+      window.copyToClipboard(allPrompts, 'All 22 Google Flow Prompts Copied!');
+    }
+
+    function exportFullMarkdown() {
+      const d = window.VIDEO_DATA;
+      let md = `# ${d.title}\n\n`;
+      md += `**Total Duration**: ~3 minutes (22 Scenes × 8 seconds = 176 seconds / ~2.9 minutes)\n\n---\n\n`;
+      d.scenes.forEach(s => {
+        md += `### **Scene ${s.id} (${s.timecode})**\n\n`;
+        md += `* **Visual**: ${s.visual}\n`;
+        md += `* **Google Flow Prompt**: \`${s.googleFlowPrompt}\`\n`;
+        md += `* **Voice-over**: "${s.vo}"\n\n---\n\n`;
+      });
+      const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'claude_developer_certification_script.md';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportJSON() {
+      const json = JSON.stringify(window.VIDEO_DATA, null, 2);
+      const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'video_production_data.json';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }
+  </script>
+</body>
+</html>
