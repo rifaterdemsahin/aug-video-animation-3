@@ -66,405 +66,355 @@
         </div>
       </section>
 
-      <!-- SECTION 1: Pure HTML Vertical Pipeline Workflow & Feedback Studio -->
-      <section class="html-pipeline-container">
-        <!-- Header -->
-        <div class="html-pipeline-header">
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
-            <span style="font-size: 1.5rem;">⚡</span>
-            <div>
-              <h3 style="font-size: 1.05rem; font-weight: 800; color: #ffffff;">Interactive Vertical Pipeline Workflow & Feedback Engine</h3>
-              <p style="font-size: 0.75rem; color: var(--text-muted);">
-                Type notes & prompts on the <strong>Left</strong>, monitor the <strong>Center Pipeline</strong>, and record bottlenecks/feedback on the <strong>Right</strong>.
-              </p>
+      <!-- SECTION 1: Exact 3-Column Vertical Production Pipeline Board -->
+      <div class="board-container">
+        <!-- Header Section -->
+        <div class="header-grid">
+          <div class="header-left">📝 LEFT NOTE ZONE: Inputs, Prompts & Research</div>
+          <div class="header-center">⚡ PRODUCTION PIPELINE (TOP ➔ BOTTOM)</div>
+          <div class="header-right">💡 RIGHT NOTE ZONE: Reviews, Feedback & Gaps</div>
+        </div>
+
+        <!-- STAGE 1 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'left', '📌 Prompt:')">+ Prompt</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'left', '🔗 Link:')">+ Link</span>
+              </div>
+            </div>
+            <div class="note-content">📌 Prompts, research links & raw module notes</div>
+            <textarea class="note-textarea" data-stage="stage_1" data-side="left" placeholder="Enter input topics, research notes, and prompt tweaks for Stage 1..."></textarea>
+          </div>
+
+          <div class="stage-card stage-1">
+            <div class="stage-title">
+              <span>🏫 Stage 1: Skool Ideation & Setup</span>
+              <a href="pipeline.html#stage-1" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
+            <div class="stage-description">
+              Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.
             </div>
           </div>
 
-          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
-            <button class="btn btn-primary btn-sm" onclick="copyAllPipelineFeedback()" title="Copy all pipeline feedback to clipboard" style="box-shadow: 0 0 15px rgba(6, 182, 212, 0.3);">
-              📋 Copy Feedback
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="exportFeedbackMarkdown()" title="Export notes as Markdown file">
-              📄 Export .MD
-            </button>
-            <button class="btn btn-cloud btn-sm" onclick="savePipelineFeedbackState()" title="Save feedback to Azure state">
-              ☁️ Save State
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="clearAllFeedbackNotes()" title="Reset notes">
-              🗑️ Reset
-            </button>
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'right', '✅ Approved:')">+ Approved</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'right', '⚠️ Blocker:')">+ Blocker</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Topic approval & scope bottlenecks</div>
+            <textarea class="note-textarea" data-stage="stage_1" data-side="right" placeholder="Enter review feedback, scope checks, and bottlenecks for Stage 1..."></textarea>
           </div>
         </div>
 
-        <!-- Column Headers -->
-        <div class="pipeline-columns-header">
-          <div class="col-header-left">
-            <span>📝</span> Inputs, Prompts & Research
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow"></div>
+        </div>
+
+        <!-- STAGE 2 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'left', '🤖 Gemini:')">+ Gemini</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'left', '⏱️ 8s Rule:')">+ 8s Rule</span>
+              </div>
+            </div>
+            <div class="note-content">📌 Master Gemini prompt tweaks & scene scripts</div>
+            <textarea class="note-textarea" data-stage="stage_2" data-side="left" placeholder="Enter Gemini prompt template and 8s scene pacing constraints..."></textarea>
           </div>
-          <div class="col-header-center">
-            <span>⚡</span> Vertical Pipeline (Top ➔ Bottom)
+
+          <div class="stage-card stage-2">
+            <div class="stage-title">
+              <span>🤖 Stage 2: Gemini Script & 8s Prompts</span>
+              <a href="pipeline.html#stage-2" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
+            <div class="stage-description">
+              Generate 22 scenes × 8s pacing (176s) with strict 18-22 word voice-over lines.
+            </div>
           </div>
-          <div class="col-header-right">
-            <span>💡</span> Reviews, Feedback & Gaps
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'right', '✂️ Trim:')">+ Trim</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'right', '🎯 Cadence:')">+ Cadence</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Word count cadence & pacing checks</div>
+            <textarea class="note-textarea" data-stage="stage_2" data-side="right" placeholder="Check word counts (<22 words) and VO flow consistency..."></textarea>
           </div>
         </div>
 
-        <!-- 8 Stages Stack -->
-        <div class="pipeline-stages-stack">
-
-          <!-- STAGE 1 -->
-          <div class="pipeline-stage-row">
-            <!-- Left Note -->
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 1 Inputs & Prompts</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'left', '📌 Prompt:')">+ Prompt</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'left', '🔗 Link:')">+ Link</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_1" data-side="left" placeholder="Enter input topics, research notes, and prompt tweaks for Stage 1..."></textarea>
-            </div>
-
-            <!-- Center Stage Card -->
-            <div class="pipeline-center-card" style="border-color: #f59e0b;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🏫 Stage 1: Skool Ideation & Setup</span>
-                <span class="stage-duration-pill">⏱️ 15-20 min (13%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Extract classroom topic, capture real UI screenshots (127.0.0.1:3847), and establish signature Roger Rabbit animation style.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: Topic Brief & UI Assets</span>
-                <a href="pipeline.html#stage-1" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
-              </div>
-            </div>
-
-            <!-- Right Note -->
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 1 Review & Feedback</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'right', '✅ Approved:')">+ Approved</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_1', 'right', '⚠️ Blocker:')">+ Blocker</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_1" data-side="right" placeholder="Enter review feedback, scope checks, and bottlenecks for Stage 1..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 2 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 2 Script Prompts</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'left', '🤖 Gemini:')">+ Gemini</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'left', '⏱️ 8s Rule:')">+ 8s Rule</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_2" data-side="left" placeholder="Enter Gemini prompt template and 8s scene pacing constraints..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #06b6d4;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🤖 Stage 2: Gemini Script & 8s Prompts</span>
-                <span class="stage-duration-pill">⏱️ 10-15 min (9%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Generate 22 scene slices × 8 seconds (176s total) with strict 18–22 word voice-over lines and visual descriptions.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: 22-Scene Script Matrix</span>
-                <a href="pipeline.html#stage-2" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 2 Rhythm & Pacing Review</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'right', '✂️ Trim:')">+ Trim</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2', 'right', '🎯 Cadence:')">+ Cadence</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_2" data-side="right" placeholder="Check word counts (<22 words) and VO flow consistency..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 2.5 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 2.5 Dual-Pane Setup</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'left', '🪟 Left Win:')">+ Left Win</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'left', '🪟 Right Win:')">+ Right Win</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_2_5" data-side="left" placeholder="Configure split-view screen layout and 14-tab cockpit tabs..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #38bdf8;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🪟 Stage 2.5: Simulation & Dual Setup</span>
-                <span class="stage-duration-pill">⏱️ 5 min (4%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Split-screen bridge: Left window Gemini prompt generator paired with Right window Google Flow generation queue.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: Dual Cockpit Staging</span>
-                <a href="pipeline.html#simulation-stage" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 2.5 Handoff Friction</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'right', '⚡ Speed:')">+ Speed</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'right', '🌐 Tabs:')">+ Tabs</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_2_5" data-side="right" placeholder="Log window arrangement notes and multi-tab switching speed..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 3 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 3 Flow Prompts & Style</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'left', '🎬 Camera:')">+ Camera</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'left', '🪙 Credits:')">+ Credits</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_3" data-side="left" placeholder="Veo prompt parameters, isometric styling, and camera motion settings..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #a855f7;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🎬 Stage 3: Google Flow 8s Generation</span>
-                <span class="stage-duration-pill">⏱️ 25-35 min (22%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Batch render 22 8s clips in Google Flow (15 credits/scene = 330 base credits). Reserve 25% retake buffer.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: 22 8s MP4 Render Clustered</span>
-                <a href="pipeline.html#stage-3" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 3 Retakes & Credit Burn</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'right', '🔄 Retake:')">+ Retake</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'right', '🪙 Budget:')">+ Budget</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_3" data-side="right" placeholder="Log clips requiring re-generation or style-drift fixes..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE QC -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage QC Shotlist & Sorting</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'left', '🗂️ Used Asset:')">+ Used Asset</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'left', '📋 Shotlist:')">+ Shotlist</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_qc" data-side="left" placeholder="Sort clips 1-by-1 from 'aug video 3' to 'used asset' with shotlist in hand..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #fb7185;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🧪 Stage QC: Quality Gate & Gap Audit</span>
-                <span class="stage-duration-pill">⏱️ 10-15 min (9%)</span>
-              </div>
-              <p class="stage-desc-text">
-                <strong>CRITICAL QUALITY GATE:</strong> Verify zero timeline gaps, eliminate text hallucination risks, and audit footage completeness before audio recording.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Gate: Pass/Fail Checklist</span>
-                <a href="qc-budget.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🧪 Open Gate ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage QC Gap Audit Log</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'right', '🚨 Gap Found:')">+ Gap Found</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'right', '✅ QC Pass:')">+ QC Pass</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_qc" data-side="right" placeholder="Log any missing footage cuts, black frames, or hallucinated code text..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 4 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 4 Canva Workspace</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'left', '📌 3-Section:')">+ 3-Section</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'left', '🎬 BG Video:')">+ BG Video</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_4" data-side="left" placeholder="Configure Canva 3-Section workspace, Post-it staging, and 22 8s slots..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #f43f5e;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🎨 Stage 4: Canva 3-Section Timeline</span>
-                <span class="stage-duration-pill">⏱️ 30-45 min (26%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Pre-prod Post-its on left ➔ Bulk paste 22 8s placeholders on timeline ➔ Set Video as Background ➔ Scrub for blank gaps.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: Master 176s Video Cut</span>
-                <a href="pipeline.html#stage-4" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 4 Timeline Alignment Check</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'right', '🧩 Overlay:')">+ Overlay</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'right', '✂️ Cut Fix:')">+ Cut Fix</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_4" data-side="right" placeholder="Log transition pacing, text overlay positioning, and timeline sync..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 4.5 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 4.5 Teleprompter Settings</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'left', '🎙️ 150 WPM:')">+ 150 WPM</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'left', '🔊 Metronome:')">+ Metronome</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_4_5" data-side="left" placeholder="Configure 8s countdown studio, audio metronome cues, and mic gain..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #34d399;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🎙️ Stage 4.5: 8s VO Studio & Rehearsal</span>
-                <span class="stage-duration-pill">⏱️ 15-20 min (13%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Rehearse with 8s countdown loop & metronome, record authentic voice narration, and stamp signature Roger Rabbit cartoon over IDE.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: Synced Voice-Over Master</span>
-                <a href="studio.html" class="btn btn-primary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🎙️ Launch Studio ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 4.5 Voice & Tone Audit</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'right', '🎯 Sync OK:')">+ Sync OK</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'right', '🔁 Re-record:')">+ Re-record</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_4_5" data-side="right" placeholder="Log audio sync checks, volume levels, and Roger Rabbit signature stamp..."></textarea>
-            </div>
-          </div>
-
-          <!-- Connector Arrow -->
-          <div class="pipeline-vertical-connector">
-            <span class="connector-arrow">⬇️</span>
-          </div>
-
-          <!-- STAGE 5 -->
-          <div class="pipeline-stage-row">
-            <div class="stage-note-box left-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-cyan);">📝 Stage 5 Funnel Copy & Tags</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'left', '🔴 YouTube:')">+ YouTube</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'left', '💼 LinkedIn:')">+ LinkedIn</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_5" data-side="left" placeholder="Prepare YouTube description, 22-chapter timestamps, and Skool community post..."></textarea>
-            </div>
-
-            <div class="pipeline-center-card" style="border-color: #10b981;">
-              <div class="stage-header-row">
-                <span class="stage-title-text">🚀 Stage 5: Multi-Platform Funnel</span>
-                <span class="stage-duration-pill">⏱️ 15-20 min (11%)</span>
-              </div>
-              <p class="stage-desc-text">
-                Export 1080p 60fps MP4, generate 22-chapter YouTube description, publish LinkedIn value post & feed the Skool Value Flywheel.
-              </p>
-              <div class="stage-card-actions">
-                <span style="font-size: 0.7rem; color: var(--text-dim);">Deliverable: Published Multi-Channel Funnel</span>
-                <a href="distribution.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🚀 Open Funnel ↗</a>
-              </div>
-            </div>
-
-            <div class="stage-note-box right-note">
-              <div class="note-box-header">
-                <span style="color: var(--accent-rose);">💡 Stage 5 Community Feedback & Analytics</span>
-                <div class="note-quick-tags">
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'right', '📈 Engagement:')">+ Engagement</span>
-                  <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'right', '💬 Feedback:')">+ Feedback</span>
-                </div>
-              </div>
-              <textarea class="note-textarea" data-stage="stage_5" data-side="right" placeholder="Log student reactions, retention metrics, and future episode topics..."></textarea>
-            </div>
-          </div>
-
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-cyan"></div>
         </div>
 
-        <!-- Feedback Bottom Sticky Action Bar (Prominent Copy Button) -->
+        <!-- STAGE 2.5 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'left', '🪟 Left Win:')">+ Left Win</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'left', '🪟 Right Win:')">+ Right Win</span>
+              </div>
+            </div>
+            <div class="note-content">📌 Dual-pane window config & FlyWheelMVP tabs</div>
+            <textarea class="note-textarea" data-stage="stage_2_5" data-side="left" placeholder="Configure split-view screen layout and 14-tab cockpit tabs..."></textarea>
+          </div>
+
+          <div class="stage-card stage-2-5">
+            <div class="stage-title">
+              <span>🪟 Stage 2.5: Simulation & Dual Setup</span>
+              <a href="pipeline.html#simulation-stage" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 5 min (4%)</div>
+            <div class="stage-description">
+              Split-view staging: Gemini prompt director paired with Google Flow generation queue.
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'right', '⚡ Speed:')">+ Speed</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_2_5', 'right', '🌐 Tabs:')">+ Tabs</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Multi-tab switching & handoff friction</div>
+            <textarea class="note-textarea" data-stage="stage_2_5" data-side="right" placeholder="Log window arrangement notes and multi-tab switching speed..."></textarea>
+          </div>
+        </div>
+
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-sky"></div>
+        </div>
+
+        <!-- STAGE 3 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'left', '🎬 Camera:')">+ Camera</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'left', '🪙 Credits:')">+ Credits</span>
+              </div>
+            </div>
+            <div class="note-content">📌 Veo prompt templates & camera motion presets</div>
+            <textarea class="note-textarea" data-stage="stage_3" data-side="left" placeholder="Veo prompt parameters, isometric styling, and camera motion settings..."></textarea>
+          </div>
+
+          <div class="stage-card stage-3">
+            <div class="stage-title">
+              <span>🎬 Stage 3: Google Flow 8s Generation</span>
+              <a href="pipeline.html#stage-3" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 25-35 min (22%)</div>
+            <div class="stage-description">
+              Batch render 22 8s clips in Google Flow (15 credits/ea = 330 base credits).
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'right', '🔄 Retake:')">+ Retake</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_3', 'right', '🪙 Budget:')">+ Budget</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Retakes (~25% buffer) & credit monitoring</div>
+            <textarea class="note-textarea" data-stage="stage_3" data-side="right" placeholder="Log clips requiring re-generation or style-drift fixes..."></textarea>
+          </div>
+        </div>
+
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-purple"></div>
+        </div>
+
+        <!-- STAGE QC ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'left', '🗂️ Used Asset:')">+ Used Asset</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'left', '📋 Shotlist:')">+ Shotlist</span>
+              </div>
+            </div>
+            <div class="note-content">📌 22-scene shotlist & text hallucination rules</div>
+            <textarea class="note-textarea" data-stage="stage_qc" data-side="left" placeholder="Sort clips 1-by-1 from 'aug video 3' to 'used asset' with shotlist in hand..."></textarea>
+          </div>
+
+          <div class="stage-card stage-qc">
+            <div class="stage-title">
+              <span>🧪 Stage QC: Quality Gate & Gap Audit</span>
+              <a href="qc-budget.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🧪 Open Gate ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
+            <div class="stage-description">
+              <strong>CRITICAL GATE:</strong> Sort footages to used asset & verify zero timeline gaps with shotlist in hand.
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'right', '🚨 Gap Found:')">+ Gap Found</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_qc', 'right', '✅ QC Pass:')">+ QC Pass</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Blocker alert: Black gaps or missing clips</div>
+            <textarea class="note-textarea" data-stage="stage_qc" data-side="right" placeholder="Log any missing footage cuts, black frames, or hallucinated code text..."></textarea>
+          </div>
+        </div>
+
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-rose"></div>
+        </div>
+
+        <!-- STAGE 4 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'left', '📌 3-Section:')">+ 3-Section</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'left', '🎬 BG Video:')">+ BG Video</span>
+              </div>
+            </div>
+            <div class="note-content">📌 8s placeholder container & track stacking</div>
+            <textarea class="note-textarea" data-stage="stage_4" data-side="left" placeholder="Configure Canva 3-Section workspace, Post-it staging, and 22 8s slots..."></textarea>
+          </div>
+
+          <div class="stage-card stage-4">
+            <div class="stage-title">
+              <span>🎨 Stage 4: Canva 3-Section Timeline</span>
+              <a href="pipeline.html#stage-4" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 30-45 min (26%)</div>
+            <div class="stage-description">
+              Pre-prod Post-its ➔ Bulk paste 22 8s placeholders ➔ Set Video as Background.
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'right', '🧩 Overlay:')">+ Overlay</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4', 'right', '✂️ Cut Fix:')">+ Cut Fix</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Move footages one-by-one to used asset</div>
+            <textarea class="note-textarea" data-stage="stage_4" data-side="right" placeholder="Log transition pacing, text overlay positioning, and timeline sync..."></textarea>
+          </div>
+        </div>
+
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-pink"></div>
+        </div>
+
+        <!-- STAGE 4.5 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'left', '🎙️ 150 WPM:')">+ 150 WPM</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'left', '🔊 Metronome:')">+ Metronome</span>
+              </div>
+            </div>
+            <div class="note-content">📌 Teleprompter speed, audio cues & mic settings</div>
+            <textarea class="note-textarea" data-stage="stage_4_5" data-side="left" placeholder="Configure 8s countdown studio, audio metronome cues, and mic gain..."></textarea>
+          </div>
+
+          <div class="stage-card stage-4-5">
+            <div class="stage-title">
+              <span>🎙️ Stage 4.5: 8s VO Studio & Rehearsal</span>
+              <a href="studio.html" class="btn btn-primary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🎙️ Launch Studio ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
+            <div class="stage-description">
+              Rehearse with 8s countdown loop & metronome, record authentic VO & apply Roger stamp.
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'right', '🎯 Sync OK:')">+ Sync OK</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_4_5', 'right', '🔁 Re-record:')">+ Re-record</span>
+              </div>
+            </div>
+            <div class="note-content">💡 VO beat sync & Roger Rabbit cartoon stamp</div>
+            <textarea class="note-textarea" data-stage="stage_4_5" data-side="right" placeholder="Log audio sync checks, volume levels, and Roger Rabbit signature stamp..."></textarea>
+          </div>
+        </div>
+
+        <!-- Arrow Connector -->
+        <div class="arrow-container">
+          <div class="arrow arrow-emerald"></div>
+        </div>
+
+        <!-- STAGE 5 ROW -->
+        <div class="pipeline-row">
+          <div class="note-card left-card">
+            <div class="note-title">
+              <span>✏️ LEFT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'left', '🔴 YouTube:')">+ YouTube</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'left', '💼 LinkedIn:')">+ LinkedIn</span>
+              </div>
+            </div>
+            <div class="note-content">📌 SRT subtitles, social post copy & tags</div>
+            <textarea class="note-textarea" data-stage="stage_5" data-side="left" placeholder="Prepare YouTube description, 22-chapter timestamps, and Skool community post..."></textarea>
+          </div>
+
+          <div class="stage-card stage-5">
+            <div class="stage-title">
+              <span>🚀 Stage 5: Multi-Platform Funnel</span>
+              <a href="distribution.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🚀 Open Funnel ↗</a>
+            </div>
+            <div class="duration-badge">⏱️ Duration: 15-20 min (11%)</div>
+            <div class="stage-description">
+              Export 1080p 60fps MP4, generate 22-chapter YouTube description, LinkedIn & Skool flywheel.
+            </div>
+          </div>
+
+          <div class="note-card right-card">
+            <div class="note-title">
+              <span>✏️ RIGHT NOTE AREA</span>
+              <div class="note-quick-tags">
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'right', '📈 Engagement:')">+ Engagement</span>
+                <span class="quick-tag-chip" onclick="insertQuickTag('stage_5', 'right', '💬 Feedback:')">+ Feedback</span>
+              </div>
+            </div>
+            <div class="note-content">💡 Value flywheel conversion & student feedback</div>
+            <textarea class="note-textarea" data-stage="stage_5" data-side="right" placeholder="Log student reactions, retention metrics, and future episode topics..."></textarea>
+          </div>
+        </div>
+
+        <!-- Feedback Bottom Sticky Action Bar (Prominent 1-Click Copy Button) -->
         <div class="feedback-bottom-bar">
           <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
             <button class="btn btn-primary" onclick="copyAllPipelineFeedback()" style="font-size: 0.95rem; font-weight: 700; padding: 0.65rem 1.4rem; box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);">
@@ -485,7 +435,7 @@
           </div>
         </div>
 
-      </section>
+      </div>
 
       <!-- (Sections 2 and 3 moved to dedicated pages pipeline.html and workspaces.html) -->
 
