@@ -19,12 +19,13 @@
 
 ## 🧭 Multi-Page Architecture & Distinct Workspaces
 
-The application is structured into **7 dedicated, logically grouped pages** with a shared top navigation header:
+The application is structured into **8 dedicated, logically grouped pages** with a sleek **Right-Hand Side (RHS) Vertical Navigation Sidebar**:
 
 | Group | Emoji & Page | File | Purpose & Operational Flow |
 | :--- | :--- | :--- | :--- |
-| **🎬 Overview** | 🎯 **Pipeline Intro & Status** | [`index.html`](index.html) | Primary production hub: stage roadmap, duration breakdown (~2.25h), real-time progress monitor, and workspace directory. |
-| **🎬 Overview** | ⚡ **Stages Deep-Dive** | [`pipeline.html`](pipeline.html) | Step-by-step guides for Stages 1 to 5, split-view simulations, Canva 3-Section workspace, and Azure-synced checklists. |
+| **🎬 Overview** | 🎯 **Pipeline & Excalidraw** | [`index.html`](index.html) | Laser-focused interactive vertical whiteboard: sketch, annotate notes on both sides of every stage, and export feedback PNG. |
+| **🎬 Overview** | ⚡ **Stages Deep-Dive** | [`pipeline.html`](pipeline.html) | Complete 8-stage timing breakdown (~2.25h), simulation split-views, Canva 3-Section workspace, and Azure checklists. |
+| **🎬 Overview** | 🧭 **Workspaces Portal** | [`workspaces.html`](workspaces.html) | Dedicated directory portal mapping out all specialized production workspaces and application hubs. |
 | **🎨 Production** | 📋 **22-Scene Storyboard** | [`storyboard.html`](storyboard.html) | Master 22-scene matrix (8s slices), Google Flow prompts, VO scripts, word count checker, and tri-state status toggles. |
 | **🎨 Production** | 🎙️ **8s VO Studio** | [`studio.html`](studio.html) | Dedicated voice recording booth with 8-second countdown timer, metronome audio cues, and speech synthesis reference. |
 | **🛠️ Tools & QC** | 🌐 **Chrome Cockpit** | [`tools.html`](tools.html) | 14-Tab Chrome cockpit map, 8 core software platforms, and tool-to-stage integration matrix. |

@@ -3,11 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>📋 Master 22-Scene Storyboard & Prompt Matrix | 3-Min Animation Suite</title>
+  <title>🧭 Dedicated Application Workspaces Directory | 3-Min Animation Suite</title>
   <link rel="stylesheet" href="css/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    .workspaces-hero {
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.25), rgba(15, 23, 42, 0.9));
+      border: 1px solid rgba(59, 130, 246, 0.4);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+    }
+  </style>
 </head>
 <body>
 
@@ -17,64 +27,39 @@
     <main class="main-content-area">
 
       <!-- Hero Banner -->
-      <section class="hero-banner">
-        <div class="hero-content">
-          <div class="hero-tag">📋 Master Storyboard & Prompt Matrix</div>
-          <h2 class="hero-title">22 Scenes × 8-Second Production Framework (176s)</h2>
-          <p class="hero-desc">
-            Scene-by-scene script breakdown, Google Flow generation prompts, 18–22 word voice-over lines, real-time tri-state progress toggling, and instant audio TTS rehearsal.
-          </p>
+      <section class="workspaces-hero">
+        <div class="hero-tag" style="color:var(--accent-cyan);">🧭 Application Suite Navigation & Portal Hub</div>
+        <h2 class="hero-title">Dedicated Application Workspaces Directory</h2>
+        <p class="hero-desc">
+          Every stage of the 3-minute video production operating system is decoupled into a dedicated, high-speed workspace. Jump directly into any specialized tool, rehearsal studio, storyboard matrix, or QC gate below.
+        </p>
 
-          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top: 1rem;">
-            <button class="btn btn-primary btn-sm" onclick="copyAllFlowPrompts()">
-              📋 Copy All 22 Flow Prompts
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="exportFullMarkdown()">
-              📄 Export Markdown Script
-            </button>
-            <button class="btn btn-secondary btn-sm" onclick="exportJSON()">
-              💾 Export JSON Data
-            </button>
-            <a href="studio.html" class="btn btn-accent btn-sm">
-              🎙️ Launch Teleprompter Studio ↗
-            </a>
-          </div>
+        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top: 1.25rem;">
+          <a href="index.html" class="btn btn-primary btn-sm">🎯 Pipeline & Whiteboard</a>
+          <a href="pipeline.html" class="btn btn-secondary btn-sm">⚡ Stages Deep-Dive</a>
+          <a href="storyboard.html" class="btn btn-secondary btn-sm">📋 22-Scene Storyboard</a>
+          <a href="studio.html" class="btn btn-secondary btn-sm">🎙️ 8s VO Studio</a>
+          <a href="tools.html" class="btn btn-secondary btn-sm">🌐 Chrome Cockpit</a>
+          <a href="qc-budget.html" class="btn btn-secondary btn-sm">🧪 QC & Budget Gate</a>
+          <a href="distribution.html" class="btn btn-secondary btn-sm">📤 Social & Flywheel</a>
         </div>
       </section>
 
-      <!-- Master 22-Scene Storyboard Matrix -->
-      <section id="storyboard-section" class="workflow-section">
+      <!-- SECTION: Distinct Workspaces Directory Grid -->
+      <section class="workflow-section">
         <div class="section-header">
           <div class="section-title-wrap">
-            <div class="section-badge" style="color: var(--accent-cyan);">📋</div>
+            <div class="section-badge" style="color: var(--accent-cyan);">🧭</div>
             <div>
-              <h3 class="section-title">22-Scene Storyboard, Visuals & Script Matrix</h3>
-              <p class="section-subtitle">Click status pills (⚪ Todo / 🟡 In Prog / 🟢 Done) to update progress. All changes auto-sync to Azure Files.</p>
+              <h3 class="section-title">Specialized Production Workspaces</h3>
+              <p class="section-subtitle">Detailed breakdown of what happens in each distinct page with direct access portals.</p>
             </div>
           </div>
-          <div style="display:flex; gap:0.5rem; align-items:center;">
-            <span id="stat-completed-scenes" class="badge-pill">0 / 22 Ready</span>
-          </div>
+          <span class="badge-pill">7 Modular Workspaces</span>
         </div>
 
-        <!-- Controls, Search, and Filters -->
-        <div class="storyboard-controls">
-          <input type="text" id="scene-search" class="search-input" placeholder="🔍 Search scenes, prompts, keywords...">
-          
-          <div class="filter-pills">
-            <button class="filter-btn active" data-filter="all">All (22)</button>
-            <button class="filter-btn" data-filter="pre-prod">Pre-Prod (1)</button>
-            <button class="filter-btn" data-filter="prod">Prod (19)</button>
-            <button class="filter-btn" data-filter="post-prod">Post-Prod (2)</button>
-            <button class="filter-btn" data-filter="completed">🟢 Done</button>
-            <button class="filter-btn" data-filter="in_progress">🟡 In Progress</button>
-            <button class="filter-btn" data-filter="pending">⚪ Todo</button>
-          </div>
-        </div>
-
-        <!-- Scenes Grid rendered by JS -->
-        <div class="scenes-grid" id="scenes-container">
-          <!-- Rendered by JS -->
+        <div id="distinct-pages-directory-grid" class="page-directory-grid">
+          <!-- Rendered dynamically by js/app.js -->
         </div>
       </section>
 
@@ -134,7 +119,7 @@
               <span class="link-label"><span>⚡</span> Stages Deep-Dive</span>
               <span class="link-badge">5 Stages</span>
             </a>
-            <a href="workspaces.html" class="rhs-nav-link">
+            <a href="workspaces.html" class="rhs-nav-link active">
               <span class="link-label"><span>🧭</span> Workspaces Portal</span>
               <span class="link-badge">7 Pages</span>
             </a>
@@ -144,7 +129,7 @@
         <div class="rhs-nav-group">
           <div class="rhs-group-title"><span>🎨</span> Production Studio</div>
           <div class="rhs-nav-links">
-            <a href="storyboard.html" class="rhs-nav-link active">
+            <a href="storyboard.html" class="rhs-nav-link">
               <span class="link-label"><span>📋</span> 22-Scene Storyboard</span>
               <span class="link-badge">176s</span>
             </a>
@@ -198,45 +183,5 @@
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
-  <script>
-    function copyAllFlowPrompts() {
-      const allPrompts = window.VIDEO_DATA.scenes.map(s => `Scene ${s.id} (${s.timecode}):\n${s.googleFlowPrompt}`).join('\n\n');
-      window.copyToClipboard(allPrompts, 'All 22 Google Flow Prompts Copied!');
-    }
-
-    function exportFullMarkdown() {
-      const d = window.VIDEO_DATA;
-      let md = `# ${d.title}\n\n`;
-      md += `**Total Duration**: ~3 minutes (22 Scenes × 8 seconds = 176 seconds / ~2.9 minutes)\n\n---\n\n`;
-      d.scenes.forEach(s => {
-        md += `### **Scene ${s.id} (${s.timecode})**\n\n`;
-        md += `* **Visual**: ${s.visual}\n`;
-        md += `* **Google Flow Prompt**: \`${s.googleFlowPrompt}\`\n`;
-        md += `* **Voice-over**: "${s.vo}"\n\n---\n\n`;
-      });
-      const blob = new Blob([md], { type: 'text/markdown;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'claude_developer_certification_script.md';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-
-    function exportJSON() {
-      const json = JSON.stringify(window.VIDEO_DATA, null, 2);
-      const blob = new Blob([json], { type: 'application/json;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'video_production_data.json';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    }
-  </script>
 </body>
 </html>
