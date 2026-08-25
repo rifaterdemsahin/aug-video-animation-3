@@ -14,7 +14,9 @@ window.VIDEO_DATA = {
     googleFlow: "https://labs.google/flow",
     youtubeStudio: "https://studio.youtube.com",
     linkedinPost: "https://www.linkedin.com/feed/",
-    xPost: "https://x.com/compose/post"
+    xPost: "https://x.com/compose/post",
+    rogerRabbitRepo: "https://github.com/rifaterdemsahin/roger-rabbit/tree/main",
+    rogerRabbitLive: "https://rifaterdemsahin.github.io/roger-rabbit/"
   },
   azureConfig: {
     storageAccount: "animationasistant",
@@ -32,7 +34,7 @@ window.VIDEO_DATA = {
       items: [
         { id: "s1-review-video", label: "Review source classroom module & discussion threads in Skool." },
         { id: "s1-research-pics", label: "Extract subject research pictures, Antigravity IDE UI screens & benchmarks." },
-        { id: "s1-roger-rabbit", label: "Define Roger Rabbit signature styling (cartoon overlays over real IDE at 127.0.0.1:3847)." }
+        { id: "s1-roger-rabbit", label: "Define Roger Rabbit signature styling (cartoon overlays over real IDE at 127.0.0.1:3847, see roger-rabbit repo)." }
       ]
     },
     {
@@ -84,8 +86,9 @@ window.VIDEO_DATA = {
         { id: "s4-create-used-assets-folder", label: "Create 'used asset' subfolder inside 'aug video 3' to store placed clips." },
         { id: "s4-preprod-postits", label: "Pre-Prod: Populate 22 digital Post-it notes with scripts along timeline." },
         { id: "s4-prod-footage", label: "Prod: Drop Google Flow 8s MP4 clips into timeline and move to 'used asset'." },
+        { id: "s4-prod-roger-rabbit", label: "Prod: Apply Roger Rabbit Signature Format (blend real IDE/screen captures with animated cartoon & La Linea line overlays via Google Flow)." },
         { id: "s4-vo-sync", label: "Post-Prod: Record master voice-over in own authentic voice." },
-        { id: "s4-roger-stamp", label: "Post-Prod: Overlay Roger Rabbit animated cartoon signature badge." },
+        { id: "s4-postprod-roger-rabbit", label: "Post-Prod: Sync Roger Rabbit character motion to VO audio beats, apply signature stamp overlay, and color-balance toon layers." },
         { id: "s4-export-master", label: "Post-Prod: Export final 1080p 60fps master video (176s)." }
       ]
     },

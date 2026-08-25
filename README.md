@@ -55,8 +55,10 @@ flowchart LR
 3. **🗃️ Subfolder `used asset`**: Create `aug video 3/used asset` to archive clips as they are dropped into the Canva timeline.
 4. **📝 Pre-prod**: Script in digital Post-it notes per 8-second timestamp.
 5. **🎥 Prod**: Drop footages from `aug video 3` into the 8s timeline tracks and move placed items into `used asset`.
-6. **🎙️ Post-prod**: VO recording in own voice, Roger Rabbit animated signature stamp, audio leveling, and master export.
-7. ☁️ **Azure Files Cloud State Synchronization**:
+6. **🐰 Prod (Roger Rabbit Format)**: Apply [Roger Rabbit Signature Format](https://github.com/rifaterdemsahin/roger-rabbit/tree/main) — composite real terminal/IDE screen captures with animated cartoon characters and *La Linea* minimalist continuous line overlays via Google Flow.
+7. **🎙️ Post-prod (VO & Sync)**: Record master voice-over in own authentic voice.
+8. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
+9. ☁️ **Azure Files Cloud State Synchronization**:
    - **Storage Account**: `animationasistant`
    - **Azure File Share**: `aug-video-state`
    - **State Payload**: `aug_video_animation_state.json`
