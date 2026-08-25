@@ -11,366 +11,300 @@
 </head>
 <body>
 
-  <!-- Shared Sticky Top Header -->
-  <header class="sticky-header">
-    <div class="header-top">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h1>3-Min Animation Video Engine</h1>
-          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
+  <div class="app-layout">
+
+    <!-- Main Content Area -->
+    <main class="main-content-area">
+      
+      <!-- Top Title & Metrics Banner -->
+      <section class="hero-banner" style="padding: 1.5rem; margin-bottom: 1.5rem;">
+        <div class="hero-content">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem;">
+            <div class="hero-tag">⚡ 3-Minute Video Animation Production Engine</div>
+            <div style="display:flex; gap:0.5rem; align-items:center;">
+              <span class="badge-pill badge-sync-online" id="azure-sync-status-pill">
+                <span class="badge-pulse"></span>
+                <span id="azure-sync-status-text">Azure Files Connected</span>
+              </span>
+              <span class="badge-pill" id="stat-progress-percent">0% Complete</span>
+            </div>
+          </div>
+
+          <h2 class="hero-title" style="font-size: 1.65rem; margin: 0.5rem 0;">Claude Developer Certification: Token Optimization & Custom IDEs</h2>
+          <p class="hero-desc" style="font-size: 0.88rem; margin-bottom: 1rem;">
+            End-to-end production operating system for creating high-impact <strong>3-minute animated educational videos</strong> (22 scenes × 8 seconds = 176s). Review the interactive pipeline below, sketch and save your visual feedback, or jump to dedicated workspaces.
+          </p>
+
+          <!-- Turnaround Time Summary Bar -->
+          <div class="turnaround-banner" style="margin-bottom: 0; padding: 0.85rem 1rem;">
+            <div style="display:flex; align-items:center; gap:0.6rem;">
+              <span style="font-size:1.5rem;">⏱️</span>
+              <div>
+                <div style="font-weight:800; font-size:0.92rem; color:#ffffff;">Production Turnaround: ~2h 15m (135 Minutes)</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">22 Scenes × 8.0s = 176s (~2.93m) Master Video • 330 Flow Credits</div>
+              </div>
+            </div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+              <div class="turnaround-stat-pill" style="padding:0.35rem 0.65rem;">
+                <span class="val" style="font-size:0.95rem;">176s</span>
+                <span class="lbl">Video Duration</span>
+              </div>
+              <div class="turnaround-stat-pill" style="padding:0.35rem 0.65rem;">
+                <span class="val" style="font-size:0.95rem;">22 Slices</span>
+                <span class="lbl">8s Pacing Beats</span>
+              </div>
+              <div class="turnaround-stat-pill" style="padding:0.35rem 0.65rem;">
+                <span class="val" style="font-size:0.95rem;">18–22</span>
+                <span class="lbl">Words Per Cut</span>
+              </div>
+              <div class="turnaround-stat-pill" style="padding:0.35rem 0.65rem;">
+                <span class="val" style="font-size:0.95rem;">8 Stages</span>
+                <span class="lbl">Modular Flow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 1: Interactive Excalidraw Pipeline Whiteboard -->
+      <section class="excalidraw-container">
+        <div class="excalidraw-header">
+          <div class="excalidraw-title-wrap">
+            <span style="font-size: 1.4rem;">🎨</span>
+            <div>
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: #ffffff;">Interactive Pipeline Whiteboard (Excalidraw Engine)</h3>
+              <p style="font-size: 0.75rem; color: var(--text-muted);">
+                Annotate, draw arrows, circle bottlenecks, add feedback text, and save or download PNG to share back!
+              </p>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="undoExcali()" title="Undo last action">↩️ Undo</button>
+            <button class="btn btn-secondary btn-sm" onclick="redoExcali()" title="Redo action">↪️ Redo</button>
+            <button class="btn btn-secondary btn-sm" onclick="clearExcali()" title="Clear annotations and reset base">🗑️ Clear</button>
+            <button class="btn btn-cloud btn-sm" onclick="saveExcaliDrawing()" title="Save drawing to state">💾 Save Drawing</button>
+            <button class="btn btn-primary btn-sm" onclick="downloadExcaliPNG()" title="Export drawing as PNG">📥 Download PNG</button>
+          </div>
+        </div>
+
+        <!-- Excalidraw Drawing Toolbar -->
+        <div class="excalidraw-toolbar">
+          <!-- Tool Selection -->
+          <div class="tool-group">
+            <button class="tool-btn active" onclick="setExcaliTool('pen', this)" title="Pen Tool (Freehand)">✏️</button>
+            <button class="tool-btn" onclick="setExcaliTool('highlighter', this)" title="Highlighter (Glow marker)">🖍️</button>
+            <button class="tool-btn" onclick="setExcaliTool('arrow', this)" title="Arrow Tool">➡️</button>
+            <button class="tool-btn" onclick="setExcaliTool('rect', this)" title="Rectangle Tool">⬜</button>
+            <button class="tool-btn" onclick="setExcaliTool('circle', this)" title="Circle/Ellipse Tool">⭕</button>
+            <button class="tool-btn" onclick="setExcaliTool('text', this)" title="Text Note Tool">📝</button>
+            <button class="tool-btn" onclick="setExcaliTool('eraser', this)" title="Eraser Tool">🧹</button>
+          </div>
+
+          <!-- Color Palette -->
+          <div class="tool-group" style="gap: 6px; padding: 4px 8px;">
+            <button class="color-swatch-btn active" style="background:#06b6d4;" onclick="setExcaliColor('#06b6d4', this)" title="Cyber Cyan"></button>
+            <button class="color-swatch-btn" style="background:#10b981;" onclick="setExcaliColor('#10b981', this)" title="Emerald Green"></button>
+            <button class="color-swatch-btn" style="background:#f59e0b;" onclick="setExcaliColor('#f59e0b', this)" title="Amber Orange"></button>
+            <button class="color-swatch-btn" style="background:#f43f5e;" onclick="setExcaliColor('#f43f5e', this)" title="Rose Red"></button>
+            <button class="color-swatch-btn" style="background:#a855f7;" onclick="setExcaliColor('#a855f7', this)" title="Purple"></button>
+            <button class="color-swatch-btn" style="background:#ffffff;" onclick="setExcaliColor('#ffffff', this)" title="Pure White"></button>
+          </div>
+
+          <!-- Stroke Width -->
+          <div class="tool-group" style="padding: 2px 6px;">
+            <span style="font-size:0.7rem; color:var(--text-dim); margin-right:4px;">Width:</span>
+            <select onchange="setExcaliStrokeWidth(this.value)" style="background:transparent; color:#fff; border:none; font-size:0.75rem; font-family:var(--font-mono); outline:none; cursor:pointer;">
+              <option value="2" style="background:#111827;">Fine (2px)</option>
+              <option value="4" selected style="background:#111827;">Medium (4px)</option>
+              <option value="8" style="background:#111827;">Thick (8px)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Canvas Viewport -->
+        <div class="canvas-viewport-wrapper">
+          <canvas id="excalidraw-canvas"></canvas>
+        </div>
+
+        <!-- Footer Hint -->
+        <div class="excalidraw-footer">
+          <span>💡 <strong>How to give feedback:</strong> Draw arrows, circle cards, or click 📝 to write feedback directly over the blueprint. Click <strong>"💾 Save Drawing"</strong> or <strong>"📥 Download PNG"</strong> when ready.</span>
+          <span style="font-family:var(--font-mono); color:var(--accent-cyan);">Auto-saves to browser & state</span>
+        </div>
+      </section>
+
+      <!-- SECTION 2: Pipeline Stages & Duration Overview -->
+      <section class="workflow-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-badge" style="color: var(--accent-purple);">⚡</div>
+            <div>
+              <h3 class="section-title">Video Production Stages Breakdown</h3>
+              <p class="section-subtitle">How much time does each stage take? Quick summary of deliverables and timing.</p>
+            </div>
+          </div>
+          <a href="pipeline.html" class="btn btn-primary btn-sm">
+            ⚡ Full Stages Deep-Dive & Checklists ↗
+          </a>
+        </div>
+
+        <div id="pipeline-stages-overview-grid" class="pipeline-overview-grid">
+          <!-- Rendered dynamically by js/app.js -->
+        </div>
+      </section>
+
+      <!-- SECTION 3: Distinct Workspaces Directory -->
+      <section class="workflow-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-badge" style="color: var(--accent-cyan);">🧭</div>
+            <div>
+              <h3 class="section-title">Dedicated Application Workspaces</h3>
+              <p class="section-subtitle">Jump directly into specialized tools and production dashboards.</p>
+            </div>
+          </div>
+          <span class="badge-pill">6 Dedicated Pages</span>
+        </div>
+
+        <div id="distinct-pages-directory-grid" class="page-directory-grid">
+          <!-- Rendered dynamically by js/app.js -->
+        </div>
+      </section>
+
+      <!-- Shared Footer -->
+      <footer class="app-footer">
+        <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+        <div class="footer-links">
+          <a href="index.html">🎯 Pipeline & Excalidraw</a>
+          <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+          <a href="storyboard.html">📋 22-Scene Storyboard</a>
+          <a href="studio.html">🎙️ VO Studio</a>
+          <a href="tools.html">🌐 Chrome Cockpit</a>
+          <a href="qc-budget.html">🧪 QC & Budget</a>
+          <a href="distribution.html">📤 Social & Flywheel</a>
+          <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Vertical Menu on the Right-Hand Side (RHS) -->
+    <aside class="rhs-sidebar">
+      <!-- Brand Header -->
+      <a href="index.html" class="rhs-brand">
+        <div class="rhs-brand-icon">✨</div>
+        <div class="rhs-brand-text">
+          <h1>3-Min Video Engine</h1>
+          <p>Production Cockpit v2.0</p>
         </div>
       </a>
-      <div class="header-actions">
-        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
-          <span class="badge-pulse"></span>
-          <span id="azure-sync-status-text">Azure Files Connected</span>
-        </div>
-        <div class="badge-pill">
-          <span class="badge-pulse"></span>
-          <span id="stat-progress-percent">0%</span> Complete
-        </div>
-        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
-          ☁️ Sync Azure
-        </button>
-        <a href="studio.html" class="btn btn-primary btn-sm">
-          🎙️ VO Studio
-        </a>
-      </div>
-    </div>
 
-    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
-    <div class="nav-groups-container">
-      <nav class="nav-groups">
+      <!-- Cloud Sync & Live Progress Widget -->
+      <div class="rhs-status-card">
+        <div class="rhs-status-header">
+          <span style="font-size:0.75rem; font-weight:700; color:#fff;">🎬 Production Progress</span>
+          <span id="stat-completed-scenes" style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-cyan);">0/22 Ready</span>
+        </div>
+        <div class="progress-bar-container" style="height: 6px;">
+          <div id="global-progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+          <span id="azure-last-sync-time" style="font-size:0.65rem; color:var(--text-muted);">Azure Synced</span>
+          <button class="btn btn-cloud btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="pushStateToAzure(true)">
+            ☁️ Sync Azure
+          </button>
+        </div>
+      </div>
+
+      <!-- Logically Grouped Vertical Nav Links with Emojis -->
+      <nav class="rhs-nav-groups">
+        
         <!-- Group 1: 🎬 Overview & Pipeline -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎬 Overview</span>
-          <div class="nav-group-links">
-            <a href="index.html" class="nav-link active">
-              <span>🎯</span> Pipeline Intro & Status
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title">
+            <span>🎬</span> Overview & Pipeline
+          </div>
+          <div class="rhs-nav-links">
+            <a href="index.html" class="rhs-nav-link active">
+              <span class="link-label"><span>🎯</span> Pipeline & Draw</span>
+              <span class="link-badge">Hub</span>
             </a>
-            <a href="pipeline.html" class="nav-link">
-              <span>⚡</span> Stages Deep-Dive
+            <a href="pipeline.html" class="rhs-nav-link">
+              <span class="link-label"><span>⚡</span> Stages Deep-Dive</span>
+              <span class="link-badge">5 Stages</span>
             </a>
           </div>
         </div>
 
         <!-- Group 2: 🎨 Production Studio -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎨 Production</span>
-          <div class="nav-group-links">
-            <a href="storyboard.html" class="nav-link">
-              <span>📋</span> 22-Scene Storyboard
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title">
+            <span>🎨</span> Production Studio
+          </div>
+          <div class="rhs-nav-links">
+            <a href="storyboard.html" class="rhs-nav-link">
+              <span class="link-label"><span>📋</span> 22-Scene Storyboard</span>
+              <span class="link-badge">176s</span>
             </a>
-            <a href="studio.html" class="nav-link">
-              <span>🎙️</span> 8s VO Studio
+            <a href="studio.html" class="rhs-nav-link">
+              <span class="link-label"><span>🎙️</span> 8s VO Teleprompter</span>
+              <span class="link-badge">Studio</span>
             </a>
           </div>
         </div>
 
-        <!-- Group 3: 🛠️ Tools & QC -->
-        <div class="nav-group">
-          <span class="nav-group-label">🛠️ Tools & QC</span>
-          <div class="nav-group-links">
-            <a href="tools.html" class="nav-link">
-              <span>🌐</span> Chrome Cockpit
+        <!-- Group 3: 🛠️ Tools & Quality -->
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title">
+            <span>🛠️</span> Tools & Quality
+          </div>
+          <div class="rhs-nav-links">
+            <a href="tools.html" class="rhs-nav-link">
+              <span class="link-label"><span>🌐</span> Chrome Cockpit</span>
+              <span class="link-badge">14 Tabs</span>
             </a>
-            <a href="qc-budget.html" class="nav-link">
-              <span>🧪</span> QC & Budget
+            <a href="qc-budget.html" class="rhs-nav-link">
+              <span class="link-label"><span>🧪</span> QC & Credit Budget</span>
+              <span class="link-badge">Gate</span>
             </a>
           </div>
         </div>
 
         <!-- Group 4: 🚀 Distribution -->
-        <div class="nav-group">
-          <span class="nav-group-label">🚀 Distribution</span>
-          <div class="nav-group-links">
-            <a href="distribution.html" class="nav-link">
-              <span>📤</span> Social & Flywheel
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title">
+            <span>🚀</span> Growth & Funnel
+          </div>
+          <div class="rhs-nav-links">
+            <a href="distribution.html" class="rhs-nav-link">
+              <span class="link-label"><span>📤</span> Social & Flywheel</span>
+              <span class="link-badge">Skool</span>
             </a>
           </div>
         </div>
+
       </nav>
-    </div>
-  </header>
 
-  <div class="container">
-    
-    <!-- Hero / Master Overview Banner -->
-    <section id="overview" class="hero-banner">
-      <div class="hero-content">
-        <div class="hero-tag">⚡ 3-Minute Video Animation Production Suite</div>
-        <h2 class="hero-title">Claude Developer Certification: Token Optimization, Cost Controls & Custom IDEs</h2>
-        <p class="hero-desc">
-          Complete end-to-end production operating system for creating high-impact <strong>3-minute animated educational videos</strong> (22 scenes × 8 seconds = 176s). From Skool research and Gemini 8s prompt engineering to Google Flow generation, Canva 3-section timeline assembly, Azure Files cloud state persistence, and multi-channel audience funneling.
-        </p>
-
-        <!-- Global Production Progress Monitor -->
-        <div style="margin: 1.25rem 0 0.75rem 0; background: rgba(0,0,0,0.3); padding: 1rem 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-color);">
-          <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; font-weight:700; color:#ffffff; margin-bottom: 0.5rem; flex-wrap:wrap; gap:0.5rem;">
-            <div style="display:flex; align-items:center; gap:0.5rem;">
-              <span style="font-size:1.1rem;">🎬</span>
-              <span>Live Production Status & Overall Progress</span>
-            </div>
-            <div style="display:flex; gap:0.75rem; align-items:center;">
-              <span id="stat-completed-scenes" style="font-family:var(--font-mono); color:var(--accent-cyan); background:rgba(6,182,212,0.12); padding:2px 8px; border-radius:10px;">0 / 22 Scenes Ready</span>
-              <span id="azure-last-sync-time" style="font-size:0.75rem; color:var(--text-muted);">Auto-sync active</span>
-            </div>
-          </div>
-          <div class="progress-bar-container" style="height: 10px;">
-            <div id="global-progress-fill" class="progress-bar-fill"></div>
-          </div>
-        </div>
-
-        <!-- Turnaround Time & Duration Summary Bar -->
-        <div class="turnaround-banner">
-          <div style="display:flex; align-items:center; gap:0.75rem;">
-            <span style="font-size:2rem;">⏱️</span>
-            <div>
-              <div style="font-weight:800; font-size:1rem; color:#ffffff;">Production Turnaround: ~2h 15m (135 Minutes)</div>
-              <div style="font-size:0.8rem; color:var(--text-muted);">
-                Estimated end-to-end execution time from raw idea to published 1080p 60fps master video.
-              </div>
-            </div>
-          </div>
-          <div style="display:flex; gap:0.6rem; flex-wrap:wrap;">
-            <div class="turnaround-stat-pill">
-              <span class="val">176s</span>
-              <span class="lbl">Video Duration (~2.9m)</span>
-            </div>
-            <div class="turnaround-stat-pill">
-              <span class="val">22 Slices</span>
-              <span class="lbl">8.0s Micro-Scenes</span>
-            </div>
-            <div class="turnaround-stat-pill">
-              <span class="val">330 Cr</span>
-              <span class="lbl">Google Flow Base</span>
-            </div>
-            <div class="turnaround-stat-pill">
-              <span class="val">8 Stages</span>
-              <span class="lbl">Modular Pipeline</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Quick Stats Grid -->
-        <div class="stats-grid">
-          <div class="stat-card">
-            <div class="stat-icon" style="color:var(--accent-cyan); background:rgba(6,182,212,0.1);">⏱️</div>
-            <div class="stat-info">
-              <div class="stat-num">8.0s</div>
-              <div class="stat-label">Scene Pacing Slice</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon" style="color:var(--accent-amber); background:rgba(245,158,11,0.1);">🗣️</div>
-            <div class="stat-info">
-              <div class="stat-num">18–22</div>
-              <div class="stat-label">Words Per VO Beat</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon" style="color:var(--accent-purple); background:rgba(139,92,246,0.1);">🎨</div>
-            <div class="stat-info">
-              <div class="stat-num">3 Sections</div>
-              <div class="stat-label">Pre / Prod / Post</div>
-            </div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-icon" style="color:var(--accent-emerald); background:rgba(16,185,129,0.1);">☁️</div>
-            <div class="stat-info">
-              <div class="stat-num">Azure Files</div>
-              <div class="stat-label">Cloud State Synced</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 1: Distinct Multi-Page Workspace Portal -->
-    <section class="workflow-section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-cyan);">🧭</div>
-          <div>
-            <h3 class="section-title">What Happens in the Distinct Pages</h3>
-            <p class="section-subtitle">The application is modularized into 7 dedicated workspaces. Explore what happens in each distinct page and launch directly.</p>
-          </div>
-        </div>
-        <span class="badge-pill">7 Dedicated Workspaces</span>
-      </div>
-
-      <!-- Rendered dynamically by JS into page directory grid -->
-      <div id="distinct-pages-directory-grid" class="page-directory-grid">
-        <!-- Rendered by JS -->
-      </div>
-    </section>
-
-    <!-- SECTION 2: Complete Video Production Pipeline & Stages Guide -->
-    <section class="workflow-section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-purple);">🎬</div>
-          <div>
-            <h3 class="section-title">Video Production Pipeline & Stage Timing Breakdown</h3>
-            <p class="section-subtitle">How much time does each stage take? Full breakdown of the 8 modular stages, time percentages, deliverables, and operational status.</p>
-          </div>
-        </div>
-        <a href="pipeline.html" class="btn btn-primary btn-sm">
-          ⚡ Stages Deep-Dive & Simulations ↗
+      <!-- Quick Action Footer -->
+      <div class="rhs-footer-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm" style="justify-content:center;">
+          🎙️ Launch 8s VO Studio
+        </a>
+        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="justify-content:center;">
+          🐙 GitHub Repository ↗
         </a>
       </div>
-
-      <!-- Timing & Pacing Rule Explanation Banner -->
-      <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.25rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem;">
-        <div style="border-left: 3px solid var(--accent-cyan); padding-left: 0.75rem;">
-          <div style="font-weight:700; font-size:0.88rem; color:#ffffff; margin-bottom:0.25rem;">⚡ The 8-Second Formula</div>
-          <p style="font-size:0.8rem; color:var(--text-muted);">
-            8 seconds is the optimal attention window for social algorithms (YouTube, Shorts, LinkedIn, X) while maintaining deep technical substance.
-          </p>
-        </div>
-        <div style="border-left: 3px solid var(--accent-amber); padding-left: 0.75rem;">
-          <div style="font-weight:700; font-size:0.88rem; color:#ffffff; margin-bottom:0.25rem;">🗣️ The 18–22 Word Pacing Rule</div>
-          <p style="font-size:0.8rem; color:var(--text-muted);">
-            Natural speech rate is ~2.5 words/sec. An 8-second block comfortably holds 18–22 words with natural breathing room and zero audio rush.
-          </p>
-        </div>
-        <div style="border-left: 3px solid var(--accent-emerald); padding-left: 0.75rem;">
-          <div style="font-weight:700; font-size:0.88rem; color:#ffffff; margin-bottom:0.25rem;">🎬 Roger Rabbit Signature Style</div>
-          <p style="font-size:0.8rem; color:var(--text-muted);">
-            Blend real terminal & IDE screen captures (<code>127.0.0.1:3847</code>) with cartoon characters and <em>La Linea</em> continuous line overlays via Google Flow.
-          </p>
-        </div>
-      </div>
-
-      <!-- Pipeline Stages Overview Grid -->
-      <div id="pipeline-stages-overview-grid" class="pipeline-overview-grid">
-        <!-- Rendered by JS -->
-      </div>
-    </section>
-
-    <!-- SECTION 3: The 3-Section Production Methodology -->
-    <section class="workflow-section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-rose);">🎨</div>
-          <div>
-            <h3 class="section-title">The 3-Section Production Methodology</h3>
-            <p class="section-subtitle">Standardized assembly flow across Canva, Google Flow, and local asset staging.</p>
-          </div>
-        </div>
-      </div>
-
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem;">
-        <!-- Pre-Prod -->
-        <div class="info-card" style="border-left: 3px solid var(--accent-amber);">
-          <div class="info-card-header">
-            <span>📝</span> 1. Pre-Production Section (~35 min)
-          </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.6rem;">
-            Set up the 14-tab Chrome cockpit, extract Skool courseware, run Gemini Director prompts, and place 22 color-coded Post-it script notes above Canva timeline tracks.
-          </p>
-          <ul class="checklist">
-            <li class="checklist-item"><span style="color:var(--accent-amber);">✔</span> 14 orchestrated Chrome tabs staged</li>
-            <li class="checklist-item"><span style="color:var(--accent-amber);">✔</span> 22 scene script lines locked (~18-22 words)</li>
-            <li class="checklist-item"><span style="color:var(--accent-amber);">✔</span> Dual split-view simulation prepared</li>
-          </ul>
-        </div>
-
-        <!-- Prod -->
-        <div class="info-card" style="border-left: 3px solid var(--accent-cyan);">
-          <div class="info-card-header">
-            <span>🎥</span> 2. Production Section (~75 min)
-          </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.6rem;">
-            Render 22 8s slices in Google Flow, upload to <code>aug video 3</code>, place clips on Canva timeline, and move footages one-by-one to <code>used asset</code>.
-          </p>
-          <ul class="checklist">
-            <li class="checklist-item"><span style="color:var(--accent-cyan);">✔</span> 22 Google Flow video slices generated</li>
-            <li class="checklist-item"><span style="color:var(--accent-cyan);">✔</span> Master 8s placeholder bulk-paste</li>
-            <li class="checklist-item"><span style="color:var(--accent-cyan);">✔</span> <strong>QC Gate:</strong> Zero-gap audit with shotlist in hand</li>
-          </ul>
-        </div>
-
-        <!-- Post-Prod -->
-        <div class="info-card" style="border-left: 3px solid var(--accent-emerald);">
-          <div class="info-card-header">
-            <span>🎙️</span> 3. Post-Production Section (~35 min)
-          </div>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.6rem;">
-            Snap videos as background, record voice-over via 8s Teleprompter Studio, sync Roger Rabbit cartoon overlays to audio beats, and export 1080p 60fps MP4.
-          </p>
-          <ul class="checklist">
-            <li class="checklist-item"><span style="color:var(--accent-emerald);">✔</span> 8s Voice-Over rehearsal and recording</li>
-            <li class="checklist-item"><span style="color:var(--accent-emerald);">✔</span> Roger Rabbit animation signature stamp</li>
-            <li class="checklist-item"><span style="color:var(--accent-emerald);">✔</span> Multi-platform distribution & SRT sync</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECTION 4: Azure Files Cloud Persistence Architecture -->
-    <section class="workflow-section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-emerald);">☁️</div>
-          <div>
-            <h3 class="section-title">Azure Files Cloud Persistence & CLI State Sync</h3>
-            <p class="section-subtitle">Real-time state synchronization connecting local browser sessions, Azure Storage, and the Antigravity CLI.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
-          <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
-            📤 Push State to Azure
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="pullStateFromAzure()">
-            📥 Pull from Azure
-          </button>
-        </div>
-      </div>
-
-      <div class="azure-sync-panel">
-        <div class="azure-sync-info">
-          <div style="font-size:1.6rem;">☁️</div>
-          <div>
-            <div style="font-weight:700; font-size:0.9rem; color:#ffffff;">
-              Azure Files Share State: <code>animationasistant/aug-video-state/aug_video_animation_state.json</code>
-            </div>
-            <div style="font-size:0.78rem; color:var(--text-muted);">
-              Key Vault: <code>dp-kv-deliverypilot</code> (Secret: <code>aug-video-animation-sas</code>) • Auto-syncs on every checkbox and scene status change.
-            </div>
-          </div>
-        </div>
-        <div class="azure-sync-actions">
-          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard('./scripts/azure_sync.sh status && ./scripts/azure_sync.sh push', 'CLI command copied!')">
-            💻 Copy CLI Sync Command
-          </button>
-        </div>
-      </div>
-    </section>
+    </aside>
 
   </div>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
 
-  <!-- Shared Footer -->
-  <footer class="app-footer">
-    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
-    <div class="footer-links">
-      <a href="index.html">🎯 Pipeline Intro</a>
-      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
-      <a href="storyboard.html">📋 22-Scene Storyboard</a>
-      <a href="studio.html">🎙️ VO Studio</a>
-      <a href="tools.html">🌐 Chrome Cockpit</a>
-      <a href="qc-budget.html">🧪 QC & Budget</a>
-      <a href="distribution.html">📤 Social & Flywheel</a>
-      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
-    </div>
-  </footer>
-
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/excalidraw_pipeline.js"></script>
 </body>
 </html>

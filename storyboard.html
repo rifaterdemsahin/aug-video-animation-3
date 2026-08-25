@@ -11,172 +11,184 @@
 </head>
 <body>
 
-  <!-- Shared Sticky Top Header -->
-  <header class="sticky-header">
-    <div class="header-top">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h1>3-Min Animation Video Engine</h1>
-          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
+  <div class="app-layout">
+
+    <!-- Main Content Area -->
+    <main class="main-content-area">
+
+      <!-- Hero Banner -->
+      <section class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-tag">📋 Master Storyboard & Prompt Matrix</div>
+          <h2 class="hero-title">22 Scenes × 8-Second Production Framework (176s)</h2>
+          <p class="hero-desc">
+            Scene-by-scene script breakdown, Google Flow generation prompts, 18–22 word voice-over lines, real-time tri-state progress toggling, and instant audio TTS rehearsal.
+          </p>
+
+          <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top: 1rem;">
+            <button class="btn btn-primary btn-sm" onclick="copyAllFlowPrompts()">
+              📋 Copy All 22 Flow Prompts
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="exportFullMarkdown()">
+              📄 Export Markdown Script
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="exportJSON()">
+              💾 Export JSON Data
+            </button>
+            <a href="studio.html" class="btn btn-accent btn-sm">
+              🎙️ Launch Teleprompter Studio ↗
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Master 22-Scene Storyboard Matrix -->
+      <section id="storyboard-section" class="workflow-section">
+        <div class="section-header">
+          <div class="section-title-wrap">
+            <div class="section-badge" style="color: var(--accent-cyan);">📋</div>
+            <div>
+              <h3 class="section-title">22-Scene Storyboard, Visuals & Script Matrix</h3>
+              <p class="section-subtitle">Click status pills (⚪ Todo / 🟡 In Prog / 🟢 Done) to update progress. All changes auto-sync to Azure Files.</p>
+            </div>
+          </div>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <span id="stat-completed-scenes" class="badge-pill">0 / 22 Ready</span>
+          </div>
+        </div>
+
+        <!-- Controls, Search, and Filters -->
+        <div class="storyboard-controls">
+          <input type="text" id="scene-search" class="search-input" placeholder="🔍 Search scenes, prompts, keywords...">
+          
+          <div class="filter-pills">
+            <button class="filter-btn active" data-filter="all">All (22)</button>
+            <button class="filter-btn" data-filter="pre-prod">Pre-Prod (1)</button>
+            <button class="filter-btn" data-filter="prod">Prod (19)</button>
+            <button class="filter-btn" data-filter="post-prod">Post-Prod (2)</button>
+            <button class="filter-btn" data-filter="completed">🟢 Done</button>
+            <button class="filter-btn" data-filter="in_progress">🟡 In Progress</button>
+            <button class="filter-btn" data-filter="pending">⚪ Todo</button>
+          </div>
+        </div>
+
+        <!-- Scenes Grid rendered by JS -->
+        <div class="scenes-grid" id="scenes-container">
+          <!-- Rendered by JS -->
+        </div>
+      </section>
+
+      <!-- Shared Footer -->
+      <footer class="app-footer">
+        <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+        <div class="footer-links">
+          <a href="index.html">🎯 Pipeline & Excalidraw</a>
+          <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+          <a href="storyboard.html">📋 22-Scene Storyboard</a>
+          <a href="studio.html">🎙️ VO Studio</a>
+          <a href="tools.html">🌐 Chrome Cockpit</a>
+          <a href="qc-budget.html">🧪 QC & Budget</a>
+          <a href="distribution.html">📤 Social & Flywheel</a>
+          <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Vertical Menu on the Right-Hand Side (RHS) -->
+    <aside class="rhs-sidebar">
+      <a href="index.html" class="rhs-brand">
+        <div class="rhs-brand-icon">✨</div>
+        <div class="rhs-brand-text">
+          <h1>3-Min Video Engine</h1>
+          <p>Production Cockpit v2.0</p>
         </div>
       </a>
-      <div class="header-actions">
-        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
-          <span class="badge-pulse"></span>
-          <span id="azure-sync-status-text">Azure Files Connected</span>
+
+      <div class="rhs-status-card">
+        <div class="rhs-status-header">
+          <span style="font-size:0.75rem; font-weight:700; color:#fff;">🎬 Production Progress</span>
+          <span id="stat-completed-scenes" style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-cyan);">0/22 Ready</span>
         </div>
-        <div class="badge-pill">
-          <span class="badge-pulse"></span>
-          <span id="stat-progress-percent">0%</span> Complete
+        <div class="progress-bar-container" style="height: 6px;">
+          <div id="global-progress-fill" class="progress-bar-fill"></div>
         </div>
-        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
-          ☁️ Sync Azure
-        </button>
-        <a href="studio.html" class="btn btn-primary btn-sm">
-          🎙️ VO Studio
-        </a>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+          <span id="azure-last-sync-time" style="font-size:0.65rem; color:var(--text-muted);">Azure Synced</span>
+          <button class="btn btn-cloud btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="pushStateToAzure(true)">
+            ☁️ Sync Azure
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
-    <div class="nav-groups-container">
-      <nav class="nav-groups">
-        <!-- Group 1: 🎬 Overview & Pipeline -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎬 Overview</span>
-          <div class="nav-group-links">
-            <a href="index.html" class="nav-link">
-              <span>🎯</span> Pipeline Intro & Status
+      <nav class="rhs-nav-groups">
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🎬</span> Overview & Pipeline</div>
+          <div class="rhs-nav-links">
+            <a href="index.html" class="rhs-nav-link">
+              <span class="link-label"><span>🎯</span> Pipeline & Draw</span>
+              <span class="link-badge">Hub</span>
             </a>
-            <a href="pipeline.html" class="nav-link">
-              <span>⚡</span> Stages Deep-Dive
+            <a href="pipeline.html" class="rhs-nav-link">
+              <span class="link-label"><span>⚡</span> Stages Deep-Dive</span>
+              <span class="link-badge">5 Stages</span>
             </a>
           </div>
         </div>
 
-        <!-- Group 2: 🎨 Production Studio -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎨 Production</span>
-          <div class="nav-group-links">
-            <a href="storyboard.html" class="nav-link active">
-              <span>📋</span> 22-Scene Storyboard
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🎨</span> Production Studio</div>
+          <div class="rhs-nav-links">
+            <a href="storyboard.html" class="rhs-nav-link active">
+              <span class="link-label"><span>📋</span> 22-Scene Storyboard</span>
+              <span class="link-badge">176s</span>
             </a>
-            <a href="studio.html" class="nav-link">
-              <span>🎙️</span> 8s VO Studio
-            </a>
-          </div>
-        </div>
-
-        <!-- Group 3: 🛠️ Tools & QC -->
-        <div class="nav-group">
-          <span class="nav-group-label">🛠️ Tools & QC</span>
-          <div class="nav-group-links">
-            <a href="tools.html" class="nav-link">
-              <span>🌐</span> Chrome Cockpit
-            </a>
-            <a href="qc-budget.html" class="nav-link">
-              <span>🧪</span> QC & Budget
+            <a href="studio.html" class="rhs-nav-link">
+              <span class="link-label"><span>🎙️</span> 8s VO Teleprompter</span>
+              <span class="link-badge">Studio</span>
             </a>
           </div>
         </div>
 
-        <!-- Group 4: 🚀 Distribution -->
-        <div class="nav-group">
-          <span class="nav-group-label">🚀 Distribution</span>
-          <div class="nav-group-links">
-            <a href="distribution.html" class="nav-link">
-              <span>📤</span> Social & Flywheel
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🛠️</span> Tools & Quality</div>
+          <div class="rhs-nav-links">
+            <a href="tools.html" class="rhs-nav-link">
+              <span class="link-label"><span>🌐</span> Chrome Cockpit</span>
+              <span class="link-badge">14 Tabs</span>
+            </a>
+            <a href="qc-budget.html" class="rhs-nav-link">
+              <span class="link-label"><span>🧪</span> QC & Credit Budget</span>
+              <span class="link-badge">Gate</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🚀</span> Growth & Funnel</div>
+          <div class="rhs-nav-links">
+            <a href="distribution.html" class="rhs-nav-link">
+              <span class="link-label"><span>📤</span> Social & Flywheel</span>
+              <span class="link-badge">Skool</span>
             </a>
           </div>
         </div>
       </nav>
-    </div>
-  </header>
 
-  <div class="container">
-
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <div class="hero-content">
-        <div class="hero-tag">📋 Master Storyboard & Prompt Matrix</div>
-        <h2 class="hero-title">22 Scenes × 8-Second Production Framework (176s)</h2>
-        <p class="hero-desc">
-          Scene-by-scene script breakdown, Google Flow generation prompts, 18–22 word voice-over lines, real-time tri-state progress toggling, and instant audio TTS rehearsal.
-        </p>
-
-        <div style="display:flex; gap:0.6rem; flex-wrap:wrap; margin-top: 1rem;">
-          <button class="btn btn-primary btn-sm" onclick="copyAllFlowPrompts()">
-            📋 Copy All 22 Flow Prompts
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="exportFullMarkdown()">
-            📄 Export Markdown Script
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="exportJSON()">
-            💾 Export JSON Data
-          </button>
-          <a href="studio.html" class="btn btn-accent btn-sm">
-            🎙️ Launch Teleprompter Studio ↗
-          </a>
-        </div>
+      <div class="rhs-footer-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm" style="justify-content:center;">
+          🎙️ Launch 8s VO Studio
+        </a>
+        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="justify-content:center;">
+          🐙 GitHub Repository ↗
+        </a>
       </div>
-    </section>
-
-    <!-- Master 22-Scene Storyboard Matrix -->
-    <section id="storyboard-section" class="workflow-section">
-      <div class="section-header">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-cyan);">📋</div>
-          <div>
-            <h3 class="section-title">22-Scene Storyboard, Visuals & Script Matrix</h3>
-            <p class="section-subtitle">Click status pills (⚪ Todo / 🟡 In Prog / 🟢 Done) to update progress. All changes auto-sync to Azure Files.</p>
-          </div>
-        </div>
-        <div style="display:flex; gap:0.5rem; align-items:center;">
-          <span id="stat-completed-scenes" class="badge-pill">0 / 22 Ready</span>
-        </div>
-      </div>
-
-      <!-- Controls, Search, and Filters -->
-      <div class="storyboard-controls">
-        <input type="text" id="scene-search" class="search-input" placeholder="🔍 Search scenes, prompts, keywords...">
-        
-        <div class="filter-pills">
-          <button class="filter-btn active" data-filter="all">All (22)</button>
-          <button class="filter-btn" data-filter="pre-prod">Pre-Prod (1)</button>
-          <button class="filter-btn" data-filter="prod">Prod (19)</button>
-          <button class="filter-btn" data-filter="post-prod">Post-Prod (2)</button>
-          <button class="filter-btn" data-filter="completed">🟢 Done</button>
-          <button class="filter-btn" data-filter="in_progress">🟡 In Progress</button>
-          <button class="filter-btn" data-filter="pending">⚪ Todo</button>
-        </div>
-      </div>
-
-      <!-- Scenes Grid rendered by JS -->
-      <div class="scenes-grid" id="scenes-container">
-        <!-- Rendered by JS -->
-      </div>
-    </section>
+    </aside>
 
   </div>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
-
-  <!-- Shared Footer -->
-  <footer class="app-footer">
-    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
-    <div class="footer-links">
-      <a href="index.html">🎯 Pipeline Intro</a>
-      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
-      <a href="storyboard.html">📋 22-Scene Storyboard</a>
-      <a href="studio.html">🎙️ VO Studio</a>
-      <a href="tools.html">🌐 Chrome Cockpit</a>
-      <a href="qc-budget.html">🧪 QC & Budget</a>
-      <a href="distribution.html">📤 Social & Flywheel</a>
-      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
-    </div>
-  </footer>
 
   <!-- Scripts -->
   <script src="js/data.js"></script>

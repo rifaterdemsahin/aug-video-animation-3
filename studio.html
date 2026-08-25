@@ -49,225 +49,237 @@
 </head>
 <body>
 
-  <!-- Shared Sticky Top Header -->
-  <header class="sticky-header">
-    <div class="header-top">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">✨</div>
-        <div class="brand-text">
-          <h1>3-Min Animation Video Engine</h1>
-          <p>Skool ➔ Gemini ➔ Google Flow ➔ Canva ➔ Azure Files Sync ➔ Funnel</p>
+  <div class="app-layout">
+
+    <!-- Main Content Area -->
+    <main class="main-content-area">
+
+      <!-- Hero Banner -->
+      <section class="studio-hero">
+        <div class="hero-tag" style="color:var(--accent-emerald);">🎙️ Authentic Voice Recording Studio</div>
+        <h2 class="hero-title">8-Second Voice-Over Rehearsal & Teleprompter</h2>
+        <p class="hero-desc">
+          Paced 8-second rehearsal booth with real-time countdown timer, rhythmic audio metronome cues, and AI speech synthesis for testing voice cadence across all 22 scene cuts.
+        </p>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-emerald);">⏱️</div>
+            <div class="stat-info">
+              <div class="stat-num">8.0s</div>
+              <div class="stat-label">Loop Interval</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-cyan);">🗣️</div>
+            <div class="stat-info">
+              <div class="stat-num">18–22</div>
+              <div class="stat-label">Target Word Count</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-amber);">🎞️</div>
+            <div class="stat-info">
+              <div class="stat-num">22 Scenes</div>
+              <div class="stat-label">176s Total Master</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="color:var(--accent-purple);">🔊</div>
+            <div class="stat-info">
+              <div class="stat-num">TTS + Chime</div>
+              <div class="stat-label">Audio Assisted</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Teleprompter Main Studio -->
+      <section id="teleprompter-section" class="workflow-section teleprompter-studio">
+        <div class="section-header" style="border-color: rgba(6, 182, 212, 0.3);">
+          <div class="section-title-wrap">
+            <div class="section-badge" style="color: var(--accent-cyan); background: rgba(6, 182, 212, 0.15);">🎙️</div>
+            <div>
+              <h3 class="section-title">Live 8-Second Teleprompter Workspace</h3>
+              <p class="section-subtitle">Press start to begin the automatic 8s countdown with metronome audio transition chime.</p>
+            </div>
+          </div>
+          <div class="timer-display">
+            <div class="timer-circle" id="prompter-timer-circle">
+              <span id="prompter-timer-num">8s</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="prompter-controls">
+          <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
+            <button class="btn btn-primary" id="prompter-play-btn" onclick="startPrompter()">
+              ▶️ Start 8s Practice Loop
+            </button>
+            <button class="btn btn-secondary" onclick="prevPrompterScene()">
+              ⏮️ Prev Scene
+            </button>
+            <button class="btn btn-secondary" onclick="nextPrompterScene()">
+              ⏭️ Next Scene
+            </button>
+            <button class="btn btn-secondary" onclick="resetPrompter()">
+              🔄 Reset
+            </button>
+          </div>
+
+          <div style="display:flex; gap:1rem; align-items:center; font-size:0.85rem; color:var(--text-muted);">
+            <span>Scene: <strong id="prompter-index" style="color:#fff;">1 / 22</strong></span>
+            <span>Time: <strong id="prompter-timecode" style="color:var(--accent-cyan);">0:00 - 0:08</strong></span>
+          </div>
+        </div>
+
+        <div class="progress-bar-container" style="height:6px; margin: 1rem 0;">
+          <div class="progress-bar-fill" id="prompter-bar-fill"></div>
+        </div>
+
+        <div class="prompter-card">
+          <div class="prompter-scene-title" id="prompter-title">Scene 1: Hook: Token Optimization & Cost Controls</div>
+          <div class="prompter-vo-text" id="prompter-vo">
+            "Welcome! In this guide, we explore token optimization and cost control strategies for scaling your AI developer tooling without breaking the bank."
+          </div>
+          <div>
+            <div class="prompter-visual-hint" id="prompter-visual">
+              Visual: Motion graphic title card reading "Claude Developer Certification: Token Optimization & Cost Controls". Animated graphs show token burn rates dropping while performance spikes.
+            </div>
+          </div>
+          <div style="margin-top: 1rem; display:flex; justify-content:center; gap:0.6rem; flex-wrap:wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="speakText(document.getElementById('prompter-vo').innerText)">
+              🔊 Hear Reference Voice (TTS)
+            </button>
+            <button class="btn btn-secondary btn-sm" onclick="copyToClipboard(document.getElementById('prompter-vo').innerText, 'VO script copied!')">
+              📋 Copy Script
+            </button>
+            <button class="btn btn-accent btn-sm" onclick="toggleCurrentSceneDone()">
+              🟢 Mark Current Scene Done
+            </button>
+          </div>
+        </div>
+
+        <!-- Quick Scene Jump Matrix -->
+        <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin: 1.5rem 0 0.5rem 0;">
+          ⚡ Jump Directly to Any Scene (1 – 22):
+        </h4>
+        <div class="scene-quick-jumper" id="scene-jump-buttons">
+          <!-- Rendered by inline script -->
+        </div>
+      </section>
+
+      <!-- Shared Footer -->
+      <footer class="app-footer">
+        <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
+        <div class="footer-links">
+          <a href="index.html">🎯 Pipeline & Excalidraw</a>
+          <a href="pipeline.html">⚡ Stages Deep-Dive</a>
+          <a href="storyboard.html">📋 22-Scene Storyboard</a>
+          <a href="studio.html">🎙️ VO Studio</a>
+          <a href="tools.html">🌐 Chrome Cockpit</a>
+          <a href="qc-budget.html">🧪 QC & Budget</a>
+          <a href="distribution.html">📤 Social & Flywheel</a>
+          <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+        </div>
+      </footer>
+
+    </main>
+
+    <!-- Vertical Menu on the Right-Hand Side (RHS) -->
+    <aside class="rhs-sidebar">
+      <a href="index.html" class="rhs-brand">
+        <div class="rhs-brand-icon">✨</div>
+        <div class="rhs-brand-text">
+          <h1>3-Min Video Engine</h1>
+          <p>Production Cockpit v2.0</p>
         </div>
       </a>
-      <div class="header-actions">
-        <div class="badge-pill badge-sync-online" id="azure-sync-status-pill" title="State auto-syncs to Azure Files share 'aug-video-state'">
-          <span class="badge-pulse"></span>
-          <span id="azure-sync-status-text">Azure Files Connected</span>
+
+      <div class="rhs-status-card">
+        <div class="rhs-status-header">
+          <span style="font-size:0.75rem; font-weight:700; color:#fff;">🎬 Production Progress</span>
+          <span id="stat-completed-scenes" style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-cyan);">0/22 Ready</span>
         </div>
-        <div class="badge-pill">
-          <span class="badge-pulse"></span>
-          <span id="stat-progress-percent">0%</span> Complete
+        <div class="progress-bar-container" style="height: 6px;">
+          <div id="global-progress-fill" class="progress-bar-fill"></div>
         </div>
-        <button class="btn btn-cloud btn-sm" onclick="pushStateToAzure(true)">
-          ☁️ Sync Azure
-        </button>
-        <a href="storyboard.html" class="btn btn-secondary btn-sm">
-          📋 Storyboard Matrix
-        </a>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+          <span id="azure-last-sync-time" style="font-size:0.65rem; color:var(--text-muted);">Azure Synced</span>
+          <button class="btn btn-cloud btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="pushStateToAzure(true)">
+            ☁️ Sync Azure
+          </button>
+        </div>
       </div>
-    </div>
 
-    <!-- Redesigned Top Shared Menu with Logically Grouped Emojis -->
-    <div class="nav-groups-container">
-      <nav class="nav-groups">
-        <!-- Group 1: 🎬 Overview & Pipeline -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎬 Overview</span>
-          <div class="nav-group-links">
-            <a href="index.html" class="nav-link">
-              <span>🎯</span> Pipeline Intro & Status
+      <nav class="rhs-nav-groups">
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🎬</span> Overview & Pipeline</div>
+          <div class="rhs-nav-links">
+            <a href="index.html" class="rhs-nav-link">
+              <span class="link-label"><span>🎯</span> Pipeline & Draw</span>
+              <span class="link-badge">Hub</span>
             </a>
-            <a href="pipeline.html" class="nav-link">
-              <span>⚡</span> Stages Deep-Dive
+            <a href="pipeline.html" class="rhs-nav-link">
+              <span class="link-label"><span>⚡</span> Stages Deep-Dive</span>
+              <span class="link-badge">5 Stages</span>
             </a>
           </div>
         </div>
 
-        <!-- Group 2: 🎨 Production Studio -->
-        <div class="nav-group">
-          <span class="nav-group-label">🎨 Production</span>
-          <div class="nav-group-links">
-            <a href="storyboard.html" class="nav-link">
-              <span>📋</span> 22-Scene Storyboard
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🎨</span> Production Studio</div>
+          <div class="rhs-nav-links">
+            <a href="storyboard.html" class="rhs-nav-link">
+              <span class="link-label"><span>📋</span> 22-Scene Storyboard</span>
+              <span class="link-badge">176s</span>
             </a>
-            <a href="studio.html" class="nav-link active">
-              <span>🎙️</span> 8s VO Studio
-            </a>
-          </div>
-        </div>
-
-        <!-- Group 3: 🛠️ Tools & QC -->
-        <div class="nav-group">
-          <span class="nav-group-label">🛠️ Tools & QC</span>
-          <div class="nav-group-links">
-            <a href="tools.html" class="nav-link">
-              <span>🌐</span> Chrome Cockpit
-            </a>
-            <a href="qc-budget.html" class="nav-link">
-              <span>🧪</span> QC & Budget
+            <a href="studio.html" class="rhs-nav-link active">
+              <span class="link-label"><span>🎙️</span> 8s VO Teleprompter</span>
+              <span class="link-badge">Studio</span>
             </a>
           </div>
         </div>
 
-        <!-- Group 4: 🚀 Distribution -->
-        <div class="nav-group">
-          <span class="nav-group-label">🚀 Distribution</span>
-          <div class="nav-group-links">
-            <a href="distribution.html" class="nav-link">
-              <span>📤</span> Social & Flywheel
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🛠️</span> Tools & Quality</div>
+          <div class="rhs-nav-links">
+            <a href="tools.html" class="rhs-nav-link">
+              <span class="link-label"><span>🌐</span> Chrome Cockpit</span>
+              <span class="link-badge">14 Tabs</span>
+            </a>
+            <a href="qc-budget.html" class="rhs-nav-link">
+              <span class="link-label"><span>🧪</span> QC & Credit Budget</span>
+              <span class="link-badge">Gate</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="rhs-nav-group">
+          <div class="rhs-group-title"><span>🚀</span> Growth & Funnel</div>
+          <div class="rhs-nav-links">
+            <a href="distribution.html" class="rhs-nav-link">
+              <span class="link-label"><span>📤</span> Social & Flywheel</span>
+              <span class="link-badge">Skool</span>
             </a>
           </div>
         </div>
       </nav>
-    </div>
-  </header>
 
-  <div class="container">
-
-    <!-- Hero Banner -->
-    <section class="studio-hero">
-      <div class="hero-tag" style="color:var(--accent-emerald);">🎙️ Authentic Voice Recording Studio</div>
-      <h2 class="hero-title">8-Second Voice-Over Rehearsal & Teleprompter</h2>
-      <p class="hero-desc">
-        Paced 8-second rehearsal booth with real-time countdown timer, rhythmic audio metronome cues, and AI speech synthesis for testing voice cadence across all 22 scene cuts.
-      </p>
-
-      <div class="stats-grid">
-        <div class="stat-card">
-          <div class="stat-icon" style="color:var(--accent-emerald);">⏱️</div>
-          <div class="stat-info">
-            <div class="stat-num">8.0s</div>
-            <div class="stat-label">Loop Interval</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="color:var(--accent-cyan);">🗣️</div>
-          <div class="stat-info">
-            <div class="stat-num">18–22</div>
-            <div class="stat-label">Target Word Count</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="color:var(--accent-amber);">🎞️</div>
-          <div class="stat-info">
-            <div class="stat-num">22 Scenes</div>
-            <div class="stat-label">176s Total Master</div>
-          </div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon" style="color:var(--accent-purple);">🔊</div>
-          <div class="stat-info">
-            <div class="stat-num">TTS + Chime</div>
-            <div class="stat-label">Audio Assisted</div>
-          </div>
-        </div>
+      <div class="rhs-footer-actions">
+        <a href="studio.html" class="btn btn-primary btn-sm" style="justify-content:center;">
+          🎙️ Launch 8s VO Studio
+        </a>
+        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="justify-content:center;">
+          🐙 GitHub Repository ↗
+        </a>
       </div>
-    </section>
-
-    <!-- Teleprompter Main Studio -->
-    <section id="teleprompter-section" class="workflow-section teleprompter-studio">
-      <div class="section-header" style="border-color: rgba(6, 182, 212, 0.3);">
-        <div class="section-title-wrap">
-          <div class="section-badge" style="color: var(--accent-cyan); background: rgba(6, 182, 212, 0.15);">🎙️</div>
-          <div>
-            <h3 class="section-title">Live 8-Second Teleprompter Workspace</h3>
-            <p class="section-subtitle">Press start to begin the automatic 8s countdown with metronome audio transition chime.</p>
-          </div>
-        </div>
-        <div class="timer-display">
-          <div class="timer-circle" id="prompter-timer-circle">
-            <span id="prompter-timer-num">8s</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="prompter-controls">
-        <div style="display:flex; gap:0.5rem; align-items:center; flex-wrap:wrap;">
-          <button class="btn btn-primary" id="prompter-play-btn" onclick="startPrompter()">
-            ▶️ Start 8s Practice Loop
-          </button>
-          <button class="btn btn-secondary" onclick="prevPrompterScene()">
-            ⏮️ Prev Scene
-          </button>
-          <button class="btn btn-secondary" onclick="nextPrompterScene()">
-            ⏭️ Next Scene
-          </button>
-          <button class="btn btn-secondary" onclick="resetPrompter()">
-            🔄 Reset
-          </button>
-        </div>
-
-        <div style="display:flex; gap:1rem; align-items:center; font-size:0.85rem; color:var(--text-muted);">
-          <span>Scene: <strong id="prompter-index" style="color:#fff;">1 / 22</strong></span>
-          <span>Time: <strong id="prompter-timecode" style="color:var(--accent-cyan);">0:00 - 0:08</strong></span>
-        </div>
-      </div>
-
-      <div class="progress-bar-container" style="height:6px; margin: 1rem 0;">
-        <div class="progress-bar-fill" id="prompter-bar-fill"></div>
-      </div>
-
-      <div class="prompter-card">
-        <div class="prompter-scene-title" id="prompter-title">Scene 1: Hook: Token Optimization & Cost Controls</div>
-        <div class="prompter-vo-text" id="prompter-vo">
-          "Welcome! In this guide, we explore token optimization and cost control strategies for scaling your AI developer tooling without breaking the bank."
-        </div>
-        <div>
-          <div class="prompter-visual-hint" id="prompter-visual">
-            Visual: Motion graphic title card reading "Claude Developer Certification: Token Optimization & Cost Controls". Animated graphs show token burn rates dropping while performance spikes.
-          </div>
-        </div>
-        <div style="margin-top: 1rem; display:flex; justify-content:center; gap:0.6rem; flex-wrap:wrap;">
-          <button class="btn btn-secondary btn-sm" onclick="speakText(document.getElementById('prompter-vo').innerText)">
-            🔊 Hear Reference Voice (TTS)
-          </button>
-          <button class="btn btn-secondary btn-sm" onclick="copyToClipboard(document.getElementById('prompter-vo').innerText, 'VO script copied!')">
-            📋 Copy Script
-          </button>
-          <button class="btn btn-accent btn-sm" onclick="toggleCurrentSceneDone()">
-            🟢 Mark Current Scene Done
-          </button>
-        </div>
-      </div>
-
-      <!-- Quick Scene Jump Matrix -->
-      <h4 style="font-size: 0.95rem; font-weight: 700; color: #ffffff; margin: 1.5rem 0 0.5rem 0;">
-        ⚡ Jump Directly to Any Scene (1 – 22):
-      </h4>
-      <div class="scene-quick-jumper" id="scene-jump-buttons">
-        <!-- Rendered by inline script -->
-      </div>
-    </section>
+    </aside>
 
   </div>
 
   <!-- Toast Notification Container -->
   <div id="toast-container" class="toast-container"></div>
-
-  <!-- Shared Footer -->
-  <footer class="app-footer">
-    <p><strong>3-Minute Video Animation Production System</strong> • Built for Rifat Erdem Sahin</p>
-    <div class="footer-links">
-      <a href="index.html">🎯 Pipeline Intro</a>
-      <a href="pipeline.html">⚡ Stages Deep-Dive</a>
-      <a href="storyboard.html">📋 22-Scene Storyboard</a>
-      <a href="studio.html">🎙️ VO Studio</a>
-      <a href="tools.html">🌐 Chrome Cockpit</a>
-      <a href="qc-budget.html">🧪 QC & Budget</a>
-      <a href="distribution.html">📤 Social & Flywheel</a>
-      <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
-    </div>
-  </footer>
 
   <!-- Scripts -->
   <script src="js/data.js"></script>
