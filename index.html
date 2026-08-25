@@ -80,7 +80,7 @@
 
           <tbody>
             <!-- STAGE 1 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-1" data-stage-id="stage-1" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -98,8 +98,15 @@
               <td class="td-center">
                 <div class="stage-card stage-1">
                   <div class="stage-title">
-                    <span>🏫 Stage 1: Skool Ideation & Setup</span>
-                    <a href="pipeline.html#stage-1" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🏫 Stage 1: Skool Ideation & Setup</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-1', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-1', 1)" title="Move stage down">▼</button>
+                      <a href="pipeline.html#stage-1" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
                   <div class="stage-description">
@@ -135,7 +142,7 @@
             </tr>
 
             <!-- STAGE 2 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-2" data-stage-id="stage-2" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -153,8 +160,15 @@
               <td class="td-center">
                 <div class="stage-card stage-2">
                   <div class="stage-title">
-                    <span>🤖 Stage 2: Gemini Script & 8s Prompts</span>
-                    <a href="pipeline.html#stage-2" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🤖 Stage 2: Gemini Script & 8s Prompts</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-2', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-2', 1)" title="Move stage down">▼</button>
+                      <a href="pipeline.html#stage-2" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
                   <div class="stage-description">
@@ -190,7 +204,7 @@
             </tr>
 
             <!-- STAGE 2.5 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-2-5" data-stage-id="stage-2-5" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -208,8 +222,15 @@
               <td class="td-center">
                 <div class="stage-card stage-2-5">
                   <div class="stage-title">
-                    <span>🪟 Stage 2.5: Simulation & Dual Setup</span>
-                    <a href="pipeline.html#simulation-stage" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🪟 Stage 2.5: Simulation & Dual Setup</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-2-5', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-2-5', 1)" title="Move stage down">▼</button>
+                      <a href="pipeline.html#simulation-stage" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 5 min (4%)</div>
                   <div class="stage-description">
@@ -245,7 +266,7 @@
             </tr>
 
             <!-- STAGE 3 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-3" data-stage-id="stage-3" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -263,8 +284,15 @@
               <td class="td-center">
                 <div class="stage-card stage-3">
                   <div class="stage-title">
-                    <span>🎬 Stage 3: Google Flow 8s Generation</span>
-                    <a href="pipeline.html#stage-3" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🎬 Stage 3: Google Flow 8s Generation</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-3', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-3', 1)" title="Move stage down">▼</button>
+                      <a href="pipeline.html#stage-3" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 25-35 min (22%)</div>
                   <div class="stage-description">
@@ -300,7 +328,7 @@
             </tr>
 
             <!-- STAGE QC ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-qc" data-stage-id="stage-qc" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -318,8 +346,15 @@
               <td class="td-center">
                 <div class="stage-card stage-qc">
                   <div class="stage-title">
-                    <span>🧪 Stage QC: Quality Gate & Gap Audit</span>
-                    <a href="qc-budget.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🧪 Open Gate ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🧪 Stage QC: Quality Gate & Gap Audit</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-qc', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-qc', 1)" title="Move stage down">▼</button>
+                      <a href="qc-budget.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🧪 Open Gate ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 10-15 min (9%)</div>
                   <div class="stage-description">
@@ -355,7 +390,7 @@
             </tr>
 
             <!-- STAGE 4 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-4" data-stage-id="stage-4" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -373,8 +408,15 @@
               <td class="td-center">
                 <div class="stage-card stage-4">
                   <div class="stage-title">
-                    <span>🎨 Stage 4: Canva 3-Section Timeline</span>
-                    <a href="pipeline.html#stage-4" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🎨 Stage 4: Canva 3-Section Timeline</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-4', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-4', 1)" title="Move stage down">▼</button>
+                      <a href="pipeline.html#stage-4" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">⚡ Deep-Dive ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 30-45 min (26%)</div>
                   <div class="stage-description">
@@ -410,7 +452,7 @@
             </tr>
 
             <!-- STAGE 4.5 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-4-5" data-stage-id="stage-4-5" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -428,8 +470,15 @@
               <td class="td-center">
                 <div class="stage-card stage-4-5">
                   <div class="stage-title">
-                    <span>🎙️ Stage 4.5: 8s VO Studio & Rehearsal</span>
-                    <a href="studio.html" class="btn btn-primary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🎙️ Launch Studio ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🎙️ Stage 4.5: 8s VO Studio & Rehearsal</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-4-5', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-4-5', 1)" title="Move stage down">▼</button>
+                      <a href="studio.html" class="btn btn-primary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🎙️ Launch Studio ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 15-20 min (13%)</div>
                   <div class="stage-description">
@@ -465,7 +514,7 @@
             </tr>
 
             <!-- STAGE 5 ROW -->
-            <tr class="pipeline-table-row">
+            <tr class="pipeline-table-row" id="pipeline-row-stage-5" data-stage-id="stage-5" draggable="true">
               <td class="td-left">
                 <div class="note-card left-card">
                   <div class="note-title">
@@ -483,8 +532,15 @@
               <td class="td-center">
                 <div class="stage-card stage-5">
                   <div class="stage-title">
-                    <span>🚀 Stage 5: Multi-Platform Funnel</span>
-                    <a href="distribution.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🚀 Open Funnel ↗</a>
+                    <div class="stage-title-left">
+                      <span class="drag-handle" title="Drag to reorder stage">⠿</span>
+                      <span>🚀 Stage 5: Multi-Platform Funnel</span>
+                    </div>
+                    <div class="stage-reorder-controls">
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-5', -1)" title="Move stage up">▲</button>
+                      <button class="btn-move" onclick="moveStageRow('pipeline-row-stage-5', 1)" title="Move stage down">▼</button>
+                      <a href="distribution.html" class="btn btn-secondary btn-sm" style="padding: 2px 8px; font-size: 0.7rem;">🚀 Open Funnel ↗</a>
+                    </div>
                   </div>
                   <div class="duration-badge">⏱️ Duration: 15-20 min (11%)</div>
                   <div class="stage-description">

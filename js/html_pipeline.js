@@ -182,6 +182,7 @@
   // Save to Azure / State
   window.savePipelineFeedbackState = function() {
     saveFeedbackData();
+    saveRowOrder();
     if (window.pushStateToAzure) window.pushStateToAzure(false);
     if (window.showToast) window.showToast('💾 Pipeline feedback saved and synced!', 'success');
   };
@@ -196,8 +197,164 @@
     }
   };
 
+  // ============================================================
+  // MOVEABLE ROWS & DRAG-AND-DROP REORDERING ENGINE
+  // ============================================================
+  const ORDER_STORAGE_KEY = 'aug_video_pipeline_row_order_v1';
+  let draggedRow = null;
+
+  function initRowReordering() {
+    restoreRowOrder();
+    setupDragAndDrop();
+  }
+
+  function setupDragAndDrop() {
+    const tbody = document.querySelector('.pipeline-table tbody');
+    if (!tbody) return;
+
+    tbody.addEventListener('dragstart', (e) => {
+      const row = e.target.closest('.pipeline-table-row');
+      if (row) {
+        draggedRow = row;
+        row.classList.add('is-dragging');
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', row.id);
+      }
+    });
+
+    tbody.addEventListener('dragend', () => {
+      if (draggedRow) {
+        draggedRow.classList.remove('is-dragging');
+        draggedRow = null;
+      }
+      document.querySelectorAll('.pipeline-table-row').forEach(r => r.classList.remove('drag-over'));
+      rebuildConnectors();
+      saveRowOrder();
+    });
+
+    tbody.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      const targetRow = e.target.closest('.pipeline-table-row');
+      if (targetRow && targetRow !== draggedRow) {
+        document.querySelectorAll('.pipeline-table-row').forEach(r => r.classList.remove('drag-over'));
+        targetRow.classList.add('drag-over');
+      }
+    });
+
+    tbody.addEventListener('dragleave', (e) => {
+      const targetRow = e.target.closest('.pipeline-table-row');
+      if (targetRow) {
+        targetRow.classList.remove('drag-over');
+      }
+    });
+
+    tbody.addEventListener('drop', (e) => {
+      e.preventDefault();
+      const targetRow = e.target.closest('.pipeline-table-row');
+      if (targetRow && draggedRow && targetRow !== draggedRow) {
+        const rows = Array.from(tbody.querySelectorAll('.pipeline-table-row'));
+        const draggedIndex = rows.indexOf(draggedRow);
+        const targetIndex = rows.indexOf(targetRow);
+
+        if (draggedIndex < targetIndex) {
+          targetRow.after(draggedRow);
+        } else {
+          targetRow.before(draggedRow);
+        }
+
+        rebuildConnectors();
+        saveRowOrder();
+        if (window.showToast) window.showToast('🔀 Stage row reordered successfully!', 'info');
+      }
+      document.querySelectorAll('.pipeline-table-row').forEach(r => r.classList.remove('drag-over'));
+    });
+  }
+
+  // 1-Click Move Up / Move Down Handler
+  window.moveStageRow = function(stageId, direction) {
+    const tbody = document.querySelector('.pipeline-table tbody');
+    if (!tbody) return;
+    const row = document.getElementById(stageId);
+    if (!row) return;
+
+    const rows = Array.from(tbody.querySelectorAll('.pipeline-table-row'));
+    const currentIndex = rows.indexOf(row);
+    const targetIndex = currentIndex + direction;
+
+    if (targetIndex < 0 || targetIndex >= rows.length) return;
+
+    const targetRow = rows[targetIndex];
+    if (direction > 0) {
+      targetRow.after(row);
+    } else {
+      targetRow.before(row);
+    }
+
+    rebuildConnectors();
+    saveRowOrder();
+    if (window.showToast) window.showToast(`↕️ Moved stage ${direction < 0 ? 'up' : 'down'}`, 'info');
+  };
+
+  // Re-generate connectors between adjacent stage rows
+  function rebuildConnectors() {
+    const tbody = document.querySelector('.pipeline-table tbody');
+    if (!tbody) return;
+
+    // Remove existing connector rows
+    tbody.querySelectorAll('.stage-connector-row').forEach(r => r.remove());
+
+    const rows = tbody.querySelectorAll('.pipeline-table-row');
+    rows.forEach((row, idx) => {
+      if (idx < rows.length - 1) {
+        const connector = document.createElement('tr');
+        connector.className = 'stage-connector-row';
+        connector.innerHTML = `
+          <td></td>
+          <td>
+            <div class="table-arrow-cell">
+              <div class="arrow"></div>
+            </div>
+          </td>
+          <td></td>
+        `;
+        row.after(connector);
+      }
+    });
+  }
+
+  function saveRowOrder() {
+    const tbody = document.querySelector('.pipeline-table tbody');
+    if (!tbody) return;
+    const rows = Array.from(tbody.querySelectorAll('.pipeline-table-row'));
+    const order = rows.map(r => r.id).filter(Boolean);
+    try {
+      localStorage.setItem(ORDER_STORAGE_KEY, JSON.stringify(order));
+    } catch (e) {}
+  }
+
+  function restoreRowOrder() {
+    try {
+      const saved = localStorage.getItem(ORDER_STORAGE_KEY);
+      if (!saved) return;
+      const order = JSON.parse(saved);
+      const tbody = document.querySelector('.pipeline-table tbody');
+      if (!tbody || !Array.isArray(order)) return;
+
+      order.forEach(id => {
+        const row = document.getElementById(id);
+        if (row) {
+          tbody.appendChild(row);
+        }
+      });
+      rebuildConnectors();
+    } catch (e) {}
+  }
+
   // Auto-init
   document.addEventListener('DOMContentLoaded', () => {
     window.initHtmlPipeline();
+    initRowReordering();
   });
 })();
+
