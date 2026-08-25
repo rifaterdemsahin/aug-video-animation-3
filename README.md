@@ -23,7 +23,7 @@ The application is structured into **8 dedicated, logically grouped pages** with
 
 | Group | Emoji & Page | File | Purpose & Operational Flow |
 | :--- | :--- | :--- | :--- |
-| **🎬 Overview** | 🎯 **Pipeline & Excalidraw** | [`index.html`](index.html) | Laser-focused interactive vertical whiteboard: sketch, annotate notes on both sides of every stage, and export feedback PNG. |
+| **🎬 Overview** | 🎯 **Pipeline & Feedback** | [`index.html`](index.html) | Laser-focused pure HTML 3-column vertical pipeline: type prompts on the Left, track Center stages, log feedback on the Right, and 1-click **Copy All Feedback** at the bottom. |
 | **🎬 Overview** | ⚡ **Stages Deep-Dive** | [`pipeline.html`](pipeline.html) | Complete 8-stage timing breakdown (~2.25h), simulation split-views, Canva 3-Section workspace, and Azure checklists. |
 | **🎬 Overview** | 🧭 **Workspaces Portal** | [`workspaces.html`](workspaces.html) | Dedicated directory portal mapping out all specialized production workspaces and application hubs. |
 | **🎨 Production** | 📋 **22-Scene Storyboard** | [`storyboard.html`](storyboard.html) | Master 22-scene matrix (8s slices), Google Flow prompts, VO scripts, word count checker, and tri-state status toggles. |
