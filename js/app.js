@@ -225,35 +225,97 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  // Render Master Multi-Stage Production Checklist
+  // Tri-State Checklist State Handlers ('todo' | 'in_progress' | 'done')
+  window.getStageItemStatus = function(itemId) {
+    if (!appState.stageChecklist) appState.stageChecklist = {};
+    const val = appState.stageChecklist[itemId];
+    if (val === 'done' || val === true) return 'done';
+    if (val === 'in_progress' || val === 'inprogress') return 'in_progress';
+    return 'todo';
+  };
+
+  window.cycleStageItem = function(itemId) {
+    const current = window.getStageItemStatus(itemId);
+    let next = 'in_progress';
+    if (current === 'in_progress') next = 'done';
+    else if (current === 'done') next = 'todo';
+    window.setStageItemStatus(itemId, next);
+  };
+
+  window.setStageItemStatus = function(itemId, status) {
+    if (!appState.stageChecklist) appState.stageChecklist = {};
+    if (status === 'todo') {
+      delete appState.stageChecklist[itemId];
+    } else {
+      appState.stageChecklist[itemId] = status;
+    }
+    saveState(true);
+    renderAllStageChecklists();
+    updateChecklistUI();
+    const label = status === 'done' ? '🟢 Done' : status === 'in_progress' ? '🟡 In Progress' : '⚪ Todo';
+    showToast(`Checklist: set to ${label}`);
+  };
+
+  window.toggleStageItem = function(itemId, isChecked) {
+    if (typeof isChecked === 'boolean') {
+      window.setStageItemStatus(itemId, isChecked ? 'done' : 'todo');
+    } else {
+      window.cycleStageItem(itemId);
+    }
+  };
+
+  // Render Master Multi-Stage Production Checklist with Tri-State Support
   function renderAllStageChecklists() {
     const container = document.getElementById('canva-multi-stage-checklist');
     if (!container || !data.productionChecklistStages) return;
 
     container.innerHTML = data.productionChecklistStages.map(stage => {
       const total = stage.items.length;
-      const done = stage.items.filter(it => !!appState.stageChecklist[it.id]).length;
-      const isStageComplete = done === total;
+      const doneCount = stage.items.filter(it => window.getStageItemStatus(it.id) === 'done').length;
+      const inProgressCount = stage.items.filter(it => window.getStageItemStatus(it.id) === 'in_progress').length;
+      const isStageComplete = doneCount === total;
+      const hasInProgress = inProgressCount > 0;
 
       return `
-        <div class="stage-check-card ${isStageComplete ? 'stage-card-complete' : ''}" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;">
+        <div class="stage-check-card ${isStageComplete ? 'stage-card-complete' : hasInProgress ? 'stage-card-inprogress' : ''}" style="background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 0.75rem;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.6rem; border-bottom:1px solid rgba(255,255,255,0.06); padding-bottom:0.4rem;">
             <div style="font-weight:700; font-size:0.88rem; color:#ffffff; display:flex; align-items:center; gap:0.5rem;">
               <span>${stage.icon}</span> ${stage.title}
             </div>
-            <span style="font-size:0.72rem; font-family:var(--font-mono); color:${isStageComplete ? 'var(--accent-emerald)' : 'var(--text-muted)'}; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:10px;">
-              ${done}/${total} Done
-            </span>
+            <div style="display:flex; gap:0.35rem; align-items:center;">
+              ${hasInProgress ? `<span style="font-size:0.68rem; font-family:var(--font-mono); color:var(--accent-amber); background:rgba(245,158,11,0.15); border:1px solid rgba(245,158,11,0.3); padding:1px 6px; border-radius:10px;">🟡 ${inProgressCount} in progress</span>` : ''}
+              <span style="font-size:0.72rem; font-family:var(--font-mono); color:${isStageComplete ? 'var(--accent-emerald)' : 'var(--text-muted)'}; background:rgba(255,255,255,0.06); padding:2px 8px; border-radius:10px;">
+                ${doneCount}/${total} Done
+              </span>
+            </div>
           </div>
-          <ul class="checklist" style="gap: 0.5rem;">
+          <ul class="checklist" style="gap: 0.45rem; list-style:none;">
             ${stage.items.map(it => {
-              const isChecked = !!appState.stageChecklist[it.id];
+              const status = window.getStageItemStatus(it.id);
+              const isDone = status === 'done';
+              const isInProgress = status === 'in_progress';
+
               return `
-                <li class="checklist-item">
-                  <input type="checkbox" id="check-${it.id}" ${isChecked ? 'checked' : ''} onchange="toggleStageItem('${it.id}', this.checked)">
-                  <label for="check-${it.id}" style="font-size:0.8rem; color:${isChecked ? 'var(--accent-emerald)' : '#d1d5db'}; text-decoration:${isChecked ? 'line-through' : 'none'};">
-                    ${it.label}
-                  </label>
+                <li class="tristate-item-row ${isDone ? 'is-done' : isInProgress ? 'is-inprogress' : ''}">
+                  <div style="display:flex; align-items:center; gap:0.5rem; flex:1; cursor:pointer;" onclick="cycleStageItem('${it.id}')" title="Click to cycle: Todo ➔ In Progress ➔ Done">
+                    <span style="font-size:0.9rem; width:18px; text-align:center;">
+                      ${isDone ? '🟢' : isInProgress ? '🟡' : '⚪'}
+                    </span>
+                    <span style="font-size:0.8rem; line-height:1.35; color:${isDone ? 'var(--accent-emerald)' : isInProgress ? '#fcd34d' : '#d1d5db'}; text-decoration:${isDone ? 'line-through' : 'none'}; font-weight:${isInProgress ? '600' : '400'};">
+                      ${it.label}
+                    </span>
+                  </div>
+                  <div style="display:flex; gap:2px; align-items:center;">
+                    <button class="tristate-pill ${status === 'todo' ? 'tristate-todo' : ''}" style="padding:2px 5px; font-size:0.65rem;" onclick="setStageItemStatus('${it.id}', 'todo')" title="Set to Todo">
+                      ⚪
+                    </button>
+                    <button class="tristate-pill ${status === 'in_progress' ? 'tristate-inprogress' : ''}" style="padding:2px 5px; font-size:0.65rem;" onclick="setStageItemStatus('${it.id}', 'in_progress')" title="Set to In Progress">
+                      🟡
+                    </button>
+                    <button class="tristate-pill ${status === 'done' ? 'tristate-done' : ''}" style="padding:2px 5px; font-size:0.65rem;" onclick="setStageItemStatus('${it.id}', 'done')" title="Set to Done">
+                      🟢
+                    </button>
+                  </div>
                 </li>
               `;
             }).join('')}
@@ -262,16 +324,6 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     }).join('');
   }
-
-  window.toggleStageItem = function(itemId, isChecked) {
-    if (isChecked) {
-      appState.stageChecklist[itemId] = true;
-    } else {
-      delete appState.stageChecklist[itemId];
-    }
-    saveState(true);
-    renderAllStageChecklists();
-  };
 
   function updateChecklistUI() {
     renderAllStageChecklists();
@@ -517,9 +569,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (filter !== 'all') {
       if (filter === 'completed') {
-        filtered = filtered.filter(s => !!appState.completedScenes[s.id]);
+        filtered = filtered.filter(s => window.getSceneStatus(s.id) === 'done');
+      } else if (filter === 'in_progress') {
+        filtered = filtered.filter(s => window.getSceneStatus(s.id) === 'in_progress');
       } else if (filter === 'pending') {
-        filtered = filtered.filter(s => !appState.completedScenes[s.id]);
+        filtered = filtered.filter(s => window.getSceneStatus(s.id) === 'todo');
       } else {
         filtered = filtered.filter(s => s.section === filter);
       }
@@ -545,12 +599,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     container.innerHTML = filtered.map(s => {
-      const isCompleted = !!appState.completedScenes[s.id];
+      const sceneStatus = window.getSceneStatus(s.id);
+      const isCompleted = sceneStatus === 'done';
+      const isInProgress = sceneStatus === 'in_progress';
       const wordCount = s.vo.split(/\s+/).filter(Boolean).length;
       const paceStatus = wordCount >= 16 && wordCount <= 24 ? '🟢 Optimal Pace' : (wordCount > 24 ? '🔴 Too Fast (>24 words)' : '🟡 Too Slow (<16 words)');
 
       return `
-        <div class="scene-item-card ${isCompleted ? 'completed' : ''}" id="scene-card-${s.id}">
+        <div class="scene-item-card ${isCompleted ? 'completed' : isInProgress ? 'is-inprogress' : ''}" id="scene-card-${s.id}">
           <div class="scene-time-col">
             <div class="scene-num-badge">#${s.id}</div>
             <div class="scene-time-badge">${s.timecode}</div>
@@ -586,11 +642,21 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
           <div class="scene-actions-col">
-            <label class="scene-checkbox-label">
-              <input type="checkbox" ${isCompleted ? 'checked' : ''} onchange="toggleSceneDone(${s.id}, this.checked)">
-              <span>${isCompleted ? '✅ Complete' : '⭕ Mark Done'}</span>
-            </label>
-            <button class="btn btn-primary btn-sm" onclick="jumpToPrompter(${s.id - 1})">
+            <div style="display:flex; flex-direction:column; gap:0.35rem; width:100%;">
+              <span style="font-size:0.68rem; color:var(--text-muted); font-weight:700; text-transform:uppercase;">Status</span>
+              <div style="display:flex; gap:3px;">
+                <button class="tristate-pill ${sceneStatus === 'todo' ? 'tristate-todo' : ''}" style="flex:1; justify-content:center; padding:3px 4px; font-size:0.7rem;" onclick="setSceneStatus(${s.id}, 'todo')" title="Mark as Todo">
+                  ⚪ Todo
+                </button>
+                <button class="tristate-pill ${sceneStatus === 'in_progress' ? 'tristate-inprogress' : ''}" style="flex:1; justify-content:center; padding:3px 4px; font-size:0.7rem;" onclick="setSceneStatus(${s.id}, 'in_progress')" title="Mark as In Progress">
+                  🟡 In Prog
+                </button>
+                <button class="tristate-pill ${sceneStatus === 'done' ? 'tristate-done' : ''}" style="flex:1; justify-content:center; padding:3px 4px; font-size:0.7rem;" onclick="setSceneStatus(${s.id}, 'done')" title="Mark as Done">
+                  🟢 Done
+                </button>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="jumpToPrompter(${s.id - 1})" style="width:100%; justify-content:center; margin-top:0.4rem;">
               🎙️ Practice in Studio
             </button>
           </div>
@@ -599,16 +665,32 @@ document.addEventListener('DOMContentLoaded', () => {
     }).join('');
   }
 
-  // Toggle Scene Done
-  window.toggleSceneDone = function(sceneId, isChecked) {
-    if (isChecked) {
-      appState.completedScenes[sceneId] = true;
-    } else {
+  // Tri-State Scene Status Handlers
+  window.getSceneStatus = function(sceneId) {
+    if (!appState.completedScenes) appState.completedScenes = {};
+    const val = appState.completedScenes[sceneId];
+    if (val === 'done' || val === true) return 'done';
+    if (val === 'in_progress' || val === 'inprogress') return 'in_progress';
+    return 'todo';
+  };
+
+  window.setSceneStatus = function(sceneId, status) {
+    if (!appState.completedScenes) appState.completedScenes = {};
+    if (status === 'todo') {
       delete appState.completedScenes[sceneId];
+    } else {
+      appState.completedScenes[sceneId] = status;
     }
     saveState(true);
     renderStoryboard(currentFilter, currentSearch);
     renderCanvaSuite();
+    updateProgressStats();
+    const label = status === 'done' ? '🟢 Done' : status === 'in_progress' ? '🟡 In Progress' : '⚪ Todo';
+    showToast(`Scene #${sceneId} set to ${label}`);
+  };
+
+  window.toggleSceneDone = function(sceneId, isChecked) {
+    window.setSceneStatus(sceneId, isChecked ? 'done' : 'todo');
   };
 
   // Helper Escape Function for JS onclick attributes
@@ -620,11 +702,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Update Global Progress Bar & Counters
   function updateProgressStats() {
     const totalScenes = data.scenes.length;
-    const completedCount = Object.keys(appState.completedScenes).length;
+    const completedCount = data.scenes.filter(s => window.getSceneStatus(s.id) === 'done').length;
+    const inProgCount = data.scenes.filter(s => window.getSceneStatus(s.id) === 'in_progress').length;
     const percent = Math.round((completedCount / totalScenes) * 100);
 
     const statsElem = document.getElementById('stat-completed-scenes');
-    if (statsElem) statsElem.innerText = `${completedCount} / ${totalScenes}`;
+    if (statsElem) {
+      statsElem.innerText = inProgCount > 0 ? `${completedCount} Done (${inProgCount} In Prog)` : `${completedCount} / ${totalScenes}`;
+    }
 
     const percentElem = document.getElementById('stat-progress-percent');
     if (percentElem) percentElem.innerText = `${percent}%`;

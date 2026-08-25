@@ -80,11 +80,12 @@ flowchart LR
 10. **👀 Prod Review (Playback & Script Verification Gate)**: Watch complete Canva Prod timeline playback (176s) and cross-check against Post-it scripts to verify visual-to-narration sync before moving to Post-Prod.
 11. **🎙️ Post-prod (VO & Sync)**: Follow timeline Post-it notes to record master voice-over in own authentic voice.
 12. **🎬 Post-prod (Roger Rabbit Stamp)**: Sync cartoon motion to VO audio beats, apply Roger Rabbit animated signature stamp, color-balance layers, and export 1080p 60fps master video (176s).
-13. ☁️ **Azure Files Cloud State Synchronization**:
+13. ☁️ **Azure Files Cloud State Synchronization & Tri-State Engine**:
     - **Storage Account**: `animationasistant`
     - **Azure File Share**: `aug-video-state`
     - **State Payload**: `aug_video_animation_state.json`
     - **Key Vault**: `dp-kv-deliverypilot` (Secret: `aug-video-animation-sas`)
+    - **Tri-State Status Engine**: Supports `⚪ Todo`, `🟡 In Progress`, and `🟢 Done` states across all checklist stages and storyboard scenes.
 
 ### 🚀 Stage 5: Multi-Platform Distribution & The Skool Flywheel
 - **Free Social Distribution**:
