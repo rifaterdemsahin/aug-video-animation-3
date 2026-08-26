@@ -7,49 +7,56 @@
 
   // Default stage templates matching the production report
   const DEFAULT_FEEDBACK = {
-    stage_1: { left: '', right: '' },
+    stage_1: { left: '', right: 'Stuck at 50 (bottleneck/capacity limit).' },
+    stage_1_5: { left: '', right: '' },
     stage_2: { left: '', right: '' },
     stage_2_5: { left: '', right: '' },
     stage_3: { left: '', right: '' },
-    stage_qc: {
-      left: 'Shotlist in hand: Sort clips 1-by-1 to used asset. Verify 0 blank frames.',
-      right: 'Quality Gate PASS. Zero text hallucination in video model.'
-    },
-    stage_4: {
-      left: 'Canva 3-Section workspace: Pre-prod Post-its on left, 22 8s placeholders on timeline.',
-      right: 'Used asset folder sorted. Set Video as Background verified.'
-    },
-    stage_4_5: {
-      left: '8s VO Teleprompter: Speak at 150 WPM with metronome audio cue.',
-      right: 'Authentic creator voice + Roger Rabbit cartoon stamp on real IDE.'
-    },
-    stage_5: {
-      left: 'Social copy: YouTube 22-chapter timestamps, LinkedIn value post, Skool module upload.',
-      right: 'Distribution ready. Value flywheel engaged.'
-    }
+    stage_qc: { left: '', right: '' },
+    stage_4: { left: '', right: '' },
+    stage_4_5: { left: '', right: 'Needs to be placed earlier in the process to prevent redo work.' },
+    stage_vo: { left: '', right: 'Use cloned voice with fal.ai.' },
+    stage_5: { left: '', right: '' }
   };
 
   const DEFAULT_DURATIONS = {
-    stage_1: 20,
-    stage_2: 15,
+    stage_1: 0,
+    stage_1_5: 5,
+    stage_2: 5,
     stage_2_5: 5,
     stage_3: 30,
-    stage_qc: 15,
-    stage_4: 35,
-    stage_4_5: 20,
-    stage_5: 20
+    stage_qc: 5,
+    stage_4: 5,
+    stage_4_5: 5,
+    stage_vo: 10,
+    stage_5: 5
   };
 
   const DEFAULT_DESCRIPTIONS = {
-    stage_1: 'Extract classroom topic, gather UI screenshots (127.0.0.1:3847) & define Roger Rabbit style.',
-    stage_2: 'Generate 22 scenes × 8s pacing (176s) with strict 18-22 word voice-over lines.',
-    stage_2_5: 'Split-view staging: Gemini prompt director paired with Google Flow generation queue.',
-    stage_3: 'Batch render 22 8s clips in Google Flow (15 credits/ea = 330 base credits).',
-    stage_qc: 'CRITICAL GATE: Sort footages to used asset & verify zero timeline gaps with shotlist in hand.',
-    stage_4: 'Pre-prod Post-its ➔ Bulk paste 22 8s placeholders ➔ Set Video as Background.',
-    stage_4_5: 'Rehearse with 8s countdown loop & metronome, record authentic VO & apply Roger stamp.',
-    stage_5: 'Export 1080p 60fps MP4, generate 22-chapter YouTube description, LinkedIn & Skool flywheel.'
+    stage_1: 'Extract classroom topic and prepare raw inputs. Setup a customer development agent; week 1 gather information into course content.',
+    stage_1_5: 'Sanity check with Gemini content validation, asset pre-check for Flow, queue 22 8s placeholders, verify pro prompt logic.',
+    stage_2: 'Paste Skool text into Gemini; generate video voiceover with 8s animations for Google Flow. Roger Rabbit style. 22 × 8s = 176s. 18–22 words per scene.',
+    stage_2_5: 'Split-view staging — Gemini prompt director on one side, Google Flow generation queue on the other (Chrome split-screen).',
+    stage_3: 'Batch render 22 8s clips using ~330 base credits; bulk generate then download from Google Flow. 15 min + 15 min.',
+    stage_qc: 'Critical gate: Canva video document, uploads folder, used-assets subfolder. Verify shot list, timeline gaps, used assets vs shot list.',
+    stage_4: 'Place assets on the timeline; check with post-it notes. Bulk paste 22 8s placeholders; set video as background across sections.',
+    stage_4_5: 'AI review and sanity check the voiceover; add captions. 8s countdown loop sync; metronome pacing; authentic VO/stamp sync.',
+    stage_vo: 'Voice cloning; align reference audio, waveform check, pacing. Speed up or slow down animations to line up. 5 min + 5 min.',
+    stage_5: 'Export 1080p 60fps MP4; YouTube description with 22 chapters; distribute YouTube, LinkedIn, Skool Flywheel; pin the Skool link.'
   };
+
+  const STAGES_META = [
+    { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup' },
+    { key: 'stage_1_5', title: '🧪 Stage 1.5: Gemini & Google Flow Gate' },
+    { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts' },
+    { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup' },
+    { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation' },
+    { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit' },
+    { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline' },
+    { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal' },
+    { key: 'stage_vo', title: '🧬 Stage VO: Technical Workflow & Voice Sync' },
+    { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel' }
+  ];
 
   let feedbackData = {};
   let durationsData = {};
@@ -71,7 +78,7 @@
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
-        feedbackData = JSON.parse(saved);
+        feedbackData = { ...JSON.parse(JSON.stringify(DEFAULT_FEEDBACK)), ...JSON.parse(saved) };
       } else {
         feedbackData = JSON.parse(JSON.stringify(DEFAULT_FEEDBACK));
       }
@@ -89,7 +96,7 @@
   function loadDurationsData() {
     try {
       const saved = localStorage.getItem(DURATIONS_KEY);
-      durationsData = saved ? JSON.parse(saved) : { ...DEFAULT_DURATIONS };
+      durationsData = saved ? { ...DEFAULT_DURATIONS, ...JSON.parse(saved) } : { ...DEFAULT_DURATIONS };
     } catch (e) {
       durationsData = { ...DEFAULT_DURATIONS };
     }
@@ -104,7 +111,7 @@
   function loadDescriptionsData() {
     try {
       const saved = localStorage.getItem(DESCRIPTIONS_KEY);
-      descriptionsData = saved ? JSON.parse(saved) : { ...DEFAULT_DESCRIPTIONS };
+      descriptionsData = saved ? { ...DEFAULT_DESCRIPTIONS, ...JSON.parse(saved) } : { ...DEFAULT_DESCRIPTIONS };
     } catch (e) {
       descriptionsData = { ...DEFAULT_DESCRIPTIONS };
     }
@@ -120,19 +127,19 @@
     Object.keys(DEFAULT_DURATIONS).forEach(stageKey => {
       const val = durationsData[stageKey] !== undefined ? durationsData[stageKey] : DEFAULT_DURATIONS[stageKey];
       const el = document.getElementById(`dur-val-${stageKey}`);
-      if (el) el.textContent = `${val} min`;
+      if (el) el.textContent = val ? `${val} min` : '—';
     });
   }
 
   // ⏱️ Step duration in 5-minute intervals
   window.adjustStageDuration = function(stageKey, deltaMinutes) {
     const current = durationsData[stageKey] !== undefined ? durationsData[stageKey] : (DEFAULT_DURATIONS[stageKey] || 15);
-    const updated = Math.max(5, current + deltaMinutes);
+    const updated = Math.max(0, current + deltaMinutes);
     durationsData[stageKey] = updated;
     saveDurationsData();
 
     const el = document.getElementById(`dur-val-${stageKey}`);
-    if (el) el.textContent = `${updated} min`;
+    if (el) el.textContent = updated ? `${updated} min` : '—';
 
     calculateTotalPipelineTime();
   };
@@ -213,19 +220,10 @@
 
   // 📋 Main Feature: Copy All Pipeline Feedback
   window.copyAllPipelineFeedback = function() {
-    const stagesMeta = [
-      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup' },
-      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts' },
-      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup' },
-      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation' },
-      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit' },
-      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline' },
-      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal' },
-      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel' }
-    ];
+    const stagesMeta = STAGES_META;
 
     const totalTime = calculateTotalPipelineTime();
-    let report = `# 🎬 3-Minute Video Pipeline Feedback & Review Report\n`;
+    let report = `# 🎬 CODE Video Production Pipeline Feedback\n`;
     report += `**Project**: Claude Developer Certification: Token Optimization & Custom IDEs\n`;
     report += `**Turnaround Target**: ${totalTime} • 176s Master Video (22 Scenes) • 330 Credits\n`;
     report += `**Generated**: ${new Date().toLocaleString()}\n\n`;
@@ -259,18 +257,9 @@
 
   // Export Feedback as Markdown File
   window.exportFeedbackMarkdown = function() {
-    const stagesMeta = [
-      { key: 'stage_1', title: '🏫 Stage 1: Skool Ideation & Setup' },
-      { key: 'stage_2', title: '🤖 Stage 2: Gemini Script & 8s Prompts' },
-      { key: 'stage_2_5', title: '🪟 Stage 2.5: Simulation & Dual Setup' },
-      { key: 'stage_3', title: '🎬 Stage 3: Google Flow 8s Generation' },
-      { key: 'stage_qc', title: '🧪 Stage QC: Quality Gate & Gap Audit' },
-      { key: 'stage_4', title: '🎨 Stage 4: Canva 3-Section Timeline' },
-      { key: 'stage_4_5', title: '🎙️ Stage 4.5: 8s VO Studio & Rehearsal' },
-      { key: 'stage_5', title: '🚀 Stage 5: Multi-Platform Funnel' }
-    ];
+    const stagesMeta = STAGES_META;
 
-    let report = `# 🎬 3-Minute Video Pipeline Feedback & Review Report\n\n`;
+    let report = `# 🎬 CODE Video Production Pipeline Feedback\n\n`;
     stagesMeta.forEach(s => {
       const data = feedbackData[s.key] || { left: '', right: '' };
       const dur = (durationsData[s.key] !== undefined ? durationsData[s.key] : DEFAULT_DURATIONS[s.key]) + ' min';
