@@ -37,6 +37,12 @@
       items: [
         { id: 'stage-5', href: 'stage-5.html', icon: '🚀', label: '5 Multi-Platform', badge: '5m' }
       ]
+    },
+    {
+      title: 'Review',
+      items: [
+        { id: 'sanity-check', href: 'sanity-check.html', icon: '🧠', label: 'Sanity Check', badge: 'Gate' }
+      ]
     }
   ];
 

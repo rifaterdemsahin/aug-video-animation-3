@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanity Check — CODE Pipeline Design</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-active-page="sanity-check">
+  <div class="app-layout">
+    <main class="main-content-area">
+      <section class="hero-banner">
+        <div class="hero-content">
+          <div class="hero-tag">🧠 Review · Sanity Check</div>
+          <h2 class="hero-title">Does this pipeline design hold?</h2>
+          <p class="hero-desc">
+            Review of the CODE production design (Capture → Organize → Distill → Express): 10 stages, 22 × 8s = 176s master, ~75 minutes of timed work. Grounded in the logged issues (Stage 1 stuck at 50, VO placed too late, cloned voice on fal.ai).
+          </p>
+        </div>
+      </section>
+
+      <div class="sanity-verdict">
+        <strong style="color:var(--text-main);">Verdict:</strong>
+        The shape is sound — a short, gated flywheel with a hard 8-second beat and a quality gate before timeline lock. It will not hold at the printed times, and it will keep redoing work until voice and pacing sit earlier. Treat ~75 min as a best-case studio day, not a committed SLA. Stage 3 (Flow, 30 min / ~40% of timed work) and Stage 1 (untimed, capacity 50) are the real constraints.
+      </div>
+
+      <div class="sanity-grid">
+        <article class="sanity-card pros">
+          <h3>✅ Pros</h3>
+          <ul>
+            <li><strong>CODE maps cleanly to video.</strong> Capture raw classroom, Organize clips and prompts, Distill voice, Express distribution. Operators can find the current phase without a 20-item SOP.</li>
+            <li><strong>Fixed 8s / 18–22 word contract.</strong> 22 scenes × 8s = 176s is a real production unit. Prompts, VO, and timeline snap to the same beat.</li>
+            <li><strong>Two gates exist.</strong> Stage 1.5 (prompt/asset sanity) and Stage QC (shot list vs used assets) stop “generate 22 clips then discover a hole.”</li>
+            <li><strong>Stage 3 is called out as the bulk.</strong> 15 + 15 min and ~330 Flow credits is honest: generation is the expensive step, not Canva paste.</li>
+            <li><strong>Native distribution, not one export-everywhere file.</strong> YouTube chapters, LinkedIn, Skool pin — matches a flywheel instead of a dump to Drive.</li>
+            <li><strong>Whiteboard lives on Feedback only.</strong> Detail pages stay operational; review does not compete with the board.</li>
+          </ul>
+        </article>
+
+        <article class="sanity-card cons">
+          <h3>❌ Cons</h3>
+          <ul>
+            <li><strong>Most 5-minute stages are fiction.</strong> Scripting 22 Flow prompts, QC of 22 clips, Canva paste, VO clone, and 3-platform publish rarely finish in 5 minutes each. Calendar math will slip.</li>
+            <li><strong>Stage 1 has no time and a hard cap.</strong> “Stuck at 50” is a capacity bottleneck, not a setup task. Capture is unplanned work sitting in front of the flywheel.</li>
+            <li><strong>Voice is too late.</strong> Stage 4.5 already flags “place earlier to prevent redo.” Generating 22 clips before VO lock means re-timing or re-rendering when lines change.</li>
+            <li><strong>Tool chain is wide.</strong> Skool, Obsidian, Gemini, Flow, Canva, fal.ai, ElevenLabs, YouTube Studio. Handoffs are copy-paste and downloads, not a single project file.</li>
+            <li><strong>Tool vs issue mismatch on VO.</strong> Distill lists fal.ai for rehearsal and ElevenLabs for clone, then an issue says “use cloned voice with fal.ai.” Operators will not know the source of truth.</li>
+            <li><strong>QC after 30 min of generation is thin at 5 min.</strong> A real gap audit of 22 clips against a shot list needs more than a folder create + scrub.</li>
+          </ul>
+        </article>
+
+        <article class="sanity-card risks">
+          <h3>⚠️ Risks</h3>
+          <ul>
+            <li><strong>Redo loop from late VO.</strong> If VO/captions change after Flow render, you burn another ~330 credits and another 30 minutes. Highest cost risk in the design.</li>
+            <li><strong>Flow credit and queue failure.</strong> Batch of 22 × ~15 credits is a single-vendor outage. No listed fallback generator or stills path.</li>
+            <li><strong>Style drift across 22 clips.</strong> Roger Rabbit / isometric lock is prompt-only. Without a locked reference still per scene, QC will pass “a clip exists” and fail “the series matches.”</li>
+            <li><strong>Capture starvation.</strong> If Skool intake stays stuck at 50, Organize has nothing honest to prompt. The flywheel idles while looking busy at Stage 2.</li>
+            <li><strong>Optimistic Express.</strong> 1080p 60fps export + 22 YouTube chapters + LinkedIn + Skool pin in 5 minutes assumes templates already exist. First run will not.</li>
+            <li><strong>Clone/legal and sync risk.</strong> Cloned voice + caption mismatch + speed-ramping clips to fit 8s can produce uncanny pacing and platform policy issues if the clone is not clearly owned.</li>
+          </ul>
+        </article>
+
+        <article class="sanity-card opps">
+          <h3>🌱 Opportunities</h3>
+          <ul>
+            <li><strong>Move VO lock before Flow.</strong> Freeze 22 × 18–22 word lines (and metronome) in Capture/Organize. Then generate picture to locked audio. Kills the 4.5 redo note.</li>
+            <li><strong>One reference still + prompt pack.</strong> Stage 1.5 should output a style board and a 22-row prompt table, not only “placeholders queued.”</li>
+            <li><strong>Treat Stage 1 as a backlog, not a stage with no clock.</strong> Cap weekly topics (the “50”) and pull one classroom item into the flywheel. Makes Capture measurable.</li>
+            <li><strong>Credit buffer and a B-roll fallback.</strong> Budget 330 + 20% rerolls. Keep a Canva motion/placeholder path so QC can pass a draft without waiting on Flow.</li>
+            <li><strong>Template the 5-minute stages.</strong> Canva 3-section file, YouTube chapter generator, Skool pin copy — then those times become real on run 3+, not run 1.</li>
+            <li><strong>Pick one voice vendor.</strong> Either fal.ai clone or ElevenLabs, with captions from the same transcript. Remove the dual-tool contradiction.</li>
+          </ul>
+        </article>
+      </div>
+
+      <h3 class="section-title" style="margin-bottom:0.75rem;">Stage-by-stage sanity</h3>
+      <div class="sanity-table-wrap">
+        <table class="sanity-table">
+          <thead>
+            <tr>
+              <th>Stage</th>
+              <th>Claim</th>
+              <th>Check</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1 Skool</td>
+              <td>Untimed capture</td>
+              <td class="sanity-flag">Fail — stuck at 50, no WIP limit</td>
+              <td>Timebox one classroom extract per video</td>
+            </tr>
+            <tr>
+              <td>1.5 Gate</td>
+              <td>5 min sanity + 22 placeholders</td>
+              <td class="sanity-ok">Pass as a gate; time is tight</td>
+              <td>Include style-lock stills, not only queue</td>
+            </tr>
+            <tr>
+              <td>2 Script</td>
+              <td>5 min for 22 prompts + VO lines</td>
+              <td class="sanity-flag">Fail on time if starting from blank</td>
+              <td>Reuse Gemini director session; freeze VO here</td>
+            </tr>
+            <tr>
+              <td>2.5 Dual</td>
+              <td>5 min split-screen</td>
+              <td class="sanity-ok">Pass — cockpit, not content</td>
+              <td>Keep; do not treat as a content stage</td>
+            </tr>
+            <tr>
+              <td>3 Flow</td>
+              <td>30 min / 330 credits</td>
+              <td class="sanity-ok">Pass as the real work</td>
+              <td>Add reroll buffer; this is the critical path</td>
+            </tr>
+            <tr>
+              <td>QC</td>
+              <td>5 min gap audit</td>
+              <td class="sanity-flag">Fail if 22 clips + style check</td>
+              <td>Shot list checkbox per scene; block Stage 4 until 22/22</td>
+            </tr>
+            <tr>
+              <td>4 Timeline</td>
+              <td>5 min paste + background</td>
+              <td class="sanity-ok">Pass once the Canva template exists</td>
+              <td>Never assemble before QC 22/22</td>
+            </tr>
+            <tr>
+              <td>4.5 VO</td>
+              <td>5 min, after picture</td>
+              <td class="sanity-flag">Fail order — already logged as too late</td>
+              <td>Move before Stage 3</td>
+            </tr>
+            <tr>
+              <td>VO Sync</td>
+              <td>10 min clone + retiming</td>
+              <td class="sanity-flag">Fail if clips must be re-sped</td>
+              <td>Clone to locked script; avoid stretching picture</td>
+            </tr>
+            <tr>
+              <td>5 Express</td>
+              <td>5 min three platforms</td>
+              <td class="sanity-flag">Fail on first publish; pass with templates</td>
+              <td>Chapter + description snippets generated in Stage 2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="sanity-verdict">
+        <strong style="color:var(--text-main);">Do this next (smallest design change):</strong>
+        Freeze the 22 VO lines in Stage 2, run Stage 4.5 rehearsal before Stage 3, keep QC as a hard 22/22 gate, and give Stage 1 a weekly WIP of one classroom topic. Leave CODE and the 8-second beat as they are.
+      </div>
+
+      <footer class="app-footer">
+        <p><strong>CODE Video Production Pipeline</strong> • Capture · Organize · Distill · Express</p>
+        <div class="footer-links">
+          <a href="pipeline.html">⚡ Pipeline</a>
+          <a href="index.html">💬 Feedback</a>
+          <a href="sanity-check.html">🧠 Sanity Check</a>
+          <a href="index.html">🎨 Canva Whiteboard</a>
+          <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer">🐙 GitHub Repo</a>
+        </div>
+      </footer>
+    </main>
+    <aside class="lhs-sidebar app-sidebar">
+      <div class="app-sidebar-header">
+        <a href="pipeline.html" class="rhs-brand">
+          <div class="rhs-brand-icon">✨</div>
+          <div class="rhs-brand-text">
+            <h1>3-Min Video Engine</h1>
+            <p>CODE Pipeline</p>
+          </div>
+        </a>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Switch to Light Mode" aria-label="Toggle Light / Dark Mode">
+          <span class="theme-icon">☀️</span>
+          <span class="theme-label">Light Mode</span>
+        </button>
+      </div>
+      <div class="rhs-status-card">
+        <div class="rhs-status-header">
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);">🎬 Production Progress</span>
+          <span id="stat-completed-scenes" style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-cyan);">0/22 Ready</span>
+        </div>
+        <div class="progress-bar-container" style="height: 6px;">
+          <div id="global-progress-fill" class="progress-bar-fill"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:2px;">
+          <span id="azure-last-sync-time" style="font-size:0.65rem; color:var(--text-muted);">Azure Synced</span>
+          <button class="btn btn-cloud btn-sm" style="padding:2px 8px; font-size:0.7rem;" onclick="pushStateToAzure(true)">☁️ Sync Azure</button>
+        </div>
+      </div>
+      <nav class="rhs-nav-groups"></nav>
+      <div class="rhs-footer-actions">
+        <a href="index.html" class="btn btn-primary btn-sm" style="justify-content:center;">🎨 Open Canva Whiteboard</a>
+        <a href="https://github.com/rifaterdemsahin/aug-video-animation-3" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="justify-content:center;">🐙 GitHub ↗</a>
+      </div>
+    </aside>
+  </div>
+  <div id="toast-container" class="toast-container"></div>
+  <script src="js/data.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
