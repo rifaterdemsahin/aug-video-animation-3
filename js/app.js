@@ -1,3 +1,10 @@
+// Immediate Theme Initialization (Dark / Light Mode)
+(function() {
+  const THEME_KEY = 'aug_video_theme_preference';
+  const saved = localStorage.getItem(THEME_KEY) || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+})();
+
 // Main Interactive Application Logic for 3-Minute Video Animation Helper
 document.addEventListener('DOMContentLoaded', () => {
   const data = window.VIDEO_DATA;
@@ -5,6 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('Video data not found!');
     return;
   }
+
+  // Theme Management
+  const THEME_KEY = 'aug_video_theme_preference';
+
+  window.toggleTheme = function() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem(THEME_KEY, next);
+    updateThemeUI(next);
+    showToast(next === 'light' ? '☀️ Switched to Light Mode' : '🌙 Switched to Dark Mode', 'info');
+  };
+
+  function updateThemeUI(theme) {
+    const current = theme || document.documentElement.getAttribute('data-theme') || 'dark';
+    const isLight = current === 'light';
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+      const icon = btn.querySelector('.theme-icon');
+      const label = btn.querySelector('.theme-label');
+      if (icon) icon.textContent = isLight ? '🌙' : '☀️';
+      if (label) label.textContent = isLight ? 'Dark Mode' : 'Light Mode';
+      btn.setAttribute('title', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+      btn.setAttribute('aria-label', isLight ? 'Switch to Dark Mode' : 'Switch to Light Mode');
+    });
+  }
+  updateThemeUI();
 
   // State Management with LocalStorage & Azure Files Cloud Sync
   const STORAGE_KEY = 'aug_video_animation_progress_v1';

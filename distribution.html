@@ -204,19 +204,25 @@ Welcome! In this guide, we explore...</div>
 
     </main>
 
-    <!-- Vertical Menu on the Right-Hand Side (RHS) -->
-    <aside class="rhs-sidebar">
-      <a href="index.html" class="rhs-brand">
-        <div class="rhs-brand-icon">✨</div>
-        <div class="rhs-brand-text">
-          <h1>3-Min Video Engine</h1>
-          <p>Production Cockpit v2.0</p>
-        </div>
-      </a>
+    <!-- Vertical Menu on the Left-Hand Side (LHS) -->
+    <aside class="lhs-sidebar app-sidebar">
+      <div class="app-sidebar-header">
+        <a href="index.html" class="rhs-brand">
+          <div class="rhs-brand-icon">✨</div>
+          <div class="rhs-brand-text">
+            <h1>3-Min Video Engine</h1>
+            <p>Production Cockpit v2.0</p>
+          </div>
+        </a>
+        <button class="theme-toggle-btn" onclick="toggleTheme()" title="Switch to Light Mode" aria-label="Toggle Light / Dark Mode">
+          <span class="theme-icon">☀️</span>
+          <span class="theme-label">Light Mode</span>
+        </button>
+      </div>
 
       <div class="rhs-status-card">
         <div class="rhs-status-header">
-          <span style="font-size:0.75rem; font-weight:700; color:#fff;">🎬 Production Progress</span>
+          <span style="font-size:0.75rem; font-weight:700; color:var(--text-main);">🎬 Production Progress</span>
           <span id="stat-completed-scenes" style="font-size:0.7rem; font-family:var(--font-mono); color:var(--accent-cyan);">0/22 Ready</span>
         </div>
         <div class="progress-bar-container" style="height: 6px;">
