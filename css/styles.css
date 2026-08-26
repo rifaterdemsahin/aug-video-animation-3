@@ -2477,18 +2477,56 @@ header.sticky-header {
 }
 
 /* Pipeline Overview & Stage Timeline Cards */
-body[data-active-page="feedback"] {
+body[data-active-page="feedback"],
+body[data-active-page="feedback"] html {
   overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
 }
 body[data-active-page="feedback"] .app-layout {
+  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
 }
 body[data-active-page="feedback"] .feedback-main {
   position: relative;
   padding: 0 !important;
-  margin-left: 280px;
+  margin-left: 0 !important;
+  width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   overflow: visible;
+}
+/* Rail overlays the board so the embed can use the full window width. */
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar {
+  width: 58px;
+  padding: 0.75rem 0.35rem;
+  background: rgba(10, 14, 23, 0.92);
+}
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:hover,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:focus-within {
+  width: 280px;
+  padding: 1.25rem 1rem;
+  z-index: 2000;
+}
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .rhs-brand-text,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .theme-toggle-btn,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .rhs-status-card,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .rhs-group-title,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .link-badge,
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .rhs-footer-actions {
+  display: none;
+}
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .rhs-nav-link {
+  justify-content: center;
+  padding: 0.45rem 0.2rem;
+}
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .link-label {
+  font-size: 0;
+  gap: 0;
+}
+body[data-active-page="feedback"] .lhs-sidebar.app-sidebar:not(:hover):not(:focus-within) .link-label span {
+  font-size: 1.15rem;
 }
 .feedback-board-bar {
   position: absolute;
@@ -2511,12 +2549,13 @@ body[data-active-page="feedback"] .feedback-main {
   font-weight: 600;
   pointer-events: auto;
 }
-/* Canva design is square — match that so the board fills the iframe (not letterboxed). */
+/* Full window width, square iframe so Canva is not letterboxed. */
 .canva-whiteboard-full {
   position: relative;
-  width: 100%;
+  width: 100vw;
+  max-width: 100vw;
   height: 0;
-  padding-top: 100%;
+  padding-top: 100vw;
   overflow: hidden;
   background: #0b1120;
 }
@@ -2529,11 +2568,6 @@ body[data-active-page="feedback"] .feedback-main {
   border: none;
   padding: 0;
   margin: 0;
-}
-@media (max-width: 900px) {
-  body[data-active-page="feedback"] .feedback-main {
-    margin-left: 0;
-  }
 }
 .sanity-grid {
   display: grid;
